@@ -4,6 +4,7 @@ from tkinter import ttk
 
 root = tk.Tk()
 root.title("DATCOM-GUI")
+root.iconbitmap("logo.ico")
 root.geometry("900x500")
 tabControl = ttk.Notebook(root)
 
