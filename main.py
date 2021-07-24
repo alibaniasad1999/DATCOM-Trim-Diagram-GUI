@@ -783,8 +783,6 @@ def save():
 
     data_saver[7].append(XV.get())
 
-    data_saver[7].append(ZH.get())
-
     data_saver[7].append(ZV.get())
 
     data_saver[7].append(SCALE.get())
