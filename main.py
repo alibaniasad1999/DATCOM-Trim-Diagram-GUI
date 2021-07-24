@@ -15,7 +15,7 @@ tabControl.add(control_cards,
 tabControl.pack(expand=1, fill="both")
 tk.Label(control_cards,
          text="Digital DATCOM Graphical User Interface",
-         font=('Arial', 25)).grid(column=1, row=0, sticky=tk.EW)
+         font=('Arial', 25)).grid(column=1, row=0, columnspan=8, sticky=tk.EW)
 # Control Cards frames
 # Dimensions unit
 
@@ -44,7 +44,7 @@ tk.Radiobutton(Derivations, text="Radian", padx=20, variable=der_unit_var, value
 Other_options = tk.Frame(control_cards,
                          highlightbackground="black",
                          highlightthickness=1)
-Other_options.grid(column=0, row=2, columnspan=2, padx=10, pady=10, sticky=tk.W)
+Other_options.grid(column=0, row=2, columnspan=4, padx=10, pady=10, sticky=tk.W)
 dyn_der_var = tk.IntVar()
 dyn_der_var.set(1)
 part_var = tk.IntVar()
@@ -450,16 +450,6 @@ tk.Radiobutton(vertical_tail_type_frame, text="double delta platform AR<3", padx
 tk.Radiobutton(vertical_tail_type_frame, text="Cranked platform AR>3", padx=20,
                variable=vertical_tail_type, value=3).grid(column=0, row=3, sticky=tk.W)
 
-
-def valid_len(string):
-    counter = 0
-    for i in string:
-        if len(i) == 0:
-            return counter
-        counter += 1
-    return len(string)
-
-
 def load():
     a = []
     with open("save_data.csv") as data:
@@ -703,9 +693,6 @@ def load():
     Vairfoil.delete(0, tk.END)
     Vairfoil.insert(0, a[10][9])
 
-
-tk.Button(flight_condition, text="load", command=load).grid(row=0, column=4)
-
 def save():
     data_saver = [[]]
 
@@ -898,6 +885,9 @@ def save():
         writer.writerow(row)
     f.close()
 
-tk.Button(flight_condition, text="save", command=save).grid(row=0, column=5)
+
+tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(control_cards, text="save", command=save).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
 
 root.mainloop()
