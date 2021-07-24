@@ -214,21 +214,21 @@ ZV.grid(column=1, row=9, padx=0, pady=10, sticky=tk.W)
 tk.Label(synthesis, text="Vertical Location of theoretical vertical tail Apex").grid(
 	column=2, row=9, padx=10, pady=10, sticky=tk.W)
 
-vertup_frame = tk.Frame(synthesis,
-				highlightbackground="black",
-				highlightthickness=1)
-vertup_frame.grid(column=3, row=0, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.EW)
-tk.Label(vertup_frame, text="Vertical plane above ref plane").grid(column=0, row=0)
-vertup = tk.StringVar()
-vertup.set(".TRUE.")
-tk.Radiobutton(vertup_frame, text="True", padx=20,
-			   variable=vertup, value=".TRUE.").grid(column=0, row=1, sticky=tk.W)
-tk.Radiobutton(vertup_frame, text="False", padx=20,
-			   variable=vertup, value=".FALSE.").grid(column=0, row=2, sticky=tk.W)
-
-tk.Label(synthesis, text="Scale Factor").grid(column=3, row=2, padx=10, pady=10)
+# vertup_frame = tk.Frame(synthesis,
+# 				highlightbackground="black",
+# 				highlightthickness=1)
+# vertup_frame.grid(column=3, row=0, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.EW)
+# tk.Label(vertup_frame, text="Vertical plane above ref plane").grid(column=0, row=0)
+# vertup = tk.StringVar()
+# vertup.set(".TRUE.")
+# tk.Radiobutton(vertup_frame, text="True", padx=20,
+# 			   variable=vertup, value=".TRUE.").grid(column=0, row=1, sticky=tk.W)
+# tk.Radiobutton(vertup_frame, text="False", padx=20,
+# 			   variable=vertup, value=".FALSE.").grid(column=0, row=2, sticky=tk.W)
+#
+tk.Label(synthesis, text="Scale Factor").grid(column=0, row=10, padx=10, pady=10)
 SCALE = tk.Entry(synthesis)
-SCALE.grid(column=4, row=2, padx=0, pady=10, sticky=tk.EW)
+SCALE.grid(column=1, row=10, padx=0, pady=10, sticky=tk.EW)
 
 # Wing
 wing = ttk.Frame(tabControl)
@@ -464,6 +464,37 @@ def load():
 		for i in reader:
 			a.append(i)
 
+	# Control cards
+	global dim_unit_var
+	if a[0][0] == "FT":
+		dim_unit_var.set(1)
+	else:
+		dim_unit_var.set(2)
+
+	global der_unit_var
+	if a[0][1] == "RAD":
+		der_unit_var.set(1)
+	else:
+		der_unit_var.set(2)
+
+	global dyn_der_var
+	if a[0][2] == "Null":
+		dyn_der_var.set(0)
+	else:
+		dyn_der_var.set(1)
+
+	global part_var
+	if a[0][3] == "Null":
+		part_var.set(0)
+	else:
+		part_var.set(1)
+
+	global build_var
+	if a[0][4] == "Null":
+		build_var.set(0)
+	else:
+		build_var.set(1)
+
 	# flight condition
 
 	take_off_weight.delete(0, tk.END)
@@ -505,6 +536,13 @@ def load():
 	num_ang.delete(0, tk.END)
 	num_ang.insert(0, ang_len)
 
+	global looping_var
+	if a[5][0] == "1":
+		looping_var.set(1)
+	elif a[5][0] == "2":
+		looping_var.set(2)
+	else:
+		looping_var.set(3)
 	# Options
 
 	reference_area.delete(0, tk.END)
@@ -580,6 +618,14 @@ def load():
 	WDHDADI.delete(0, tk.END)
 	WDHDADI.insert(0, a[8][7])
 
+	global wing_type
+	if a[8][8] == "1":
+		wing_type.set(1)
+	elif a[8][8] == "2":
+		wing_type.set(2)
+	else:
+		wing_type.set(3)
+
 	# Horizontal Tail
 
 	HCHRDTP.delete(0, tk.END)
@@ -605,6 +651,14 @@ def load():
 
 	HDHDADI.delete(0, tk.END)
 	HDHDADI.insert(0, a[9][7])
+
+	global horizontal_tail_type
+	if a[9][8] == "1":
+		horizontal_tail_type.set(1)
+	elif a[9][8] == "2":
+		horizontal_tail_type.set(2)
+	else:
+		horizontal_tail_type.set(3)
 
 	Hairfoil.delete(0, tk.END)
 	Hairfoil.insert(0, a[9][9])
@@ -635,12 +689,42 @@ def load():
 	VDHDADI.delete(0, tk.END)
 	VDHDADI.insert(0, a[10][7])
 
+	global vertical_tail_type
+	if a[10][8] == "1":
+		vertical_tail_type.set(1)
+	elif a[10][8] == "2":
+		vertical_tail_type.set(2)
+	else:
+		vertical_tail_type.set(3)
+
 	Vairfoil.delete(0, tk.END)
 	Vairfoil.insert(0, a[10][9])
-
-
-
-
 tk.Button(flight_condition, text="load", command=load).grid(row=0, column=4)
+
+radio_check_data = [[]]
+# Control Cards
+
+radio_check_data[0].append(dim_unit_var.get())
+radio_check_data[0].append(der_unit_var.get())
+radio_check_data[0].append(dyn_der_var.get())
+radio_check_data[0].append(part_var.get())
+radio_check_data[0].append(build_var.get())
+
+# Flight condition
+
+radio_check_data.append(looping_var.get())
+
+# Wing
+
+radio_check_data.append(wing_type.get())
+
+# Horizontal tail
+
+radio_check_data.append(horizontal_tail_type.get())
+
+# Vertical tail
+
+radio_check_data.append(vertical_tail_type.get())
+
 
 root.mainloop()
