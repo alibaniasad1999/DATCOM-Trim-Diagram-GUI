@@ -280,8 +280,8 @@ tk.Label(wing, text="Twist angle (negative L.E rotated down) ").grid(
 	column=2, row=6, padx=10, pady=10, sticky=tk.W)
 
 tk.Label(wing, text="DHDADI").grid(column=0, row=7, padx=10, pady=10)
-WTWISTA = tk.Entry(wing)
-WTWISTA.grid(column=1, row=7, padx=0, pady=10, sticky=tk.W)
+WDHDADI = tk.Entry(wing)
+WDHDADI.grid(column=1, row=7, padx=0, pady=10, sticky=tk.W)
 tk.Label(wing, text="Dihedral Angle").grid(
 	column=2, row=7, padx=10, pady=10, sticky=tk.W)
 
@@ -350,14 +350,14 @@ tk.Label(horizontal_tail, text="Twist angle (negative L.E rotated down) ").grid(
 	column=2, row=6, padx=10, pady=10, sticky=tk.W)
 
 tk.Label(horizontal_tail, text="DHDADI").grid(column=0, row=7, padx=10, pady=10)
-HTWISTA = tk.Entry(horizontal_tail)
-HTWISTA.grid(column=1, row=7, padx=0, pady=10, sticky=tk.W)
+HDHDADI = tk.Entry(horizontal_tail)
+HDHDADI.grid(column=1, row=7, padx=0, pady=10, sticky=tk.W)
 tk.Label(horizontal_tail, text="Dihedral Angle").grid(
 	column=2, row=7, padx=10, pady=10, sticky=tk.W)
 
 tk.Label(horizontal_tail, text="Airfoil").grid(column=0, row=8, padx=10, pady=10)
-airfoil = tk.Entry(horizontal_tail)
-airfoil.grid(column=1, row=8, padx=0, pady=10, sticky=tk.W)
+Hairfoil = tk.Entry(horizontal_tail)
+Hairfoil.grid(column=1, row=8, padx=0, pady=10, sticky=tk.W)
 tk.Label(horizontal_tail, text="Write airfoil name like: \"NACA-H-4-00012\"").grid(
 	column=2, row=8, padx=10, pady=10, sticky=tk.W)
 
@@ -426,14 +426,14 @@ tk.Label(vertical_tail, text="Twist angle (negative L.E rotated down) ").grid(
 	column=2, row=6, padx=10, pady=10, sticky=tk.W)
 
 tk.Label(vertical_tail, text="DHDADI").grid(column=0, row=7, padx=10, pady=10)
-VTWISTA = tk.Entry(vertical_tail)
-VTWISTA.grid(column=1, row=7, padx=0, pady=10, sticky=tk.W)
+VDHDADI = tk.Entry(vertical_tail)
+VDHDADI.grid(column=1, row=7, padx=0, pady=10, sticky=tk.W)
 tk.Label(vertical_tail, text="Dihedral Angle").grid(
 	column=2, row=7, padx=10, pady=10, sticky=tk.W)
 
 tk.Label(vertical_tail, text="Airfoil").grid(column=0, row=8, padx=10, pady=10)
-airfoil = tk.Entry(vertical_tail)
-airfoil.grid(column=1, row=8, padx=0, pady=10, sticky=tk.W)
+Vairfoil = tk.Entry(vertical_tail)
+Vairfoil.grid(column=1, row=8, padx=0, pady=10, sticky=tk.W)
 tk.Label(vertical_tail, text="Write airfoil name like: \"NACA-V-4-00012\"").grid(
 	column=2, row=8, padx=10, pady=10, sticky=tk.W)
 
@@ -504,6 +504,142 @@ def load():
 
 	num_ang.delete(0, tk.END)
 	num_ang.insert(0, ang_len)
+
+	# Options
+
+	reference_area.delete(0, tk.END)
+	reference_area.insert(0, a[6][0])
+
+	mean_aerodynamic_chord.delete(0, tk.END)
+	mean_aerodynamic_chord.insert(0, a[6][1])
+
+	wing_span.delete(0, tk.END)
+	wing_span.insert(0, a[6][2])
+
+	surface_roughness.delete(0, tk.END)
+	surface_roughness.insert(0, a[6][3])
+
+	# Synthesis
+
+	XCG.delete(0, tk.END)
+	XCG.insert(0, a[7][0])
+
+	ZCG.delete(0, tk.END)
+	ZCG.insert(0, a[7][1])
+
+	XW.delete(0, tk.END)
+	XW.insert(0, a[7][2])
+
+	ZW.delete(0, tk.END)
+	ZW.insert(0, a[7][3])
+
+	ALIW.delete(0, tk.END)
+	ALIW.insert(0, a[7][4])
+
+	ALIH.delete(0, tk.END)
+	ALIH.insert(0, a[7][5])
+
+	XH.delete(0, tk.END)
+	XH.insert(0, a[7][6])
+
+	ZH.delete(0, tk.END)
+	ZH.insert(0, a[7][7])
+
+	XV.delete(0, tk.END)
+	XV.insert(0, a[7][8])
+
+	ZV.delete(0, tk.END)
+	ZV.insert(0, a[7][9])
+
+	SCALE.delete(0, tk.END)
+	SCALE.insert(0, a[7][10])
+
+	# Wing
+
+	WCHRDTP.delete(0, tk.END)
+	WCHRDTP.insert(0, a[8][0])
+
+	WCHRDR.delete(0, tk.END)
+	WCHRDR.insert(0, a[8][1])
+
+	WSSPNE.delete(0, tk.END)
+	WSSPNE.insert(0, a[8][2])
+
+	WSSPN.delete(0, tk.END)
+	WSSPN.insert(0, a[8][3])
+
+	WSAVSI.delete(0, tk.END)
+	WSAVSI.insert(0, a[8][4])
+
+	WCHSTAT.delete(0, tk.END)
+	WCHSTAT.insert(0, a[8][5])
+
+	WTWISTA.delete(0, tk.END)
+	WTWISTA.insert(0, a[8][6])
+
+	WDHDADI.delete(0, tk.END)
+	WDHDADI.insert(0, a[8][7])
+
+	# Horizontal Tail
+
+	HCHRDTP.delete(0, tk.END)
+	HCHRDTP.insert(0, a[9][0])
+
+	HCHRDR.delete(0, tk.END)
+	HCHRDR.insert(0, a[9][1])
+
+	HSSPNE.delete(0, tk.END)
+	HSSPNE.insert(0, a[9][2])
+
+	HSSPN.delete(0, tk.END)
+	HSSPN.insert(0, a[9][3])
+
+	HSAVSI.delete(0, tk.END)
+	HSAVSI.insert(0, a[9][4])
+
+	HCHSTAT.delete(0, tk.END)
+	HCHSTAT.insert(0, a[9][5])
+
+	HTWISTA.delete(0, tk.END)
+	HTWISTA.insert(0, a[9][6])
+
+	HDHDADI.delete(0, tk.END)
+	HDHDADI.insert(0, a[9][7])
+
+	Hairfoil.delete(0, tk.END)
+	Hairfoil.insert(0, a[9][9])
+
+	# Vertical Tail
+
+	VCHRDTP.delete(0, tk.END)
+	VCHRDTP.insert(0, a[10][0])
+
+	VCHRDR.delete(0, tk.END)
+	VCHRDR.insert(0, a[10][1])
+
+	VSSPNE.delete(0, tk.END)
+	VSSPNE.insert(0, a[10][2])
+
+	VSSPN.delete(0, tk.END)
+	VSSPN.insert(0, a[10][3])
+
+	VSAVSI.delete(0, tk.END)
+	VSAVSI.insert(0, a[10][4])
+
+	VCHSTAT.delete(0, tk.END)
+	VCHSTAT.insert(0, a[10][5])
+
+	VTWISTA.delete(0, tk.END)
+	VTWISTA.insert(0, a[10][6])
+
+	VDHDADI.delete(0, tk.END)
+	VDHDADI.insert(0, a[10][7])
+
+	Vairfoil.delete(0, tk.END)
+	Vairfoil.insert(0, a[10][9])
+
+
+
 
 tk.Button(flight_condition, text="load", command=load).grid(row=0, column=4)
 
