@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import csv
 
 
 root = tk.Tk()
@@ -53,6 +54,7 @@ build_var = tk.IntVar()
 build_var.set(0)
 tk.Checkbutton(Other_options, text="Dynamic Derivation(Advice: make it on)",
 			   variable=dyn_der_var).grid(column=0, row=0, sticky=tk.W)
+
 tk.Checkbutton(Other_options, text="Part Module",
 			   variable=part_var).grid(column=0, row=1, sticky=tk.W)
 tk.Checkbutton(Other_options, text="Build Module",
@@ -448,5 +450,61 @@ tk.Radiobutton(vertical_tail_type_frame, text="double delta platform AR<3", padx
 			   variable=vertical_tail_type, value=2).grid(column=0, row=2, sticky=tk.W)
 tk.Radiobutton(vertical_tail_type_frame, text="Cranked platform AR>3", padx=20,
 			   variable=vertical_tail_type, value=3).grid(column=0, row=3, sticky=tk.W)
+def valid_len(string):
+	counter = 0
+	for i in string:
+		if len(i) == 0:
+			return counter
+		counter += 1
+	return len(string)
+def load():
+	a = []
+	with open("data.csv") as data:
+		reader = csv.reader(data)
+		for i in reader:
+			a.append(i)
+
+	# flight condition
+
+	take_off_weight.delete(0, tk.END)
+	take_off_weight.insert(0, a[1][0])
+
+	# mach
+
+	min_mach.delete(0, tk.END)
+	min_mach.insert(0, a[2][0])
+
+	max_mach.delete(0, tk.END)
+	mach_len = valid_len(a[2]) - 1
+	max_mach.insert(0, a[2][mach_len])
+
+	num_mach.delete(0, tk.END)
+	num_mach.insert(0, mach_len)
+
+	# altitude
+
+	min_alt.delete(0, tk.END)
+	min_alt.insert(0, a[3][0])
+
+	max_alt.delete(0, tk.END)
+	alt_len = valid_len(a[3]) - 1
+	max_alt.insert(0, a[3][alt_len])
+
+	num_alt.delete(0, tk.END)
+	num_alt.insert(0, alt_len)
+
+	# angle od attack
+
+	min_ang.delete(0, tk.END)
+	min_ang.insert(0, a[4][0])
+
+	max_ang.delete(0, tk.END)
+	ang_len = valid_len(a[4]) - 1
+	max_ang.insert(0, a[4][ang_len])
+
+	num_ang.delete(0, tk.END)
+	num_ang.insert(0, ang_len)
+
+tk.Button(flight_condition, text="load", command=load).grid(row=0, column=4)
 
 root.mainloop()
