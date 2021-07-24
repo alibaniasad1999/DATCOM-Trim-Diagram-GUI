@@ -478,19 +478,19 @@ def load():
 		der_unit_var.set(2)
 
 	global dyn_der_var
-	if a[0][2] == "Null":
+	if a[0][2] == "0":
 		dyn_der_var.set(0)
 	else:
 		dyn_der_var.set(1)
 
 	global part_var
-	if a[0][3] == "Null":
+	if a[0][3] == "0":
 		part_var.set(0)
 	else:
 		part_var.set(1)
 
 	global build_var
-	if a[0][4] == "Null":
+	if a[0][4] == "0":
 		build_var.set(0)
 	else:
 		build_var.set(1)
