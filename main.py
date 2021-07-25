@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import csv
+import numpy as np
 
 root = tk.Tk()
 root.title("DATCOM-GUI")
@@ -234,9 +235,9 @@ wing = ttk.Frame(tabControl)
 
 tabControl.add(wing,
                text='Wing')
-tabControl.pack(expand=1, fill="both")
-
+# tabControl.pack(expand=1, fill="both")
 tk.Label(wing, text="CHRDTP").grid(column=0, row=0, padx=10, pady=10)
+
 WCHRDTP = tk.Entry(wing)
 WCHRDTP.grid(column=1, row=0, padx=0, pady=10, sticky=tk.W)
 tk.Label(wing, text="Chord at the Tip").grid(
@@ -306,6 +307,7 @@ tabControl.add(horizontal_tail,
 tabControl.pack(expand=1, fill="both")
 
 tk.Label(horizontal_tail, text="CHRDTP").grid(column=0, row=0, padx=10, pady=10)
+
 HCHRDTP = tk.Entry(horizontal_tail)
 HCHRDTP.grid(column=1, row=0, padx=0, pady=10, sticky=tk.W)
 tk.Label(horizontal_tail, text="Chord at the Tip").grid(
@@ -379,7 +381,7 @@ vertical_tail = ttk.Frame(tabControl)
 
 tabControl.add(vertical_tail,
                text='Vertical Tail')
-tabControl.pack(expand=1, fill="both")
+# tabControl.pack(expand=1, fill="both")
 
 tk.Label(vertical_tail, text="CHRDTP").grid(column=0, row=0, padx=10, pady=10)
 VCHRDTP = tk.Entry(vertical_tail)
@@ -441,6 +443,7 @@ vertical_tail_type_frame = tk.Frame(vertical_tail,
                                     highlightthickness=1)
 vertical_tail_type_frame.grid(column=3, row=8, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.W)
 tk.Label(vertical_tail_type_frame, text="Vertical Tail Type").grid(column=0, row=0)
+
 vertical_tail_type = tk.IntVar()
 vertical_tail_type.set(1)
 tk.Radiobutton(vertical_tail_type_frame, text="straight tapered platform", padx=20,
@@ -449,6 +452,7 @@ tk.Radiobutton(vertical_tail_type_frame, text="double delta platform AR<3", padx
                variable=vertical_tail_type, value=2).grid(column=0, row=2, sticky=tk.W)
 tk.Radiobutton(vertical_tail_type_frame, text="Cranked platform AR>3", padx=20,
                variable=vertical_tail_type, value=3).grid(column=0, row=3, sticky=tk.W)
+
 
 def load():
     a = []
@@ -693,6 +697,7 @@ def load():
     Vairfoil.delete(0, tk.END)
     Vairfoil.insert(0, a[10][9])
 
+
 def save():
     data_saver = [[]]
 
@@ -884,8 +889,119 @@ def save():
     f.close()
 
 
+def loop_writer(name, list_of_num, file):
+    counter = 0
+    file.write('%s(1) = ' % name)
+    for i in list_of_num:
+        file.write('%s, ' % str(i))
+        counter = counter + 1
+        if counter == 8:
+            file.write('\n\t\t ')
+            counter = 0
+    file.write('\n\t\t ')
+
+
+def make_datcom():
+    file = open('export\DATCOM_flie.dcm', 'w')
+    global dim_unit_var
+    if dim_unit_var.get() == 1:
+        DIM = "FT"
+    else:
+        DIM = "M"
+    # Derivatives Unit DEG = degree
+    global der_unit_var
+    if der_unit_var.get() == 1:
+        DERIV = "DEG"
+    else:
+        DERIV = "RAD"
+
+    file.write('DIM %s\n' % DIM)
+    # Derivatives Unit
+    file.write('DERIV %s\n' % DERIV)
+
+    # Dynamic Derivatives
+    global dyn_der_var
+    if dyn_der_var.get() == 1:
+        file.write('DAMP\n')
+
+    # Add Part
+    global part_var
+    if part_var.get() == 1:
+        file.write('PART\n')
+
+    # Add build
+    global build_var
+    if build_var.get() == 1:
+        file.write('BUILD\n')
+
+    # flight condition
+
+    # Take of weight
+    WT = round(float(take_off_weight.get()), 2)
+
+    # Mach
+    NMACH = round(float(num_mach.get()), 2)
+
+    # Array of Mach numbers
+
+    mach_temp = np.linspace(float(min_mach.get()), float(max_mach.get()), int(num_mach.get()))
+    mach_temp = mach_temp.tolist()
+    MACH = [round(float(i), 3) for i in mach_temp]
+
+    # Altitude
+
+    NALT = round(float(num_alt.get()), 2)
+
+    # Array of altitudes
+
+    alt_temp = np.linspace(float(min_alt.get()), float(max_alt.get()), int(num_alt.get()))
+    alt_temp = alt_temp.tolist()
+    ALT = [round(float(i), 2) for i in alt_temp]
+
+    # Angle of Attack
+
+    NALPHA = NALT = round(float(num_ang.get()), 2)
+
+    # Array of angle of attacks
+    ang_temp = np.linspace(float(min_ang.get()), float(max_ang.get()), int(num_ang.get()))
+    ang_temp = ang_temp.tolist()
+    ALSCHD = [round(float(i), 2) for i in ang_temp]
+
+    # Loop control
+
+    global looping_var
+    if looping_var.get() == 1:
+        LOOP = 1.0
+    elif looping_var.get() == 2:
+        LOOP = 2.0
+    else:
+        LOOP = 3.0
+    # Name list
+    file.write(' $FLTCON ')
+    # Take-off Weight
+    file.write('WT = %s, ' % str(WT))
+    # Program Looping Control
+    file.write('LOOP = %s,\n\t\t ' % str(LOOP))
+    # Number of Mach numbers
+    file.write('NMACH = %s, ' % str(NMACH))
+    # Array of Mach numbers
+    loop_writer('MACH', MACH, file)
+    # Number of altitudes
+    file.write('NALT = %s, ' % str(NALT))
+    # Array of altitudes
+    loop_writer('ALT', ALT, file)
+    # Number of angle of attacks
+    file.write('NALPHA = %s, ' % str(NALPHA))
+    # Array of angle of attacks
+    loop_writer('ALSCHD', ALSCHD, file)
+    # End of File
+    file.write('$\n')
+
+
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(control_cards, text="save", command=save).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(control_cards, text="make", command=make_datcom).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
 root.mainloop()
