@@ -230,6 +230,74 @@ tk.Label(synthesis, text="Scale Factor").grid(column=0, row=10, padx=10, pady=10
 SCALE = tk.Entry(synthesis)
 SCALE.grid(column=1, row=10, padx=0, pady=10, sticky=tk.EW)
 
+# Body
+body = ttk.Frame(tabControl)
+tabControl.add(body,
+               text='Body')
+body_nose = tk.Frame(body,
+                           highlightbackground="black",
+                           highlightthickness=1)
+body_nose.grid(column=0, row=0, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.EW)
+tk.Label(body_nose, text="Nose Type").grid(column=0, row=0)
+
+body_nose_type = tk.IntVar()
+body_nose_type.set(1)
+tk.Radiobutton(body_nose, text="Conical Nose", padx=20,
+               variable=body_nose_type, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(body_nose, text="Ogive Nose", padx=20,
+               variable=body_nose_type, value=2).grid(column=0, row=2, sticky=tk.W)
+
+nose_len = tk.Entry(body)
+nose_len.grid(column=1, row=2, padx=0, pady=10, sticky=tk.W)
+tk.Label(body, text="Length of body nose").grid(
+    column=0, row=2, padx=10, pady=10, sticky=tk.W)
+
+body_tail = tk.Frame(body,
+                           highlightbackground="black",
+                           highlightthickness=1)
+body_tail.grid(column=0, row=3, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.EW)
+tk.Label(body_tail, text="Tail Type").grid(column=0, row=0)
+
+body_tail_type = tk.IntVar()
+body_tail_type.set(1)
+tk.Radiobutton(body_tail, text="Conical Tail", padx=20,
+               variable=body_tail_type, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(body_tail, text="Ogive Tail", padx=20,
+               variable=body_tail_type, value=2).grid(column=0, row=2, sticky=tk.W)
+
+
+cylindrical_after_body_len = tk.Entry(body)
+cylindrical_after_body_len.grid(column=1, row=5, padx=0, pady=10, sticky=tk.W)
+tk.Label(body, text="Length of cylindrical after body").grid(
+    column=0, row=5, padx=10, pady=10, sticky=tk.W)
+
+body_type_frame = tk.Frame(body,
+                           highlightbackground="black",
+                           highlightthickness=1)
+body_type_frame.grid(column=0, row=10, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.EW)
+tk.Label(body_type_frame, text="Body Type").grid(column=0, row=0)
+body_type = tk.IntVar()
+body_type.set(3)
+tk.Radiobutton(body_type_frame, text="straight wing, no area rule", padx=20,
+               variable=body_type, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(body_type_frame, text="swept wing, no area rule", padx=20,
+               variable=body_type, value=2).grid(column=0, row=2, sticky=tk.W)
+tk.Radiobutton(body_type_frame, text="swept wing, area rule", padx=20,
+               variable=body_type, value=3).grid(column=0, row=3, sticky=tk.W)
+
+body_method_frame = tk.Frame(body,
+                           highlightbackground="black",
+                           highlightthickness=1)
+body_method_frame.grid(column=2, row=0, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.NSEW)
+tk.Label(body_method_frame, text="Body Method").grid(column=0, row=0)
+body_method = tk.IntVar()
+body_method.set(2)
+tk.Radiobutton(body_method_frame, text="use exiting methods", padx=20,
+               variable=body_method, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(body_method_frame, text="use jorgensen methon", padx=20,
+               variable=body_method, value=2).grid(column=0, row=2, sticky=tk.W)
+
+
 # Wing
 wing = ttk.Frame(tabControl)
 
@@ -589,6 +657,39 @@ def load():
     SCALE.delete(0, tk.END)
     SCALE.insert(0, a[7][10])
 
+    # Body
+    global body_nose_type
+    if a[11][0] == "1":
+        body_nose_type.set(1)
+    else:
+        body_nose_type.set(2)
+
+    nose_len.delete(0, tk.END)
+    nose_len.insert(0, a[11][1])
+
+    global body_tail_type
+    if a[11][2] == "1":
+        body_tail_type.set(1)
+    else:
+        body_tail_type.set(2)
+
+    cylindrical_after_body_len.delete(0, tk.END)
+    cylindrical_after_body_len.insert(0, a[11][3])
+
+    global body_type
+    if a[11][4] == "1":
+        body_type.set(1)
+    elif a[11][4] == "2":
+        body_type.set(2)
+    else:
+        body_type.set(3)
+
+    global body_method
+    if a[11][5] == "1":
+        body_method.set(1)
+    else:
+        body_method.set(2)
+
     # Wing
 
     WCHRDTP.delete(0, tk.END)
@@ -880,6 +981,29 @@ def save():
 
     data_saver[10].append(Vairfoil.get())
 
+    # Body
+
+    data_saver.append([])
+
+    global body_nose_type
+    data_saver[11].append(body_nose_type.get())
+
+    data_saver[11].append(nose_len.get())
+
+    global body_tail_type
+    data_saver[11].append(body_tail_type.get())
+
+    data_saver[11].append(cylindrical_after_body_len.get())
+
+    global body_type
+    data_saver[11].append(body_type.get())
+
+    global body_method
+    data_saver[11].append(body_method.get())
+
+
+
+
     # Write data
 
     f = open('save_data.csv', 'w', newline='')
@@ -899,6 +1023,48 @@ def loop_writer(name, list_of_num, file):
             file.write('\n\t\t ')
             counter = 0
     file.write('\n\t\t ')
+
+
+def airfoil_writer(dat_file):
+    file = open('Airfoil.txt', 'r')
+    airfoil = []
+    for line in file:
+        airfoil.append(list(map(float, line.split())))
+    file.close()
+    airfoil_down = []
+    airfoil_up = []
+    for i in airfoil[int(len(airfoil) / 2):]:
+        airfoil_down.append(i)
+    for i in airfoil[0:int(len(airfoil) / 2) + 1]:
+        airfoil_up.append(i)
+    airfoil_up.reverse()
+    XCORD = []
+    YUPPER = []
+    YLOWER = []
+    for i in range(len(airfoil)):
+        if i % 2 == 1:
+            continue
+        if len(YLOWER) == 49:
+            XCORD.append(airfoil_up[-1][0])
+            YUPPER.append(airfoil_up[-1][1])
+            YLOWER.append(airfoil_down[-1][1])
+            break
+        XCORD.append(airfoil_up[i][0])
+        YUPPER.append(airfoil_up[i][1])
+        YLOWER.append(airfoil_down[i][1])
+
+    TYPEIN = 1.0
+    NPTS = 50.0
+    DWASH = 1.0
+
+    dat_file.write(' $WGSCHR ')
+    dat_file.write('TYPEIN = %s, ' % str(TYPEIN))
+    dat_file.write('NPTS = %s, ' % str(NPTS))
+    dat_file.write('DWASH = %s, \n\t\t ' % str(DWASH))
+    loop_writer('XCORD', XCORD, dat_file)
+    loop_writer('YUPPER', YUPPER, dat_file)
+    loop_writer('YLOWER', YLOWER, dat_file)
+    dat_file.write('$\n')
 
 
 def make_datcom():
@@ -996,6 +1162,250 @@ def make_datcom():
     loop_writer('ALSCHD', ALSCHD, file)
     # End of File
     file.write('$\n')
+
+    # Options
+
+    SREF = round(float(reference_area.get()), 2)
+    # Mean Aerodynamic chord
+    CBARR = round(float(mean_aerodynamic_chord.get()), 4)
+    # Wing Span
+    BLREF = round(float(wing_span.get()), 2)
+    # Surface Roughness
+    ROUGFC = round(float(surface_roughness.get()), 7)
+
+    # Name list
+    file.write(' $OPTINS ')
+    # Refrence Area
+    file.write('SREF = %s, ' % str(SREF))
+    # Mean Aerodynamic chord
+    file.write('CBARR = %s, ' % str(CBARR))
+    # Wing Span
+    file.write('BLREF = %s, ' % str(BLREF))
+    # Surface Roughness
+    file.write('ROUGFC = %s, ' % str(ROUGFC))
+    # End of File
+    file.write(' $\n')
+
+    # Synthesis
+
+    # Longitudinal Location of CG
+    XCG_w = round(float(XCG.get()), 4)
+    # Vertical Location of CG relative to reference plane
+    ZCG_w = round(float(ZCG.get()), 4)
+    # Longitudinal Location of theoretical wing Apex
+    XW_w= round(float(XW.get()), 4)
+    # Vertical Location of theoretical wing Apex relative to reference plane
+    ZW_w = round(float(ZW.get()), 4)
+    # wing root chord incidence angle measured from reference plane
+    ALIW_w = round(float(ALIW.get()), 4)
+    # horizontal tail root chord incidence angle measured from reference plane
+    ALIH_w = round(float(ALIH.get()), 4)
+    # Longitudinal Location of theoretical horizontal tail Apex
+    XH_w = round(float(XH.get()), 4)
+    # Vertical Location of theoretical horizontal tail Apex relative to reference plane
+    ZH_w = round(float(ZH.get()), 4)
+    # Longitudinal Location of theoretical vertical tail Apex
+    XV_w = round(float(XV.get()), 4)
+    # Vertical Location of theoretical vertical tail Apex
+    ZV_w = round(float(ZV.get()), 4)
+    # Scale factor
+    SCALE_w = round(float(SCALE.get()), 4)
+
+    # Name list
+    file.write(' $SYNTHS ')
+    # Longitudinal Location of CG
+    file.write('XCG = %s, ' % str(XCG_w))
+    # Vertical Location of CG relative to reference plane
+    file.write('ZCG = %s, \n\t\t ' % str(ZCG_w))
+    # Longitudinal Location of theoretical wing Apex
+    file.write('XW = %s, ' % str(XW_w))
+    # Vertical Location of theoretical wing Apex relative to reference plane
+    file.write('ZW = %s, ' % str(ZW_w))
+    # wing root chord incidence angle measured from reference plane
+    file.write('ALIW = %s, \n\t\t ' % str(ALIW_w))
+    # Longitudinal Location of theoretical horizontal tail Apex
+    file.write('XH = %s, ' % str(XH_w))
+    # Vertical Location of theoretical horizontal tail Apex relative to reference plane
+    file.write('ZH = %s, ' % str(ZH_w))
+    # horizontal tail root chord incidence angle measured from reference plane
+    file.write('ALIH = %s, \n\t\t ' % str(ALIH_w))
+    # Longitudinal Location of theoretical vertical tail Apex
+    file.write('XV = %s, ' % str(XV_w))
+    # Vertical Location of theoretical vertical tail Apex
+    file.write('ZV = %s, \n\t\t ' % str(ZV_w))
+    # Scale factor
+    file.write('SCALE = %s, \n\t\t ' % str(SCALE_w))
+    # Vertup
+    # file.write('VERTUP = %s, ' % VERTUP)
+    # End of File
+    file.write(' $\n')
+
+    # Body
+
+    body_data = []
+    with open('Body.csv', 'r') as body_file:
+        body_reader = csv.reader(body_file)
+        for row in body_reader:
+            body_data.append(row)
+
+    # BNOSE 1.0 conical nose, BNOSE = 2.0 ogive Nose
+    global body_nose_type
+    BNOSE = round(float(body_nose_type.get()), 2)
+    # Length of body nose
+    BLN = round(float(nose_len.get()), 4)
+    # BTAIL 1.0 conical tail, BNOSE = 2.0 ogive tail
+    global body_tail_type
+    BTAIL = round(float(body_tail_type.get()), 4)
+    # Length of cylindrical after body
+    BLA = round(float(cylindrical_after_body_len.get()), 4)
+    # ITYPE = 1 straight wing, no area rule
+    # ITYPE = 2 swept wing, no area rule
+    # ITYPE = 3 swept wing, area rule
+    global body_type
+    ITYPE = round(float(body_type.get()), 4)
+    # Method = 1 use exiting methods
+    # Method = 2 use jorgensen methon
+    global body_method
+    METHOD = round(float(body_method.get()), 4)
+
+    NX = float(len(body_data[0])-1)
+
+    # Name list
+    file.write(' $BODY ')
+    # Number of Sections
+    file.write('NX = %s, \n\t\t ' % str(NX))
+    # Body Shape
+    for row in body_data:
+        loop_writer(row[0], row[1:], file)
+
+    file.write('BLN = %s, \n\t\t ' % str(BLN))
+
+    file.write('BTAIL = %s, ' % str(BTAIL))
+
+    file.write('ITYPE = %s, ' % str(ITYPE))
+
+    file.write('METHOD = %s, ' % str(METHOD))
+
+    file.write('$\n')
+
+    # Wing
+
+    # Chord Tip
+    CHRDTP = round(float(WCHRDTP.get()), 4)
+    # Chord Root
+    CHRDR = round(float(WCHRDR.get()), 4)
+    # Semi Span (Exposed)
+    SSPNE = round(float(WSSPNE.get()), 4)
+    # Semi Span (Theoretical)
+    SSPN = round(float(WSSPN.get()), 4)
+    # Sweep Angle
+    SAVSI = round(float(WSAVSI.get()), 4)
+    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+    CHSTAT = round(float(WCHSTAT.get()), 4)
+    # Twist angle (negative L.E rotated down)
+    TWISTA = round(float(WTWISTA.get()), 4)
+    # Dihedral Angle
+    DHDADI = round(float(WDHDADI.get()), 4)
+    # TYPE = 1.0 straight tapered platform
+    # TYPE = 2.0 double delta platform AR<3
+    # TYPE = 3.0 Cranked platform AR>3
+    TYPE = round(float(wing_type.get()), 2)
+
+    # Name list
+    file.write(' $WGPLNF ')
+    file.write('CHRDTP = %s, ' % str(CHRDTP))
+    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+    file.write('SSPNE = %s, ' % str(SSPNE))
+    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+    file.write('SAVSI = %s, ' % str(SAVSI))
+    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+    file.write('TWISTA = %s, ' % str(TWISTA))
+    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+    file.write('TYPE = %s,' % str(TYPE))
+    # End of File
+    file.write('$\n')
+
+    airfoil_writer(file)
+
+    # Horizontal tail
+
+    # Chord Tip
+    CHRDTP = round(float(HCHRDTP.get()), 4)
+    # Chord Root
+    CHRDR = round(float(HCHRDR.get()), 4)
+    # Semi Span (Exposed)
+    SSPNE = round(float(HSSPNE.get()), 4)
+    # Semi Span (Theoretical)
+    SSPN = round(float(HSSPN.get()), 4)
+    # Sweep Angle
+    SAVSI = round(float(HSAVSI.get()), 4)
+    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+    CHSTAT = round(float(HCHSTAT.get()), 4)
+    # Twist angle (negative L.E rotated down)
+    TWISTA = round(float(HTWISTA.get()), 4)
+    # Dihedral Angle
+    DHDADI = round(float(HDHDADI.get()), 4)
+    # TYPE = 1.0 straight tapered platform
+    # TYPE = 2.0 double delta platform AR<3
+    # TYPE = 3.0 Cranked platform AR>3
+    TYPE = round(float(horizontal_tail_type.get()), 2)
+    HorizontalTailAirfoil = Hairfoil.get()
+
+    # Name list
+    file.write(' $HTPLNF ')
+    file.write('CHRDTP = %s, ' % str(CHRDTP))
+    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+    file.write('SSPNE = %s, ' % str(SSPNE))
+    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+    file.write('SAVSI = %s, ' % str(SAVSI))
+    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+    file.write('TWISTA = %s, ' % str(TWISTA))
+    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+    file.write('TYPE = %s,' % str(TYPE))
+    # End of File
+    file.write('$\n')
+    file.write(HorizontalTailAirfoil)
+    file.write('\n')
+
+    # Vertical tail
+
+    # Chord Tip
+    CHRDTP = round(float(VCHRDTP.get()), 4)
+    # Chord Root
+    CHRDR = round(float(VCHRDR.get()), 4)
+    # Semi Span (Exposed)
+    SSPNE = round(float(VSSPNE.get()), 4)
+    # Semi Span (Theoretical)
+    SSPN = round(float(VSSPN.get()), 4)
+    # Sweep Angle
+    SAVSI = round(float(VSAVSI.get()), 4)
+    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+    CHSTAT = round(float(VCHSTAT.get()), 4)
+    # Twist angle (negative L.E rotated down)
+    TWISTA = round(float(VTWISTA.get()), 4)
+    # Dihedral Angle
+    DHDADI = round(float(VDHDADI.get()), 4)
+    # TYPE = 1.0 straight tapered platform
+    # TYPE = 2.0 double delta platform AR<3
+    # TYPE = 3.0 Cranked platform AR>3
+    TYPE = round(float(vertical_tail_type.get()), 2)
+    VerticalTailAirfoil = Vairfoil.get()
+
+    # Name list
+    file.write(' $VTPLNF ')
+    file.write('CHRDTP = %s, ' % str(CHRDTP))
+    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+    file.write('SSPNE = %s, ' % str(SSPNE))
+    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+    file.write('SAVSI = %s, ' % str(SAVSI))
+    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+    file.write('TWISTA = %s, ' % str(TWISTA))
+    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+    file.write('TYPE = %s,' % str(TYPE))
+    # End of File
+    file.write('$\n')
+    file.write(VerticalTailAirfoil)
+    file.write('\n')
 
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
