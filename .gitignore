@@ -129,10 +129,10 @@ dmypy.json
 .pyre/
 
 # DATCOM
-.1.ac
-.2.ac
+*.1.ac
+*.2.ac
 DATCOM_file.csv
-.lfi
-.out
-.xml
+*.lfi
+*.out
+*.xml
 
