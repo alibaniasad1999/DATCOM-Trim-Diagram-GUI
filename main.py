@@ -923,6 +923,60 @@ def load():
     Vairfoil.delete(0, tk.END)
     Vairfoil.insert(0, a[10][9])
 
+    # elevator
+
+    global ele_type_var
+    if a[11][0] == "1":
+        ele_type_var.set(1)
+    elif a[11][0] == "2":
+        ele_type_var.set(2)
+    elif a[11][0] == "3":
+        ele_type_var.set(3)
+    elif a[11][0] == "4":
+        ele_type_var.set(4)
+    elif a[11][0] == "5":
+        ele_type_var.set(5)
+    elif a[11][0] == "6":
+        ele_type_var.set(6)
+    elif a[11][0] == "7":
+        ele_type_var.set(7)
+    else:
+        ele_type_var.set(8)
+
+
+    # elevator degree
+    min_ele_ang.delete(0, tk.END)
+    min_ele_ang.insert(0, a[11][1])
+
+    max_ele_ang.delete(0, tk.END)
+    max_ele_ang.insert(0, a[11][2])
+
+    num_ele_ang.delete(0, tk.END)
+    num_ele_ang.insert(0, a[11][3])
+
+    # elevator data
+    CHRDFI.delete(0, tk.END)
+    CHRDFI.insert(0, a[11][4]) 
+
+    CHRDFO.delete(0, tk.END)
+    CHRDFO.insert(0, a[11][5]) 
+
+    SPANFI.delete(0, tk.END)
+    SPANFI.insert(0, a[11][6]) 
+
+    SPANFO.delete(0, tk.END)
+    SPANFO.insert(0, a[11][7]) 
+
+    CB.delete(0, tk.END)
+    CB.insert(0, a[11][8]) 
+
+    TC.delete(0, tk.END)
+    TC.insert(0, a[11][9]) 
+
+
+    
+
+
 
 def save():
     data_saver = [[]]
