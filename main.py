@@ -782,39 +782,6 @@ def load():
     SCALE.delete(0, tk.END)
     SCALE.insert(0, a[7][10])
 
-    # Body
-    global body_nose_type
-    if a[11][0] == "1":
-        body_nose_type.set(1)
-    else:
-        body_nose_type.set(2)
-
-    nose_len.delete(0, tk.END)
-    nose_len.insert(0, a[11][1])
-
-    global body_tail_type
-    if a[11][2] == "1":
-        body_tail_type.set(1)
-    else:
-        body_tail_type.set(2)
-
-    cylindrical_after_body_len.delete(0, tk.END)
-    cylindrical_after_body_len.insert(0, a[11][3])
-
-    global body_type
-    if a[11][4] == "1":
-        body_type.set(1)
-    elif a[11][4] == "2":
-        body_type.set(2)
-    else:
-        body_type.set(3)
-
-    global body_method
-    if a[11][5] == "1":
-        body_method.set(1)
-    else:
-        body_method.set(2)
-
     # Wing
 
     WCHRDTP.delete(0, tk.END)
@@ -923,22 +890,55 @@ def load():
     Vairfoil.delete(0, tk.END)
     Vairfoil.insert(0, a[10][9])
 
+    # Body
+    global body_nose_type
+    if a[11][0] == "1":
+        body_nose_type.set(1)
+    else:
+        body_nose_type.set(2)
+
+    nose_len.delete(0, tk.END)
+    nose_len.insert(0, a[11][1])
+
+    global body_tail_type
+    if a[11][2] == "1":
+        body_tail_type.set(1)
+    else:
+        body_tail_type.set(2)
+
+    cylindrical_after_body_len.delete(0, tk.END)
+    cylindrical_after_body_len.insert(0, a[11][3])
+
+    global body_type
+    if a[11][4] == "1":
+        body_type.set(1)
+    elif a[11][4] == "2":
+        body_type.set(2)
+    else:
+        body_type.set(3)
+
+    global body_method
+    if a[11][5] == "1":
+        body_method.set(1)
+    else:
+        body_method.set(2)
+
     # elevator
 
     global ele_type_var
-    if a[11][0] == "1":
+    if a[12][0] == "1":
         ele_type_var.set(1)
-    elif a[11][0] == "2":
+    elif a[12][0] == "2":
         ele_type_var.set(2)
-    elif a[11][0] == "3":
+    elif a[12][0] == "3":
         ele_type_var.set(3)
-    elif a[11][0] == "4":
+    elif a[12][0] == "4":
         ele_type_var.set(4)
-    elif a[11][0] == "5":
+    elif a[12][0] == "5":
         ele_type_var.set(5)
-    elif a[11][0] == "6":
+    elif a[12][0] == "6":
         ele_type_var.set(6)
-    elif a[11][0] == "7":
+    elif a[12][0] == "7":
         ele_type_var.set(7)
     else:
         ele_type_var.set(8)
@@ -946,32 +946,40 @@ def load():
 
     # elevator degree
     min_ele_ang.delete(0, tk.END)
-    min_ele_ang.insert(0, a[11][1])
+    min_ele_ang.insert(0, a[12][1])
 
     max_ele_ang.delete(0, tk.END)
-    max_ele_ang.insert(0, a[11][2])
+    max_ele_ang.insert(0, a[12][2])
 
     num_ele_ang.delete(0, tk.END)
-    num_ele_ang.insert(0, a[11][3])
+    num_ele_ang.insert(0, a[12][3])
 
     # elevator data
     CHRDFI.delete(0, tk.END)
-    CHRDFI.insert(0, a[11][4]) 
+    CHRDFI.insert(0, a[12][4]) 
 
     CHRDFO.delete(0, tk.END)
-    CHRDFO.insert(0, a[11][5]) 
+    CHRDFO.insert(0, a[12][5]) 
 
     SPANFI.delete(0, tk.END)
-    SPANFI.insert(0, a[11][6]) 
+    SPANFI.insert(0, a[12][6]) 
 
     SPANFO.delete(0, tk.END)
-    SPANFO.insert(0, a[11][7]) 
+    SPANFO.insert(0, a[12][7]) 
 
     CB.delete(0, tk.END)
-    CB.insert(0, a[11][8]) 
+    CB.insert(0, a[12][8]) 
 
     TC.delete(0, tk.END)
-    TC.insert(0, a[11][9]) 
+    TC.insert(0, a[12][9]) 
+
+    global ele_nose_type_var
+    if a[12][10] == "1":
+        ele_nose_type_var.set(1)
+    elif a[12][10] == "2":
+        ele_nose_type_var.set(2)
+    else:
+        ele_nose_type_var.set(3)
 
 
     
@@ -1180,7 +1188,31 @@ def save():
     global body_method
     data_saver[11].append(body_method.get())
 
+    # elevator
 
+    data_saver.append([])
+
+    data_saver[12].append(str(ele_type_var.get()))
+
+    data_saver[12].append(min_ele_ang.get())
+
+    data_saver[12].append(max_ele_ang.get())
+
+    data_saver[12].append(num_ele_ang.get())
+    
+    data_saver[12].append(CHRDFI.get())
+
+    data_saver[12].append(CHRDFO.get())
+
+    data_saver[12].append(SPANFI.get())
+
+    data_saver[12].append(SPANFO.get())
+
+    data_saver[12].append(CB.get())
+
+    data_saver[12].append(TC.get())
+
+    data_saver[12].append(str(ele_nose_type_var.get()))
 
 
     # Write data
