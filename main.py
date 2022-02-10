@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
 from tkinter import filedialog
+from tkinter import messagebox
 import csv
 import numpy as np
 
@@ -1656,6 +1657,8 @@ def make_datcom():
     file.write('NTYPE = %s, ' % str(ENTYPE))
     # End of File
     file.write('$\n')
+
+    messagebox.showinfo(title="Saved", message="Done")
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
