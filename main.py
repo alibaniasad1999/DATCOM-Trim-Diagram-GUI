@@ -9,7 +9,7 @@ import numpy as np
 root = tk.Tk()
 root.title("DATCOM-GUI")
 root.iconbitmap("logo.ico")
-root.geometry("900x500")
+root.geometry("1000x575")
 tabControl = ttk.Notebook(root)
 
 control_cards = ttk.Frame(tabControl)
@@ -106,13 +106,13 @@ angle = tk.Frame(flight_condition,
                  highlightbackground="black",
                  highlightthickness=1)
 angle.grid(column=0, row=2, columnspan=2, padx=10, pady=10, sticky=tk.EW)
-tk.Label(angle, text="Minimum angle").grid(column=0, row=0, padx=38, pady=10, sticky=tk.W)
+tk.Label(angle, text="Minimum AOA").grid(column=0, row=0, padx=38, pady=10, sticky=tk.W)
 min_ang = tk.Entry(angle)
 min_ang.grid(column=1, row=0, padx=0, pady=10, sticky=tk.E)
-tk.Label(angle, text="Maximum angle").grid(column=0, row=1, padx=38, pady=10, sticky=tk.W)
+tk.Label(angle, text="Maximum AOA").grid(column=0, row=1, padx=38, pady=10, sticky=tk.W)
 max_ang = tk.Entry(angle)
 max_ang.grid(column=1, row=1, padx=0, pady=10, sticky=tk.E)
-tk.Label(angle, text="Number of angle(max = 20)").grid(column=0, row=2, padx=38, pady=10, sticky=tk.W)
+tk.Label(angle, text="Number of AOA(max = 20)").grid(column=0, row=2, padx=38, pady=10, sticky=tk.W)
 num_ang = tk.Entry(angle)
 num_ang.grid(column=1, row=2, padx=0, pady=10, sticky=tk.E)
 
@@ -1081,7 +1081,7 @@ def airfoil_writer(dat_file):
 
 
 def make_datcom():
-    file = open('export\DATCOM_flie.dcm', 'w')
+    file = filedialog.asksaveasfile(mode='w', defaultextension=".dcm")
     global dim_unit_var
     if dim_unit_var.get() == 1:
         DIM = "FT"
@@ -1425,6 +1425,6 @@ tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=1
 
 tk.Button(control_cards, text="save", command=save).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(control_cards, text="make", command=make_datcom).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
 root.mainloop()
