@@ -427,7 +427,7 @@ tk.Label(horizontal_tail, text="Dihedral Angle").grid(
 tk.Label(horizontal_tail, text="Airfoil").grid(column=0, row=8, padx=10, pady=10)
 Hairfoil = tk.Entry(horizontal_tail)
 Hairfoil.grid(column=1, row=8, padx=0, pady=10, sticky=tk.W)
-tk.Label(horizontal_tail, text="Write airfoil name like: \"NACA-H-4-00012\"").grid(
+tk.Label(horizontal_tail, text="Write airfoil name like: \"NACA-H-4-0012\"").grid(
     column=2, row=8, padx=10, pady=10, sticky=tk.W)
 
 horizontal_tail_type_frame = tk.Frame(horizontal_tail,
@@ -503,7 +503,7 @@ tk.Label(vertical_tail, text="Dihedral Angle").grid(
 tk.Label(vertical_tail, text="Airfoil").grid(column=0, row=8, padx=10, pady=10)
 Vairfoil = tk.Entry(vertical_tail)
 Vairfoil.grid(column=1, row=8, padx=0, pady=10, sticky=tk.W)
-tk.Label(vertical_tail, text="Write airfoil name like: \"NACA-V-4-00012\"").grid(
+tk.Label(vertical_tail, text="Write airfoil name like: \"NACA-V-4-0012\"").grid(
     column=2, row=8, padx=10, pady=10, sticky=tk.W)
 
 vertical_tail_type_frame = tk.Frame(vertical_tail,
