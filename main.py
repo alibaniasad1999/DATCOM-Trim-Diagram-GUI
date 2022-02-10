@@ -1,7 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog as fd
+from tkinter import filedialog
 import csv
 import numpy as np
+
 
 root = tk.Tk()
 root.title("DATCOM-GUI")
@@ -523,8 +526,18 @@ tk.Radiobutton(vertical_tail_type_frame, text="Cranked platform AR>3", padx=20,
 
 
 def load():
-    a = []
-    with open("save_data.csv") as data:
+    filetypes = (
+        ('csv files', '*.csv'),
+        ('All files', '*.*')
+    )
+
+    filename = fd.askopenfilename(
+        title='Open a file',
+        # initialdir='/',
+        filetypes=filetypes)
+
+    a = [] # data from saved data
+    with open(filename) as data:
         reader = csv.reader(data)
         for i in reader:
             a.append(i)
@@ -1005,8 +1018,8 @@ def save():
 
 
     # Write data
-
-    f = open('save_data.csv', 'w', newline='')
+    f = filedialog.asksaveasfile(mode='w', defaultextension=".csv")
+    # f = open('save_data.csv', 'w', newline='')
     writer = csv.writer(f)
     for row in data_saver:
         writer.writerow(row)
