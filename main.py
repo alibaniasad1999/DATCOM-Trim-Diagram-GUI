@@ -1618,6 +1618,44 @@ def make_datcom():
     file.write(VerticalTailAirfoil)
     file.write('\n')
 
+    # elevator 
+    # 
+    FTYPE = round(float(ele_type_var.get()), 4)
+    # Number of deflection MAX 9
+    NDELTA = round(float(num_ele_ang.get()), 4)
+    # Flap Deflection
+    DELTA = np.linspace(float(min_ele_ang.get()), float(max_ele_ang.get()), int(num_ele_ang.get()))
+    # Flap chord at inboard end of flap, measured parallel to longitudinal axis
+    ECHRDFI =round(float(CHRDFI.get()), 4) 
+    # Flap chord at outboard end of flap, measured parallel to longitudinal axis
+    ECHRDFO = round(float(CHRDFO.get()), 4)
+    # Span location of inboard end of flap, measured perpendicular to vertical plane of symmetry
+    ESPANFI = round(float(SPANFI.get()), 4)
+    # Span location of outboard end of flap, measured perpendicular to vertical plane of symmetry
+    ESPANFO = round(float(SPANFO.get()), 4)
+    # Average chord of the balance
+    ECB = round(float(CB.get()), 4)
+    # Average thickness of the control at hinge line
+    ETC = round(float(TC.get()), 4)
+    # NTYPE = 1.0 round nose flap
+    # NTYPE = 2.0 elliptic nose flap
+    # NTYPE = 3.0 sharp nose flap
+    ENTYPE = round(float(ele_nose_type_var.get()), 4)
+
+
+    file.write(' $SYMFLP ')
+    file.write('FTYPE = %s,\n\t\t ' % str(FTYPE))
+    file.write('NDELTA = %s,\n\t\t ' % str(NDELTA))
+    loop_writer('DELTA', DELTA, file)
+    file.write('CHRDFI = %s, ' % str(ECHRDFI))
+    file.write('CHRDFO = %s,\n\t\t ' % str(ECHRDFO))
+    file.write('SPANFI = %s, ' % str(SPANFI))
+    file.write('SPANFO = %s,\n\t\t ' % str(ESPANFO))
+    file.write('CB = %s, ' % str(ECB))
+    file.write('TC = %s, ' % str(ETC))
+    file.write('NTYPE = %s, ' % str(ENTYPE))
+    # End of File
+    file.write('$\n')
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
