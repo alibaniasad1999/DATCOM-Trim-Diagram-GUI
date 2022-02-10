@@ -9,7 +9,7 @@ import numpy as np
 root = tk.Tk()
 root.title("DATCOM-GUI")
 root.iconbitmap("logo.ico")
-root.geometry("1000x575")
+root.geometry("1000x650")
 tabControl = ttk.Notebook(root)
 
 control_cards = ttk.Frame(tabControl)
@@ -300,6 +300,13 @@ tk.Radiobutton(body_method_frame, text="use exiting methods", padx=20,
 tk.Radiobutton(body_method_frame, text="use jorgensen methon", padx=20,
                variable=body_method, value=2).grid(column=0, row=2, sticky=tk.W)
 
+# body CSV
+body_CSV = tk.Frame(body,
+                           highlightbackground="black",
+                           highlightthickness=1)
+body_CSV.grid(column=2, row=2, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.EW)
+tk.Label(body_CSV, text="").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
+
 
 # Wing
 wing = ttk.Frame(tabControl)
@@ -523,6 +530,111 @@ tk.Radiobutton(vertical_tail_type_frame, text="double delta platform AR<3", padx
                variable=vertical_tail_type, value=2).grid(column=0, row=2, sticky=tk.W)
 tk.Radiobutton(vertical_tail_type_frame, text="Cranked platform AR>3", padx=20,
                variable=vertical_tail_type, value=3).grid(column=0, row=3, sticky=tk.W)
+
+
+# elevator 
+# with tail flap work as elevator
+elevator = ttk.Frame(tabControl)
+tabControl.add(elevator,
+               text='Elevator')
+
+tabControl.pack(expand=1, fill="both")
+
+
+elevator_type = tk.Frame(elevator,
+                      highlightbackground="black",
+                      highlightthickness=1)
+
+elevator_type.grid(column=1, row=2, padx=10, pady=20, sticky=tk.W)
+
+tk.Label(elevator_type, text="Elevator Type:").grid(column=0, row=0, padx=10, pady=10)
+
+ele_type_var = tk.IntVar()
+ele_type_var.set(1)
+
+tk.Radiobutton(elevator_type, text="plian flaps", padx=20, variable=dim_unit_var, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="single sloted flaps", padx=20, variable=dim_unit_var, value=2).grid(column=0, row=2, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="fowler flaps", padx=20, variable=dim_unit_var, value=3).grid(column=0, row=3, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="double sloted flaps", padx=20, variable=dim_unit_var, value=4).grid(column=0, row=4, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="split flaps", padx=20, variable=dim_unit_var, value=5).grid(column=0, row=5, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="leading edge flaps", padx=20, variable=dim_unit_var, value=6).grid(column=0, row=6, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="lesding edge slats", padx=20, variable=dim_unit_var, value=7).grid(column=0, row=7, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="kruger", padx=20, variable=dim_unit_var, value=8).grid(column=0, row=8, sticky=tk.W)
+
+# elevator angle
+
+elevator_angle = tk.Frame(elevator,
+                       highlightbackground="black",
+                       highlightthickness=1)
+elevator_angle.grid(column=0, row=2, columnspan=1, padx=10, pady=10, sticky=tk.W)
+
+tk.Label(elevator_angle, text="Minimum Elevator Angle").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
+min_ele_ang = tk.Entry(elevator_angle)
+min_ele_ang.grid(column=1, row=0, padx=10, pady=10, sticky=tk.E)
+
+tk.Label(elevator_angle, text="Maximum Elevator Angle").grid(column=0, row=1, padx=10, pady=10, sticky=tk.W)
+max_ele_ang = tk.Entry(elevator_angle)
+max_ele_ang.grid(column=1, row=1, padx=10, pady=10, sticky=tk.E)
+
+
+tk.Label(elevator_angle, text="Number of Elevator angle (max = 9)").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
+num_ele_ang = tk.Entry(elevator_angle)
+num_ele_ang.grid(column=1, row=2, padx=10, pady=10, sticky=tk.E)
+
+# elevator data
+elevator_data = tk.Frame(elevator,
+                      highlightbackground="black",
+                      highlightthickness=1)
+elevator_data.grid(column=0, row=1, columnspan=10, padx=10, pady=10, sticky=tk.W)
+
+
+tk.Label(elevator_data, text="CHRDFI").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
+CHRDFI = tk.Entry(elevator_data)
+CHRDFI.grid(column=1, row=0, padx=10, pady=10, sticky=tk.E)
+tk.Label(elevator_data, text="Flap chord at inboard end of flap, measured parallel to longitudinal axis").grid(column=2, row=0, padx=10, pady=10, sticky=tk.W)
+
+tk.Label(elevator_data, text="CHRDFO").grid(column=0, row=1, padx=10, pady=10, sticky=tk.W)
+CHRDFO = tk.Entry(elevator_data)
+CHRDFO.grid(column=1, row=1, padx=10, pady=10, sticky=tk.E)
+tk.Label(elevator_data, text="Flap chord at outboard end of flap, measured parallel to longitudinal axis").grid(column=2, row=1, padx=10, pady=10, sticky=tk.W)
+
+tk.Label(elevator_data, text="SPANFI").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
+SPANFI = tk.Entry(elevator_data)
+SPANFI.grid(column=1, row=2, padx=10, pady=10, sticky=tk.E)
+tk.Label(elevator_data, text="Span location of inboard end of flap, measured perpendicular to vertical plane of symmetry").grid(column=2, row=2, padx=10, pady=10, sticky=tk.W)
+
+tk.Label(elevator_data, text="SPANFO").grid(column=0, row=3, padx=10, pady=10, sticky=tk.W)
+SPANFO = tk.Entry(elevator_data)
+SPANFO.grid(column=1, row=3, padx=10, pady=10, sticky=tk.E)
+tk.Label(elevator_data, text="Span location of outboard end of flap, measured perpendicular to vertical plane of symmetry").grid(column=2, row=3, padx=10, pady=10, sticky=tk.W)
+
+tk.Label(elevator_data, text="CB").grid(column=0, row=4, padx=10, pady=10, sticky=tk.W)
+CB = tk.Entry(elevator_data)
+CB.grid(column=1, row=4, padx=10, pady=10, sticky=tk.E)
+tk.Label(elevator_data, text="Average chord of the balance").grid(column=2, row=4, padx=10, pady=10, sticky=tk.W)
+
+tk.Label(elevator_data, text="TC").grid(column=0, row=5, padx=10, pady=10, sticky=tk.W)
+TC = tk.Entry(elevator_data)
+TC.grid(column=1, row=5, padx=10, pady=10, sticky=tk.E)
+tk.Label(elevator_data, text="Average thickness of the control at hinge line").grid(column=2, row=5, padx=10, pady=10, sticky=tk.W)
+
+elevator_nose_type = tk.Frame(elevator,
+                      highlightbackground="black",
+                      highlightthickness=1)
+
+elevator_nose_type.grid(column=3, row=2, padx=10, pady=20, sticky=tk.W)
+
+tk.Label(elevator_nose_type, text="Elevator nose Type:").grid(column=0, row=0, padx=10, pady=10)
+
+ele_nose_type_var = tk.IntVar()
+ele_nose_type_var.set(1)
+
+tk.Radiobutton(elevator_nose_type, text="round nose flap", padx=20, variable=dim_unit_var, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(elevator_nose_type, text="elliptic nose flap", padx=20, variable=dim_unit_var, value=2).grid(column=0, row=2, sticky=tk.W)
+tk.Radiobutton(elevator_nose_type, text="sharp nose flap", padx=20, variable=dim_unit_var, value=3).grid(column=0, row=3, sticky=tk.W)
+
+
+
 
 
 def load():
