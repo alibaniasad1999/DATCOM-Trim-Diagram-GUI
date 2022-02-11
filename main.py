@@ -1687,7 +1687,7 @@ def make_datcom():
     loop_writer('DELTA', DELTA, file)
     file.write('CHRDFI = %s, ' % str(ECHRDFI))
     file.write('CHRDFO = %s,\n\t\t ' % str(ECHRDFO))
-    file.write('SPANFI = %s, ' % str(SPANFI))
+    file.write('SPANFI = %s, ' % str(ESPANFI))
     file.write('SPANFO = %s,\n\t\t ' % str(ESPANFO))
     file.write('CB = %s, ' % str(ECB))
     file.write('TC = %s, ' % str(ETC))
@@ -1702,5 +1702,10 @@ tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=1
 tk.Button(control_cards, text="save", command=save).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
+
+
+# trim digram function
+
+
 
 root.mainloop()
