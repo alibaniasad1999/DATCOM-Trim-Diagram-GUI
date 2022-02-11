@@ -316,8 +316,8 @@ tk.Radiobutton(body_method_frame, text="use jorgensen methon", padx=20,
 body_CSV = tk.Frame(body,
                            highlightbackground="black",
                            highlightthickness=1)
-body_CSV.grid(column=2, row=2, padx=10, pady=10, rowspan=2, columnspan=2, sticky=tk.EW)
-tk.Label(body_CSV, text="").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
+body_CSV.grid(column=2, row=2, padx=10, pady=10, rowspan=10, columnspan=2, sticky=tk.EW)
+tk.Label(body_CSV, text="Insert your data to Body.csv\n first insert variable then your aircraft data\nVariables:\nX : Array of longitudinal Distance\nZU: Upper body\nZL:Lower body\nP: Section Equivalent Radius\nP: Section Area\nS:Section Periphery\n from R, S and P you shoul choice at least one and maximum two\nsample:\nX,1,2,3,4,5").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
 
 
 # Wing
