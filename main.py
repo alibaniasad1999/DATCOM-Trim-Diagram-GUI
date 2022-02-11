@@ -738,6 +738,7 @@ def load():
     num_ang.delete(0, tk.END)
     num_ang.insert(0, a[4][2])
 
+
     global looping_var
     if a[5][0] == "1":
         looping_var.set(1)
@@ -745,6 +746,9 @@ def load():
         looping_var.set(2)
     else:
         looping_var.set(3)
+    
+
+
     # Options
 
     reference_area.delete(0, tk.END)
@@ -993,6 +997,17 @@ def load():
     else:
         ele_nose_type_var.set(3)
 
+        # trim condition
+
+    trim_mach.delete(0, tk.END)
+    trim_mach.insert(0, a[13][0])
+
+    trim_alt.delete(0, tk.END)
+    trim_alt.insert(0, a[13][1])
+
+    trim_ang.delete(0, tk.END)
+    trim_ang.insert(0, a[13][2])
+
 
     
 
@@ -1225,6 +1240,17 @@ def save():
     data_saver[12].append(TC.get())
 
     data_saver[12].append(str(ele_nose_type_var.get()))
+
+    # trim data
+    # trim condition
+
+    data_saver.append([])
+
+    data_saver[13].append(trim_mach.get())
+
+    data_saver[13].append(trim_alt.get())
+
+    data_saver[13].append(trim_ang.get())
 
 
     # Write data
