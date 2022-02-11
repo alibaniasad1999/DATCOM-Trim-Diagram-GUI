@@ -85,9 +85,12 @@ min_mach.grid(column=1, row=0, padx=10, pady=10, sticky=tk.E)
 tk.Label(mach_number, text="Maximum Mach Number").grid(column=0, row=1, padx=10, pady=10, sticky=tk.W)
 max_mach = tk.Entry(mach_number)
 max_mach.grid(column=1, row=1, padx=10, pady=10, sticky=tk.E)
-tk.Label(mach_number, text="Number of Mach number(max = 20)").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
+tk.Label(mach_number, text="Number of Mach number (max = 20)").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
 num_mach = tk.Entry(mach_number)
 num_mach.grid(column=1, row=2, padx=10, pady=10, sticky=tk.E)
+tk.Label(mach_number, text="Trim Mach").grid(column=0, row=3, padx=10, pady=10, sticky=tk.W)
+trim_mach = tk.Entry(mach_number)
+trim_mach.grid(column=1, row=3, padx=10, pady=10, sticky=tk.E)
 # Altitude
 altitude = tk.Frame(flight_condition,
                     highlightbackground="black",
@@ -99,10 +102,14 @@ min_alt.grid(column=1, row=0, padx=10, pady=10, sticky=tk.E)
 tk.Label(altitude, text="Maximum Altitude").grid(column=0, row=1, padx=10, pady=10, sticky=tk.W)
 max_alt = tk.Entry(altitude)
 max_alt.grid(column=1, row=1, padx=10, pady=10, sticky=tk.E)
-tk.Label(altitude, text="Number of Altitude(max = 20)").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
+tk.Label(altitude, text="Number of Altitude (max = 20)").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
 num_alt = tk.Entry(altitude)
 num_alt.grid(column=1, row=2, padx=10, pady=10, sticky=tk.E)
-# Angle
+
+tk.Label(altitude, text="Trim Altitude").grid(column=0, row=3, padx=10, pady=10, sticky=tk.W)
+trim_alt = tk.Entry(altitude)
+trim_alt.grid(column=1, row=3, padx=10, pady=10, sticky=tk.E)
+# Angle of attacl
 angle = tk.Frame(flight_condition,
                  highlightbackground="black",
                  highlightthickness=1)
@@ -113,9 +120,13 @@ min_ang.grid(column=1, row=0, padx=0, pady=10, sticky=tk.E)
 tk.Label(angle, text="Maximum AOA").grid(column=0, row=1, padx=38, pady=10, sticky=tk.W)
 max_ang = tk.Entry(angle)
 max_ang.grid(column=1, row=1, padx=0, pady=10, sticky=tk.E)
-tk.Label(angle, text="Number of AOA(max = 20)").grid(column=0, row=2, padx=38, pady=10, sticky=tk.W)
+tk.Label(angle, text="Number of AOA (max = 20)").grid(column=0, row=2, padx=38, pady=10, sticky=tk.W)
 num_ang = tk.Entry(angle)
 num_ang.grid(column=1, row=2, padx=0, pady=10, sticky=tk.E)
+
+tk.Label(angle, text="Trim AOA").grid(column=0, row=3, padx=38, pady=10, sticky=tk.W)
+trim_ang = tk.Entry(angle)
+trim_ang.grid(column=1, row=3, padx=0, pady=10, sticky=tk.E)
 
 # program looping control
 looping = tk.Frame(flight_condition,
@@ -125,11 +136,11 @@ looping.grid(column=3, row=2, columnspan=2, padx=10, pady=10, sticky=tk.NSEW)
 ttk.Label(looping, text="Program Looping Control").grid(column=0, row=0, columnspan=2, sticky=tk.E, pady=10)
 looping_var = tk.IntVar()
 looping_var.set(1)
-tk.Radiobutton(looping, text="Vary Altitude and Mach together", padx=20,
+tk.Radiobutton(looping, text="Vary Altitude and Mach together", padx=40,
                variable=looping_var, value=1).grid(column=0, row=1, sticky=tk.W)
-tk.Radiobutton(looping, text="Vary Mach at fixed Altitude", padx=20,
+tk.Radiobutton(looping, text="Vary Mach at fixed Altitude", padx=40,
                variable=looping_var, value=2).grid(column=0, row=2, sticky=tk.W)
-tk.Radiobutton(looping, text="Vary Altitude at fixed Mach", padx=20,
+tk.Radiobutton(looping, text="Vary Altitude at fixed Mach", padx=40,
                variable=looping_var, value=3).grid(column=0, row=3, sticky=tk.W)
 # options
 options = ttk.Frame(tabControl)
