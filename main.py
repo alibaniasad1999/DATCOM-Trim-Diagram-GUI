@@ -646,6 +646,13 @@ tk.Radiobutton(elevator_nose_type, text="elliptic nose flap", padx=20, variable=
 tk.Radiobutton(elevator_nose_type, text="sharp nose flap", padx=20, variable=dim_unit_var, value=3).grid(column=0, row=3, sticky=tk.W)
 
 
+###### Trim diagram ######
+trim = ttk.Frame(tabControl)
+tabControl.add(trim,
+               text='Trim Diagram')
+
+
+
 
 
 
