@@ -3,6 +3,11 @@ from tkinter import ttk
 from tkinter import filedialog as fd
 from tkinter import filedialog
 from tkinter import messagebox
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg, NavigationToolbar2Tk)
+# Implement the default Matplotlib key bindings.
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
 import csv
 import numpy as np
 
@@ -650,6 +655,19 @@ tk.Radiobutton(elevator_nose_type, text="sharp nose flap", padx=20, variable=dim
 trim = ttk.Frame(tabControl)
 tabControl.add(trim,
                text='Trim Diagram')
+
+
+tk.Label(trim, text="This app use current data so first make sure data is loaded correctly").grid(column=0, row=0, padx=10, pady=10)
+
+fig = Figure(figsize=(5, 4), dpi=125)
+t = np.arange(0, 3, .01)
+fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+
+canvas = FigureCanvasTkAgg(fig, master=trim)  # A tk.DrawingArea.
+canvas.draw()
+canvas.get_tk_widget().grid(column=1, row=3, padx=10, pady=10, sticky=tk.NE)
+
+
 
 
 
