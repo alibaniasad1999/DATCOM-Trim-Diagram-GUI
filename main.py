@@ -1808,11 +1808,11 @@ def make_datcom():
 
     messagebox.showinfo(title="Saved", message="Done")
 
-def load_trim_data():
-    # kir to sanaz
+# def load_trim_data():
+#     # kir to sanaz
 
-def plot_trim_data():
-    # kiram baz sanaz
+# def plot_trim_data():
+#     # kiram baz sanaz
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
