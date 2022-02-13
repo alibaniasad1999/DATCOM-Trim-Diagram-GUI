@@ -1,13 +1,16 @@
+from audioop import reverse
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
 from tkinter import filedialog
 from tkinter import messagebox
+from matplotlib import cm
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
 # Implement the default Matplotlib key bindings.
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
 import csv
 import numpy as np
 
@@ -659,13 +662,60 @@ tabControl.add(trim,
 
 tk.Label(trim, text="This app use current data so first make sure data is loaded correctly").grid(column=0, row=0, padx=10, pady=10)
 
-fig = Figure(figsize=(5, 4), dpi=125)
-t = np.arange(0, 3, .01)
-fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
 
-canvas = FigureCanvasTkAgg(fig, master=trim)  # A tk.DrawingArea.
+
+# parameters
+elevator_data = tk.Frame(elevator,
+                      highlightbackground="black",
+                      highlightthickness=1)
+c_l_alpha = 2.80
+c_l_zero = 0.1
+c_l_ih = 0.25
+c_l_delta_elevator = 0.25
+c_m_alpha = -0.78
+c_m_zero = -0.025
+c_m_ih = -0.38
+c_m_delta_elevator = -0.38
+ih = 0
+x_cg = 0.29
+
+delta_elevator = np.linspace(-30/180*np.pi, 15/180*np.pi, 10)
+c_l = np.linspace(0, 3, 30)
+
+c_m_alpha_c_l_alpha = (c_m_alpha / c_l_alpha)
+
+c_m_zero_bar = c_m_zero - c_m_alpha_c_l_alpha * c_l_zero
+
+c_m_delta_elevator_bar = c_m_delta_elevator - c_m_alpha_c_l_alpha * c_l_delta_elevator
+
+c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
+
+
+c_m = []
+for i in range(int(len(delta_elevator))):
+    c_m.append([])
+    for j in range(len(c_l)):
+        c_m[i].append(c_m_zero_bar + (c_m_alpha / c_l_alpha) * c_l[j] + c_m_delta_elevator_bar * delta_elevator[i]) 
+    
+# for i in range(len(c_m)):
+#     c_m[i].reverse()
+
+fig, ax = plt.subplots()
+ax.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+# fig.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+fig.legend(['ele -30.0' ,'ele -25.0' ,'ele -20.0' ,'ele -15.0' ,'ele -10.0' ,'ele -5.0' ,'ele 0.0' ,'ele 5.0' ,'ele 10.0' ,'ele 15.0'])
+
+fig.set_dpi(100)
+ax.invert_xaxis()
+# fig.invert_xaxis()
+# fig.Figure()
+canvas = FigureCanvasTkAgg(fig, master=trim) 
 canvas.draw()
 canvas.get_tk_widget().grid(column=1, row=3, padx=10, pady=10, sticky=tk.NE)
+
+
+
+
 
 
 
