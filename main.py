@@ -666,92 +666,95 @@ trim_data_ploter = tk.Frame(trim,
                       highlightthickness=1)
 trim_data_ploter.grid(column=0, row=1, padx=10, pady=20, sticky=tk.W)
 
-tk.Label(trim_data_ploter, text="c_l_alpha").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
-c_l_alpha = tk.Entry(trim_data_ploter)
-c_l_alpha.grid(column=1, row=0, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_l_alpha").grid(column=0, row=0, padx=5, pady=5, sticky=tk.W)
+c_l_alpha_E = tk.Entry(trim_data_ploter)
+c_l_alpha_E.grid(column=1, row=0, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_l_zero").grid(column=0, row=1, padx=10, pady=10, sticky=tk.W)
-c_l_zero = tk.Entry(trim_data_ploter)
-c_l_zero.grid(column=1, row=1, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_l_zero").grid(column=0, row=1, padx=5, pady=5, sticky=tk.W)
+c_l_zero_E = tk.Entry(trim_data_ploter)
+c_l_zero_E.grid(column=1, row=1, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_l_ih").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
-c_l_ih = tk.Entry(trim_data_ploter)
-c_l_ih.grid(column=1, row=2, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_l_ih").grid(column=0, row=2, padx=5, pady=5, sticky=tk.W)
+c_l_ih_E = tk.Entry(trim_data_ploter)
+c_l_ih_E.grid(column=1, row=2, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_l_delta_elevator").grid(column=0, row=3, padx=10, pady=10, sticky=tk.W)
-c_l_delta_elevator = tk.Entry(trim_data_ploter)
-c_l_delta_elevator.grid(column=1, row=3, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_l_delta_elevator").grid(column=0, row=3, padx=5, pady=5, sticky=tk.W)
+c_l_delta_elevator_E = tk.Entry(trim_data_ploter)
+c_l_delta_elevator_E.grid(column=1, row=3, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_m_alpha").grid(column=0, row=4, padx=10, pady=10, sticky=tk.W)
-c_m_alpha = tk.Entry(trim_data_ploter)
-c_m_alpha.grid(column=1, row=4, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_m_alpha").grid(column=0, row=4, padx=5, pady=5, sticky=tk.W)
+c_m_alpha_E = tk.Entry(trim_data_ploter)
+c_m_alpha_E.grid(column=1, row=4, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_m_zero").grid(column=0, row=5, padx=10, pady=10, sticky=tk.W)
-c_m_zero = tk.Entry(trim_data_ploter)
-c_m_zero.grid(column=1, row=5, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_m_zero").grid(column=0, row=5, padx=5, pady=5, sticky=tk.W)
+c_m_zero_E = tk.Entry(trim_data_ploter)
+c_m_zero_E.grid(column=1, row=5, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_m_ih").grid(column=0, row=6, padx=10, pady=10, sticky=tk.W)
-c_m_ih = tk.Entry(trim_data_ploter)
-c_m_ih.grid(column=1, row=6, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_m_ih").grid(column=0, row=6, padx=5, pady=5, sticky=tk.W)
+c_m_ih_E = tk.Entry(trim_data_ploter)
+c_m_ih_E.grid(column=1, row=6, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_m_delta_elevator").grid(column=0, row=7, padx=10, pady=10, sticky=tk.W)
-c_m_delta_elevator = tk.Entry(trim_data_ploter)
-c_m_delta_elevator.grid(column=1, row=7, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="c_m_delta_elevator").grid(column=0, row=7, padx=5, pady=5, sticky=tk.W)
+c_m_delta_elevator_E = tk.Entry(trim_data_ploter)
+c_m_delta_elevator_E.grid(column=1, row=7, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="ih").grid(column=0, row=8, padx=10, pady=10, sticky=tk.W)
-ih = tk.Entry(trim_data_ploter)
-ih.grid(column=1, row=8, padx=10, pady=10, sticky=tk.E)
+tk.Label(trim_data_ploter, text="ih").grid(column=0, row=8, padx=5, pady=5, sticky=tk.W)
+ih_E = tk.Entry(trim_data_ploter)
+ih_E.grid(column=1, row=8, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="x_cg").grid(column=0, row=9, padx=10, pady=10, sticky=tk.W)
-x_cg = tk.Entry(trim_data_ploter)
-x_cg.grid(column=1, row=9, padx=10, pady=10, sticky=tk.E)
-
-
-# c_l_alpha = 2.80
-# c_l_zero = 0.1
-# c_l_ih = 0.25
-# c_l_delta_elevator = 0.25
-# c_m_alpha = -0.78
-# c_m_zero = -0.025
-# c_m_ih = -0.38
-# c_m_delta_elevator = -0.38
-# ih = 0
-# x_cg = 0.29
-
-# delta_elevator = np.linspace(-30/180*np.pi, 15/180*np.pi, 10)
-# c_l = np.linspace(0, 3, 30)
-
-# c_m_alpha_c_l_alpha = (c_m_alpha / c_l_alpha)
-
-# c_m_zero_bar = c_m_zero - c_m_alpha_c_l_alpha * c_l_zero
-
-# c_m_delta_elevator_bar = c_m_delta_elevator - c_m_alpha_c_l_alpha * c_l_delta_elevator
-
-# c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
+tk.Label(trim_data_ploter, text="x_cg").grid(column=0, row=9, padx=5, pady=5, sticky=tk.W)
+x_cg_E = tk.Entry(trim_data_ploter)
+x_cg_E.grid(column=1, row=9, padx=5, pady=5, sticky=tk.E)
 
 
-# c_m = []
-# for i in range(int(len(delta_elevator))):
-#     c_m.append([])
-#     for j in range(len(c_l)):
-#         c_m[i].append(c_m_zero_bar + (c_m_alpha / c_l_alpha) * c_l[j] + c_m_delta_elevator_bar * delta_elevator[i]) 
+tk.Button(trim, text="load data").grid(row=2, column=0, padx=5, pady=5, sticky=tk.EW)
+
+tk.Button(trim, text="plot trim diagram").grid(row=3, column=0, padx=5, pady=5, sticky=tk.EW)
+
+c_l_alpha = 2.80
+c_l_zero = 0.1
+c_l_ih = 0.25
+c_l_delta_elevator = 0.25
+c_m_alpha = -0.78
+c_m_zero = -0.025
+c_m_ih = -0.38
+c_m_delta_elevator = -0.38
+ih = 0
+x_cg = 0.29
+
+delta_elevator = np.linspace(-30/180*np.pi, 15/180*np.pi, 10)
+c_l = np.linspace(0, 3, 30)
+
+c_m_alpha_c_l_alpha = (c_m_alpha / c_l_alpha)
+
+c_m_zero_bar = c_m_zero - c_m_alpha_c_l_alpha * c_l_zero
+
+c_m_delta_elevator_bar = c_m_delta_elevator - c_m_alpha_c_l_alpha * c_l_delta_elevator
+
+c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
+
+
+c_m = []
+for i in range(int(len(delta_elevator))):
+    c_m.append([])
+    for j in range(len(c_l)):
+        c_m[i].append(c_m_zero_bar + (c_m_alpha / c_l_alpha) * c_l[j] + c_m_delta_elevator_bar * delta_elevator[i]) 
     
-# # for i in range(len(c_m)):
-# #     c_m[i].reverse()
+# for i in range(len(c_m)):
+#     c_m[i].reverse()
 
-# fig, ax = plt.subplots()
-# ax.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
-# # fig.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
-# fig.legend(['ele -30.0' ,'ele -25.0' ,'ele -20.0' ,'ele -15.0' ,'ele -10.0' ,'ele -5.0' ,'ele 0.0' ,'ele 5.0' ,'ele 10.0' ,'ele 15.0'])
+fig, ax = plt.subplots()
+ax.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+# fig.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+fig.legend(['ele -30.0' ,'ele -25.0' ,'ele -20.0' ,'ele -15.0' ,'ele -10.0' ,'ele -5.0' ,'ele 0.0' ,'ele 5.0' ,'ele 10.0' ,'ele 15.0'])
 
-# fig.set_dpi(100)
-# ax.invert_xaxis()
-# # fig.invert_xaxis()
-# # fig.Figure()
-# canvas = FigureCanvasTkAgg(fig, master=trim) 
-# canvas.draw()
-# canvas.get_tk_widget().grid(column=1, row=3, padx=10, pady=10, sticky=tk.NE)
-
+fig.set_dpi(100)
+ax.invert_xaxis()
+# fig.invert_xaxis()
+# fig.Figure()
+canvas = FigureCanvasTkAgg(fig, master=trim) 
+canvas.draw()
+canvas.get_tk_widget().grid(column=1, row=1, padx=10, pady=10, sticky=tk.NE)
 
 
 
@@ -1804,6 +1807,12 @@ def make_datcom():
     file.write('$\n')
 
     messagebox.showinfo(title="Saved", message="Done")
+
+def load_trim_data():
+    # kir to sanaz
+
+def plot_trim_data():
+    # kiram baz sanaz
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
