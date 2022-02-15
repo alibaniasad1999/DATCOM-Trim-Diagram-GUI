@@ -1864,7 +1864,7 @@ def load_trim_data():
     NALPHA = NALT = round(float(num_ang.get()), 2)
 
     # Array of angle of attacks
-    ang_temp = np.linspace(float(trim_ang.get()), float(trim_ang.get()), 1)
+    ang_temp = np.linspace(0.0, float(trim_ang.get()), 2)
     ang_temp = ang_temp.tolist()
     ALSCHD = [round(float(i), 2) for i in ang_temp]
 
@@ -1889,7 +1889,7 @@ def load_trim_data():
     # Array of altitudes
     loop_writer('ALT', ALT, file)
     # Number of angle of attacks
-    file.write('NALPHA = %s, ' % str('1.0'))
+    file.write('NALPHA = %s, ' % str('2.0'))
     # Array of angle of attacks
     loop_writer('ALSCHD', ALSCHD, file)
     # End of File
