@@ -1845,7 +1845,7 @@ def load_trim_data():
 
     # Array of Mach numbers
 
-    mach_temp = np.linspace(float(1), float(trim_mach.get()), 1)
+    mach_temp = np.linspace(float(trim_mach.get()), float(trim_mach.get()), 1)
     mach_temp = mach_temp.tolist()
     MACH = [round(float(i), 3) for i in mach_temp]
 
@@ -1855,7 +1855,7 @@ def load_trim_data():
 
     # Array of altitudes
 
-    alt_temp = np.linspace(float(1), float(trim_alt.get()), 1)
+    alt_temp = np.linspace(float(trim_alt.get()), float(trim_alt.get()), 1)
     alt_temp = alt_temp.tolist()
     ALT = [round(float(i), 2) for i in alt_temp]
 

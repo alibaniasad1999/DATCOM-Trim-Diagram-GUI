@@ -4,8 +4,8 @@ DAMP
 PART
 BUILD
  $FLTCON WT = 59000.0, LOOP = 1.0,
-		 NMACH = 1.0, MACH(1) = 1.0, 
-		 NALT = 1.0, ALT(1) = 1.0, 
+		 NMACH = 1.0, MACH(1) = 0.5, 
+		 NALT = 1.0, ALT(1) = 36000.0, 
 		 NALPHA = 1.0, ALSCHD(1) = 1.3, 
 		 $
  $OPTINS SREF = 702.0, CBARR = 8.167, BLREF = 81.68, ROUGFC = 0.00025,  $
