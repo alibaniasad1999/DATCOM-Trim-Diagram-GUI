@@ -698,13 +698,13 @@ tk.Label(trim_data_ploter, text="c_m_delta_elevator").grid(column=0, row=7, padx
 c_m_delta_elevator_E = tk.Entry(trim_data_ploter)
 c_m_delta_elevator_E.grid(column=1, row=7, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="ih").grid(column=0, row=8, padx=5, pady=5, sticky=tk.W)
-ih_E = tk.Entry(trim_data_ploter)
-ih_E.grid(column=1, row=8, padx=5, pady=5, sticky=tk.E)
+# tk.Label(trim_data_ploter, text="ih").grid(column=0, row=8, padx=5, pady=5, sticky=tk.W)
+# ih_E = tk.Entry(trim_data_ploter)
+# ih_E.grid(column=1, row=8, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="x_cg").grid(column=0, row=9, padx=5, pady=5, sticky=tk.W)
-x_cg_E = tk.Entry(trim_data_ploter)
-x_cg_E.grid(column=1, row=9, padx=5, pady=5, sticky=tk.E)
+# tk.Label(trim_data_ploter, text="x_cg").grid(column=0, row=9, padx=5, pady=5, sticky=tk.W)
+# x_cg_E = tk.Entry(trim_data_ploter)
+# x_cg_E.grid(column=1, row=9, padx=5, pady=5, sticky=tk.E)
 
 # c_l_alpha = 2.80
 # c_l_zero = 0.1
@@ -1873,7 +1873,7 @@ def load_trim_data():
     global looping_var
 
     LOOP = 1.0
-    
+
     # Name list
     file.write(' $FLTCON ')
     # Take-off Weight
@@ -2187,8 +2187,8 @@ def plot_trim_data():
     c_m_zero = float(c_m_zero_E.get())
     c_m_ih = float(c_m_ih_E.get())
     c_m_delta_elevator = float(c_m_delta_elevator_E.get())
-    ih = float(ih_E.get())
-    x_cg = float(x_cg_E.get())
+    # ih = float(ih_E.get())
+    # x_cg = float(x_cg_E.get())
 
     delta_elevator = np.linspace(float(min_ele_ang.get()), float(max_ele_ang.get()), int(num_ele_ang.get()))
     c_l = np.linspace(0, 2, 30)
@@ -2223,6 +2223,75 @@ def plot_trim_data():
     canvas.get_tk_widget().grid(column=1, row=1, padx=10, pady=10, sticky=tk.NE)
     
     
+# save trim data
+def save_trim():
+
+    data_saver = []
+
+    data_saver.append(c_l_alpha_E.get())
+
+    data_saver.append(c_l_zero_E.get())
+
+    data_saver.append(c_l_ih_E.get())
+
+    data_saver.append(c_l_delta_elevator_E.get())
+
+    data_saver.append(c_m_alpha_E.get())
+
+    data_saver.append(c_m_zero_E.get())
+
+    data_saver.append(c_m_ih_E.get())
+
+    data_saver.append(c_m_delta_elevator_E.get())
+
+    # Write data
+    f = filedialog.asksaveasfile(mode='w', defaultextension=".csv")
+    # f = open('save_data.csv', 'w', newline='')
+    writer = csv.writer(f)
+    writer.writerow(data_saver)
+    f.close()
+
+def load_trim_file():
+    filetypes = (
+        ('csv files', '*.csv'),
+        ('All files', '*.*')
+    )
+
+    filename = fd.askopenfilename(
+        title='Open a file',
+        # initialdir='/',
+        filetypes=filetypes)
+
+    a = [] # data from saved data
+    with open(filename) as data:
+        reader = csv.reader(data)
+        for i in reader:
+            a.append(i)
+
+    c_l_alpha_E.delete(0, tk.END)
+    c_l_alpha_E.insert(0, a[0][0])
+
+
+    c_l_zero_E.delete(0, tk.END)
+    c_l_zero_E.insert(0, a[0][1])
+
+    c_l_ih_E.delete(0, tk.END)
+    c_l_ih_E.insert(0, a[0][2])
+
+    c_l_delta_elevator_E.delete(0, tk.END)
+    c_l_delta_elevator_E.insert(0, a[0][3])
+
+    c_m_alpha_E.delete(0, tk.END)
+    c_m_alpha_E.insert(0, a[0][4])
+
+    c_m_zero_E.delete(0, tk.END)
+    c_m_zero_E.insert(0, a[0][5])
+
+    c_m_ih_E.delete(0, tk.END)
+    c_m_ih_E.insert(0, a[0][6])
+
+    c_m_delta_elevator_E.delete(0, tk.END)
+    c_m_delta_elevator_E.insert(0, a[0][7])
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
@@ -2230,13 +2299,13 @@ tk.Button(control_cards, text="save", command=save).grid(row=4, column=0, padx=1
 
 tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(trim, text="load data", command=load_trim_data).grid(row=2, column=0, padx=5, pady=5, sticky=tk.EW)
+tk.Button(trim, text="load data", command=load_trim_data).grid(row=2, column=0, padx=5, pady=5)
 
-tk.Button(trim, text="plot trim diagram", command=plot_trim_data).grid(row=3, column=0, padx=5, pady=5, sticky=tk.EW)
+tk.Button(trim, text="plot trim diagram", command=plot_trim_data).grid(row=3, column=0, padx=5, pady=5)
 
+tk.Button(trim, text="save trim diagram data", command=save_trim).grid(row=4, column=0, padx=5, pady=5)
 
-# trim digram function
-
+tk.Button(trim, text="load trim diagram data", command=load_trim_file).grid(row=5, column=0, padx=5, pady=5)
 
 
 root.mainloop()
