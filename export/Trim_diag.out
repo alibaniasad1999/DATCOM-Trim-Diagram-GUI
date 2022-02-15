@@ -44,7 +44,7 @@
   $FLTCON WT = 59000.0, LOOP = 1.0,                                              
     NMACH = 1.0, MACH(1) = 0.5,                                                  
     NALT = 1.0, ALT(1) = 36000.0,                                                
-    NALPHA = 1.0, ALSCHD(1) = 1.3,                                               
+    NALPHA = 2.0, ALSCHD(1) = 0.0, 1.3,                                          
     $                                                                            
   $OPTINS SREF = 702.0, CBARR = 8.167, BLREF = 81.68, ROUGFC = 0.00025,  $       
   $SYNTHS XCG = 39.208, ZCG = 0.0,                                               
@@ -126,7 +126,7 @@
   $FLTCON WT = 59000.0, LOOP = 1.0,                                              
     NMACH = 1.0, MACH(1) = 0.5,                                                  
     NALT = 1.0, ALT(1) = 36000.0,                                                
-    NALPHA = 1.0, ALSCHD(1) = 1.3,                                               
+    NALPHA = 2.0, ALSCHD(1) = 0.0, 1.3,                                          
     $                                                                            
   $OPTINS SREF = 702.0, CBARR = 8.167, BLREF = 81.68, ROUGFC = 0.00025,  $       
   $SYNTHS XCG = 39.208, ZCG = 0.0,                                               
@@ -456,7 +456,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .009     .004     .0225    .004     .009    5.470    2.889E-03    1.712E-02   -2.889E-03   -1.711E-03    0.000E+00
+     .0     .009     .000     .0000    .000     .009   ******    2.889E-03    1.712E-02   -2.889E-03   -1.711E-03    0.000E+00
+    1.3     .009     .004     .0225    .004     .009    5.470    3.002E-03    1.728E-02   -3.002E-03   -1.728E-03    0.000E+00
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                    DATCOM BODY ALONE CONFIGURATION
@@ -471,7 +472,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30   -1.017E-03   -2.860E-03     1.371E-03    1.018E-03      NDM          NDM          NDM          NDM        0.000E+00
+      .00   -1.017E-03   -2.860E-03     1.371E-03    1.018E-03      NDM          NDM          NDM          NDM        0.000E+00
+     1.30                                                                                                             0.000E+00
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -486,7 +488,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .011     .276    -.1969    .276     .005    -.712    8.365E-02   -5.076E-02   -3.989E-04    4.286E-05   -1.829E-03
+     .0     .009     .174    -.1347    .174     .009    -.774    8.365E-02   -5.076E-02   -4.073E-04    1.703E-05   -1.525E-03
+    1.3     .011     .276    -.1969    .276     .005    -.712    7.856E-02   -4.778E-02   -3.989E-04    4.286E-05   -1.829E-03
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                       WING ALONE CONFIGURATION
@@ -501,7 +504,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    1.560E-01   -1.419E-01       NDM          NDM       -3.904E-05          NAN          NAN   -5.874E-05    1.846E-03
+      .00    1.560E-01   -1.419E-01       NDM          NDM       -8.707E-03   -1.089E-03   -4.503E-04   -6.019E-05    1.209E-03
+     1.30                                                        -8.716E-03   -6.621E-04   -7.144E-04   -5.874E-05    1.846E-03
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -516,7 +520,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .001    -.005     .0230   -.005     .001   -4.233    7.758E-03   -3.269E-02    8.615E-09    4.655E-08    4.364E-06
+     .0     .001    -.016     .0664   -.016     .001   -4.217    7.758E-03   -3.269E-02    7.182E-08    3.872E-07    1.259E-05
+    1.3     .001    -.005     .0230   -.005     .001   -4.233    7.916E-03   -3.339E-02    8.615E-09    4.655E-08    4.364E-06
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                     HORIZONTAL TAIL CONFIGURATION
@@ -531,7 +536,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    6.741E-02   -1.884E-01       NDM          NDM       -7.453E-08    0.000E+00    0.000E+00    0.000E+00      NDM 
+      .00    6.741E-02   -1.884E-01       NDM          NDM       -2.309E-05    0.000E+00    0.000E+00    0.000E+00      NDM 
+     1.30                                                        -2.307E-05                                             NDM 
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -546,7 +552,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .001     .000     .0000    .000    NDM     ******    0.000E+00    0.000E+00   -6.171E-03    1.940E-03   -3.537E-04
+     .0     .001     .000     .0000    .000    NDM     ******    0.000E+00    0.000E+00   -6.171E-03    1.940E-03   -3.978E-04
+    1.3                                                                                                             -3.537E-04
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
@@ -562,7 +569,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    0.000E+00    0.000E+00     0.000E+00    0.000E+00    5.058E-06    8.824E-05   -2.786E-05   -1.231E-03    2.234E-04
+      .00    0.000E+00    0.000E+00     0.000E+00    0.000E+00    0.000E+00    0.000E+00    0.000E+00   -1.220E-03    2.501E-04
+     1.30                                                         5.058E-06    8.824E-05   -2.786E-05   -1.231E-03    2.234E-04
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                                        WING-BODY CONFIGURATION
@@ -576,7 +584,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .020     .306    -.1744    .307     .013    -.569    0.000E+00    0.000E+00   -7.002E-03   -2.760E-03   -1.447E-03
+     .0     .018     .185    -.1373    .185     .018    -.743    8.901E-02   -2.856E-02   -7.002E-03   -2.760E-03   -1.127E-03
+    1.3     .020     .300    -.1744    .301     .014    -.580    8.901E-02   -2.856E-02                             -1.432E-03
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                        WING-BODY CONFIGURATION
@@ -591,7 +600,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    1.698E-01   -1.582E-01       NDM          NDM       -3.904E-05          NAN          NAN   -5.874E-05    1.846E-03
+      .00    1.698E-01   -1.582E-01       NDM          NDM       -8.707E-03   -1.089E-03   -4.503E-04   -6.019E-05    1.209E-03
+     1.30                                                        -8.716E-03   -6.621E-04   -7.144E-04   -5.874E-05    1.846E-03
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -606,7 +616,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .010    -.002     .0470   -.001     .010   ******    0.000E+00    0.000E+00         -INF   -2.760E-03    1.152E-07
+     .0     .010    -.016     .0680   -.016     .010   -4.314    1.092E-02   -1.611E-02         -INF   -2.760E-03    1.165E-06
+    1.3     .010    -.002     .0470   -.001     .010   ******    1.092E-02   -1.611E-02                              1.152E-07
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                  BODY-HORIZONTAL TAIL CONFIGURATION
@@ -621,7 +632,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    6.639E-02   -1.912E-01       NDM          NDM       -7.453E-08      NDM          NDM          NDM          NDM 
+      .00    6.639E-02   -1.912E-01       NDM          NDM       -2.309E-05      NDM          NDM          NDM          NDM 
+     1.30                                                        -2.307E-05                                             NDM 
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -636,7 +648,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .010     .004     .0225    .004     .010    5.449    2.889E-03    1.712E-02   -9.060E-03    2.288E-04   -3.537E-04
+     .0     .010     .000     .0000    .000     .010   ******    2.889E-03    1.712E-02   -9.060E-03    2.288E-04   -3.978E-04
+    1.3     .010     .004     .0225    .004     .010    5.449    3.002E-03    1.728E-02                             -3.537E-04
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                   BODY-VERTICAL TAIL CONFIGURATION
@@ -651,7 +664,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30   -1.017E-03   -2.860E-03     1.371E-03    1.018E-03      NDM          NDM          NDM          NDM          NDM 
+      .00   -1.017E-03   -2.860E-03     1.371E-03    1.018E-03      NDM          NDM          NDM          NDM          NDM 
+     1.30                                                                                                               NDM 
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -666,10 +680,12 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .021     .301    -.1500    .301     .014    -.498    7.758E-03          NAN   -7.002E-03   -2.760E-03   -1.443E-03
+     .0     .019     .164    -.0472    .164     .019    -.289    9.430E-02   -4.954E-02   -7.002E-03   -2.759E-03   -1.115E-03
+    1.3     .021     .286    -.1137    .287     .015    -.397    9.441E-02   -5.115E-02                             -1.427E-03
 0                                    ALPHA     Q/QINF    EPSLON  D(EPSLON)/D(ALPHA)
 0
-                                      1.3      1.000       .345         .000
+                                       .0      1.000       .672         .319
+                                      1.3      1.000      1.086         .319
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                WING-BODY-HORIZONTAL TAIL CONFIGURATION
@@ -684,7 +700,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    2.352E-01   -4.338E-01       NDM          NDM       -3.911E-05          NAN          NAN   -5.874E-05      NDM 
+      .00    2.352E-01   -4.338E-01     2.083E-02   -8.777E-02   -8.730E-03   -1.089E-03   -4.503E-04   -6.019E-05      NDM 
+     1.30                               2.083E-02   -8.777E-02   -8.739E-03   -6.621E-04   -7.144E-04   -5.874E-05      NDM 
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -699,7 +716,8 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .021     .306    -.1744    .307     .014    -.568    0.000E+00    0.000E+00   -1.317E-02   -8.195E-04   -1.801E-03
+     .0     .019     .185    -.1373    .185     .019    -.743    8.901E-02   -2.856E-02   -1.317E-02   -8.195E-04   -1.525E-03
+    1.3     .021     .300    -.1744    .301     .014    -.580    8.901E-02   -2.856E-02                             -1.785E-03
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                                 WING-BODY-VERTICAL TAIL CONFIGURATION
@@ -714,7 +732,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    1.698E-01   -1.582E-01       NDM          NDM       -3.398E-05          NAN          NAN   -1.289E-03    2.070E-03
+      .00    1.698E-01   -1.582E-01       NDM          NDM       -8.707E-03   -1.089E-03   -4.503E-04   -1.280E-03    1.459E-03
+     1.30                                                        -8.711E-03   -5.739E-04   -7.422E-04   -1.289E-03    2.070E-03
 0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
@@ -729,10 +748,12 @@
 0                                                               -------------------DERIVATIVE (PER DEGREE)-------------------
 0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
 0
-    1.3     .022     .301    -.1500    .301     .015    -.498    7.758E-03          NAN   -1.317E-02   -8.194E-04   -1.797E-03
+     .0     .020     .164    -.0472    .164     .020    -.289    9.430E-02   -4.954E-02   -1.317E-02   -8.191E-04   -1.512E-03
+    1.3     .022     .286    -.1137    .287     .015    -.396    9.441E-02   -5.115E-02                             -1.781E-03
 0                                    ALPHA     Q/QINF    EPSLON  D(EPSLON)/D(ALPHA)
 0
-                                      1.3      1.000       .345         .000
+                                       .0      1.000       .672         .319
+                                      1.3      1.000      1.086         .319
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
@@ -747,8 +768,8 @@
 0           -------PITCHING-------    -----ACCELERATION------    --------------ROLLING--------------    --------YAWING--------
 0   ALPHA       CLQ          CMQ           CLAD         CMAD         CLP          CYP          CNP          CNR          CLR
 0
-     1.30    2.352E-01   -4.338E-01       NDM          NDM       -3.405E-05          NAN          NAN   -1.289E-03    2.070E-03
-0*** NDM PRINTED WHEN NO DATCOM METHODS EXIST
+      .00    2.352E-01   -4.338E-01     2.083E-02   -8.777E-02   -8.730E-03   -1.089E-03   -4.503E-04   -1.280E-03    1.459E-03
+     1.30                               2.083E-02   -8.777E-02   -8.734E-03   -5.739E-04   -7.422E-04   -1.289E-03    2.070E-03
 0*** VEHICLE WEIGHT =  59000.00 LB.
 0*** LEVEL FLIGHT LIFT COEFFICIENT = 1.00870
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
@@ -808,6 +829,7 @@
 
                 ALPHA         IV-B(W)          IV-W(H)          IV-B(H)          GAMMA/                  GAMMA/
                                                                               2*PI*ALPHA*V*R         (2*PI*ALPHA*V*R)T
+                  .000        .0000E+00              NAN        .0000E+00        .0000E+00                .0000E+00
                  1.300        .0000E+00              NAN        .0000E+00        .0000E+00                .0000E+00
 
 
@@ -847,6 +869,7 @@
 0       DELTA = -30.0     -24.4     -18.8     -13.1      -7.5      -1.9       3.8       9.4      15.0
    ALPHA
 0
-     1.3        2.94E-03  2.44E-03  2.21E-03  1.54E-03  5.49E-04  4.39E-05  9.90E-05  7.15E-04  1.68E-03
+      .0        3.86E-03  3.27E-03  3.00E-03  2.20E-03  9.34E-04  1.40E-04 -9.34E-05  2.33E-04  9.52E-04
+     1.3        3.36E-03  2.82E-03  2.57E-03  1.84E-03  7.24E-04  8.77E-05  1.14E-05  4.96E-04  1.35E-03
 0***NDM PRINTED WHEN NO DATCOM METHODS EXIST
 1 END OF JOB.
