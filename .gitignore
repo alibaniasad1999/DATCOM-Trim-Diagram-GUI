@@ -134,6 +134,5 @@ dmypy.json
 *.2.ac
 DATCOM_file.csv
 *.lfi
-*.out
 *.xml
 
