@@ -1827,19 +1827,13 @@ def load_trim_data():
     file.write('DERIV %s\n' % DERIV)
 
     # Dynamic Derivatives
-    global dyn_der_var
-    if dyn_der_var.get() == 1:
-        file.write('DAMP\n')
+    file.write('DAMP\n')
 
-    # # Add Part
-    # global part_var
-    # if part_var.get() == 1:
-    #     file.write('PART\n')
+    # Add Part
+    file.write('PART\n')
 
-    # # Add build
-    # global build_var
-    # if build_var.get() == 1:
-    #     file.write('BUILD\n')
+    # Add build
+    file.write('BUILD\n')
 
     # flight condition
 
@@ -1878,12 +1872,8 @@ def load_trim_data():
 
     global looping_var
 
-    if looping_var.get() == 1:
-        LOOP = 1.0
-    elif looping_var.get() == 2:
-        LOOP = 2.0
-    else:
-        LOOP = 3.0
+    LOOP = 1.0
+    
     # Name list
     file.write(' $FLTCON ')
     # Take-off Weight
