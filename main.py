@@ -706,11 +706,6 @@ tk.Label(trim_data_ploter, text="x_cg").grid(column=0, row=9, padx=5, pady=5, st
 x_cg_E = tk.Entry(trim_data_ploter)
 x_cg_E.grid(column=1, row=9, padx=5, pady=5, sticky=tk.E)
 
-
-tk.Button(trim, text="load data").grid(row=2, column=0, padx=5, pady=5, sticky=tk.EW)
-
-tk.Button(trim, text="plot trim diagram").grid(row=3, column=0, padx=5, pady=5, sticky=tk.EW)
-
 c_l_alpha = 2.80
 c_l_zero = 0.1
 c_l_ih = 0.25
@@ -723,7 +718,7 @@ ih = 0
 x_cg = 0.29
 
 delta_elevator = np.linspace(-30/180*np.pi, 15/180*np.pi, 10)
-c_l = np.linspace(0, 3, 30)
+c_l = np.linspace(0, 2, 30)
 
 c_m_alpha_c_l_alpha = (c_m_alpha / c_l_alpha)
 
@@ -744,9 +739,14 @@ for i in range(int(len(delta_elevator))):
 #     c_m[i].reverse()
 
 fig, ax = plt.subplots()
-ax.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+# ax.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+ax.plot(c_m[ 0 ], c_l)
+ax.plot(c_m[ 2 ], c_l )
+for i in c_m:
+    ax.plot(i, c_l)
+fig.legend([str(round(i, 2)) for i in delta_elevator])
 # fig.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
-fig.legend(['ele -30.0' ,'ele -25.0' ,'ele -20.0' ,'ele -15.0' ,'ele -10.0' ,'ele -5.0' ,'ele 0.0' ,'ele 5.0' ,'ele 10.0' ,'ele 15.0'])
+# fig.legend(['ele -30.0' ,'ele -25.0' ,'ele -20.0' ,'ele -15.0' ,'ele -10.0' ,'ele -5.0' ,'ele 0.0' ,'ele 5.0' ,'ele 10.0' ,'ele 15.0'])
 
 fig.set_dpi(100)
 ax.invert_xaxis()
@@ -1808,17 +1808,399 @@ def make_datcom():
 
     messagebox.showinfo(title="Saved", message="Done")
 
-# def load_trim_data():
-#     # kir to sanaz
+def load_trim_data():
+    file = open('Trim_diag.dcm', 'w')
+    global dim_unit_var
+    if dim_unit_var.get() == 1:
+        DIM = "FT"
+    else:
+        DIM = "M"
+    # Derivatives Unit DEG = degree
+    global der_unit_var
+    if der_unit_var.get() == 1:
+        DERIV = "DEG"
+    else:
+        DERIV = "RAD"
+
+    file.write('DIM %s\n' % DIM)
+    # Derivatives Unit
+    file.write('DERIV %s\n' % DERIV)
+
+    # Dynamic Derivatives
+    global dyn_der_var
+    if dyn_der_var.get() == 1:
+        file.write('DAMP\n')
+
+    # # Add Part
+    # global part_var
+    # if part_var.get() == 1:
+    #     file.write('PART\n')
+
+    # # Add build
+    # global build_var
+    # if build_var.get() == 1:
+    #     file.write('BUILD\n')
+
+    # flight condition
+
+    # Take of weight
+    WT = round(float(take_off_weight.get()), 2)
+
+    # Mach
+    NMACH = round(float(1), 2)
+
+    # Array of Mach numbers
+
+    mach_temp = np.linspace(float(1), float(trim_mach.get()), 1)
+    mach_temp = mach_temp.tolist()
+    MACH = [round(float(i), 3) for i in mach_temp]
+
+    # Altitude
+
+    NALT = round(float(num_alt.get()), 2)
+
+    # Array of altitudes
+
+    alt_temp = np.linspace(float(1), float(trim_alt.get()), 1)
+    alt_temp = alt_temp.tolist()
+    ALT = [round(float(i), 2) for i in alt_temp]
+
+    # Angle of Attack
+
+    NALPHA = NALT = round(float(num_ang.get()), 2)
+
+    # Array of angle of attacks
+    ang_temp = np.linspace(float(trim_ang.get()), float(trim_ang.get()), 1)
+    ang_temp = ang_temp.tolist()
+    ALSCHD = [round(float(i), 2) for i in ang_temp]
+
+    # Loop control
+
+    global looping_var
+
+    if looping_var.get() == 1:
+        LOOP = 1.0
+    elif looping_var.get() == 2:
+        LOOP = 2.0
+    else:
+        LOOP = 3.0
+    # Name list
+    file.write(' $FLTCON ')
+    # Take-off Weight
+    file.write('WT = %s, ' % str(WT))
+    # Program Looping Control
+    file.write('LOOP = %s,\n\t\t ' % str(LOOP))
+    # Number of Mach numbers
+    file.write('NMACH = %s, ' % str(NMACH))
+    # Array of Mach numbers
+    loop_writer('MACH', MACH, file)
+    # Number of altitudes
+    file.write('NALT = %s, ' % str(NALT))
+    # Array of altitudes
+    loop_writer('ALT', ALT, file)
+    # Number of angle of attacks
+    file.write('NALPHA = %s, ' % str(NALPHA))
+    # Array of angle of attacks
+    loop_writer('ALSCHD', ALSCHD, file)
+    # End of File
+    file.write('$\n')
+
+    # Options
+
+    SREF = round(float(reference_area.get()), 2)
+    # Mean Aerodynamic chord
+    CBARR = round(float(mean_aerodynamic_chord.get()), 4)
+    # Wing Span
+    BLREF = round(float(wing_span.get()), 2)
+    # Surface Roughness
+    ROUGFC = round(float(surface_roughness.get()), 7)
+
+    # Name list
+    file.write(' $OPTINS ')
+    # Refrence Area
+    file.write('SREF = %s, ' % str(SREF))
+    # Mean Aerodynamic chord
+    file.write('CBARR = %s, ' % str(CBARR))
+    # Wing Span
+    file.write('BLREF = %s, ' % str(BLREF))
+    # Surface Roughness
+    file.write('ROUGFC = %s, ' % str(ROUGFC))
+    # End of File
+    file.write(' $\n')
+
+    # Synthesis
+
+    # Longitudinal Location of CG
+    XCG_w = round(float(XCG.get()), 4)
+    # Vertical Location of CG relative to reference plane
+    ZCG_w = round(float(ZCG.get()), 4)
+    # Longitudinal Location of theoretical wing Apex
+    XW_w= round(float(XW.get()), 4)
+    # Vertical Location of theoretical wing Apex relative to reference plane
+    ZW_w = round(float(ZW.get()), 4)
+    # wing root chord incidence angle measured from reference plane
+    ALIW_w = round(float(ALIW.get()), 4)
+    # horizontal tail root chord incidence angle measured from reference plane
+    ALIH_w = round(float(ALIH.get()), 4)
+    # Longitudinal Location of theoretical horizontal tail Apex
+    XH_w = round(float(XH.get()), 4)
+    # Vertical Location of theoretical horizontal tail Apex relative to reference plane
+    ZH_w = round(float(ZH.get()), 4)
+    # Longitudinal Location of theoretical vertical tail Apex
+    XV_w = round(float(XV.get()), 4)
+    # Vertical Location of theoretical vertical tail Apex
+    ZV_w = round(float(ZV.get()), 4)
+    # Scale factor
+    SCALE_w = round(float(SCALE.get()), 4)
+
+    # Name list
+    file.write(' $SYNTHS ')
+    # Longitudinal Location of CG
+    file.write('XCG = %s, ' % str(XCG_w))
+    # Vertical Location of CG relative to reference plane
+    file.write('ZCG = %s, \n\t\t ' % str(ZCG_w))
+    # Longitudinal Location of theoretical wing Apex
+    file.write('XW = %s, ' % str(XW_w))
+    # Vertical Location of theoretical wing Apex relative to reference plane
+    file.write('ZW = %s, ' % str(ZW_w))
+    # wing root chord incidence angle measured from reference plane
+    file.write('ALIW = %s, \n\t\t ' % str(ALIW_w))
+    # Longitudinal Location of theoretical horizontal tail Apex
+    file.write('XH = %s, ' % str(XH_w))
+    # Vertical Location of theoretical horizontal tail Apex relative to reference plane
+    file.write('ZH = %s, ' % str(ZH_w))
+    # horizontal tail root chord incidence angle measured from reference plane
+    file.write('ALIH = %s, \n\t\t ' % str(ALIH_w))
+    # Longitudinal Location of theoretical vertical tail Apex
+    file.write('XV = %s, ' % str(XV_w))
+    # Vertical Location of theoretical vertical tail Apex
+    file.write('ZV = %s, \n\t\t ' % str(ZV_w))
+    # Scale factor
+    file.write('SCALE = %s, \n\t\t ' % str(SCALE_w))
+    # Vertup
+    # file.write('VERTUP = %s, ' % VERTUP)
+    # End of File
+    file.write(' $\n')
+
+    # Body
+
+    body_data = []
+    with open('Body.csv', 'r') as body_file:
+        body_reader = csv.reader(body_file)
+        for row in body_reader:
+            body_data.append(row)
+
+    # BNOSE 1.0 conical nose, BNOSE = 2.0 ogive Nose
+    global body_nose_type
+    BNOSE = round(float(body_nose_type.get()), 2)
+    # Length of body nose
+    BLN = round(float(nose_len.get()), 4)
+    # BTAIL 1.0 conical tail, BNOSE = 2.0 ogive tail
+    global body_tail_type
+    BTAIL = round(float(body_tail_type.get()), 4)
+    # Length of cylindrical after body
+    BLA = round(float(cylindrical_after_body_len.get()), 4)
+    # ITYPE = 1 straight wing, no area rule
+    # ITYPE = 2 swept wing, no area rule
+    # ITYPE = 3 swept wing, area rule
+    global body_type
+    ITYPE = round(float(body_type.get()), 4)
+    # Method = 1 use exiting methods
+    # Method = 2 use jorgensen methon
+    global body_method
+    METHOD = round(float(body_method.get()), 4)
+
+    NX = float(len(body_data[0])-1)
+
+    # Name list
+    file.write(' $BODY ')
+    # Number of Sections
+    file.write('NX = %s, \n\t\t ' % str(NX))
+    # Body Shape
+    for row in body_data:
+        loop_writer(row[0], row[1:], file)
+
+    file.write('BLN = %s, \n\t\t ' % str(BLN))
+
+    file.write('BTAIL = %s, ' % str(BTAIL))
+
+    file.write('ITYPE = %s, ' % str(ITYPE))
+
+    file.write('METHOD = %s, ' % str(METHOD))
+
+    file.write('$\n')
+
+    # Wing
+
+    # Chord Tip
+    CHRDTP = round(float(WCHRDTP.get()), 4)
+    # Chord Root
+    CHRDR = round(float(WCHRDR.get()), 4)
+    # Semi Span (Exposed)
+    SSPNE = round(float(WSSPNE.get()), 4)
+    # Semi Span (Theoretical)
+    SSPN = round(float(WSSPN.get()), 4)
+    # Sweep Angle
+    SAVSI = round(float(WSAVSI.get()), 4)
+    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+    CHSTAT = round(float(WCHSTAT.get()), 4)
+    # Twist angle (negative L.E rotated down)
+    TWISTA = round(float(WTWISTA.get()), 4)
+    # Dihedral Angle
+    DHDADI = round(float(WDHDADI.get()), 4)
+    # TYPE = 1.0 straight tapered platform
+    # TYPE = 2.0 double delta platform AR<3
+    # TYPE = 3.0 Cranked platform AR>3
+    TYPE = round(float(wing_type.get()), 2)
+
+    # Name list
+    file.write(' $WGPLNF ')
+    file.write('CHRDTP = %s, ' % str(CHRDTP))
+    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+    file.write('SSPNE = %s, ' % str(SSPNE))
+    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+    file.write('SAVSI = %s, ' % str(SAVSI))
+    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+    file.write('TWISTA = %s, ' % str(TWISTA))
+    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+    file.write('TYPE = %s,' % str(TYPE))
+    # End of File
+    file.write('$\n')
+
+    airfoil_writer(file)
+
+    # Horizontal tail
+
+    # Chord Tip
+    CHRDTP = round(float(HCHRDTP.get()), 4)
+    # Chord Root
+    CHRDR = round(float(HCHRDR.get()), 4)
+    # Semi Span (Exposed)
+    SSPNE = round(float(HSSPNE.get()), 4)
+    # Semi Span (Theoretical)
+    SSPN = round(float(HSSPN.get()), 4)
+    # Sweep Angle
+    SAVSI = round(float(HSAVSI.get()), 4)
+    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+    CHSTAT = round(float(HCHSTAT.get()), 4)
+    # Twist angle (negative L.E rotated down)
+    TWISTA = round(float(HTWISTA.get()), 4)
+    # Dihedral Angle
+    DHDADI = round(float(HDHDADI.get()), 4)
+    # TYPE = 1.0 straight tapered platform
+    # TYPE = 2.0 double delta platform AR<3
+    # TYPE = 3.0 Cranked platform AR>3
+    TYPE = round(float(horizontal_tail_type.get()), 2)
+    HorizontalTailAirfoil = Hairfoil.get()
+
+    # Name list
+    file.write(' $HTPLNF ')
+    file.write('CHRDTP = %s, ' % str(CHRDTP))
+    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+    file.write('SSPNE = %s, ' % str(SSPNE))
+    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+    file.write('SAVSI = %s, ' % str(SAVSI))
+    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+    file.write('TWISTA = %s, ' % str(TWISTA))
+    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+    file.write('TYPE = %s,' % str(TYPE))
+    # End of File
+    file.write('$\n')
+    file.write(HorizontalTailAirfoil)
+    file.write('\n')
+
+    # Vertical tail
+
+    # Chord Tip
+    CHRDTP = round(float(VCHRDTP.get()), 4)
+    # Chord Root
+    CHRDR = round(float(VCHRDR.get()), 4)
+    # Semi Span (Exposed)
+    SSPNE = round(float(VSSPNE.get()), 4)
+    # Semi Span (Theoretical)
+    SSPN = round(float(VSSPN.get()), 4)
+    # Sweep Angle
+    SAVSI = round(float(VSAVSI.get()), 4)
+    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+    CHSTAT = round(float(VCHSTAT.get()), 4)
+    # Twist angle (negative L.E rotated down)
+    TWISTA = round(float(VTWISTA.get()), 4)
+    # Dihedral Angle
+    DHDADI = round(float(VDHDADI.get()), 4)
+    # TYPE = 1.0 straight tapered platform
+    # TYPE = 2.0 double delta platform AR<3
+    # TYPE = 3.0 Cranked platform AR>3
+    TYPE = round(float(vertical_tail_type.get()), 2)
+    VerticalTailAirfoil = Vairfoil.get()
+
+    # Name list
+    file.write(' $VTPLNF ')
+    file.write('CHRDTP = %s, ' % str(CHRDTP))
+    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+    file.write('SSPNE = %s, ' % str(SSPNE))
+    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+    file.write('SAVSI = %s, ' % str(SAVSI))
+    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+    file.write('TWISTA = %s, ' % str(TWISTA))
+    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+    file.write('TYPE = %s,' % str(TYPE))
+    # End of File
+    file.write('$\n')
+    file.write(VerticalTailAirfoil)
+    file.write('\n')
+
+    # elevator 
+    # 
+    FTYPE = round(float(ele_type_var.get()), 4)
+    # Number of deflection MAX 9
+    NDELTA = round(float(num_ele_ang.get()), 4)
+    # Flap Deflection
+    DELTA = np.linspace(float(min_ele_ang.get()), float(max_ele_ang.get()), int(num_ele_ang.get()))
+    # Flap chord at inboard end of flap, measured parallel to longitudinal axis
+    ECHRDFI =round(float(CHRDFI.get()), 4) 
+    # Flap chord at outboard end of flap, measured parallel to longitudinal axis
+    ECHRDFO = round(float(CHRDFO.get()), 4)
+    # Span location of inboard end of flap, measured perpendicular to vertical plane of symmetry
+    ESPANFI = round(float(SPANFI.get()), 4)
+    # Span location of outboard end of flap, measured perpendicular to vertical plane of symmetry
+    ESPANFO = round(float(SPANFO.get()), 4)
+    # Average chord of the balance
+    ECB = round(float(CB.get()), 4)
+    # Average thickness of the control at hinge line
+    ETC = round(float(TC.get()), 4)
+    # NTYPE = 1.0 round nose flap
+    # NTYPE = 2.0 elliptic nose flap
+    # NTYPE = 3.0 sharp nose flap
+    ENTYPE = round(float(ele_nose_type_var.get()), 4)
+
+
+    file.write(' $SYMFLP ')
+    file.write('FTYPE = %s,\n\t\t ' % str(FTYPE))
+    file.write('NDELTA = %s,\n\t\t ' % str(NDELTA))
+    loop_writer('DELTA', DELTA, file)
+    file.write('CHRDFI = %s, ' % str(ECHRDFI))
+    file.write('CHRDFO = %s,\n\t\t ' % str(ECHRDFO))
+    file.write('SPANFI = %s, ' % str(ESPANFI))
+    file.write('SPANFO = %s,\n\t\t ' % str(ESPANFO))
+    file.write('CB = %s, ' % str(ECB))
+    file.write('TC = %s, ' % str(ETC))
+    file.write('NTYPE = %s, ' % str(ENTYPE))
+    # End of File
+    file.write('$\n')
 
 # def plot_trim_data():
-#     # kiram baz sanaz
+    
+    
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(control_cards, text="save", command=save).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(trim, text="load data", command=load_trim_data).grid(row=2, column=0, padx=5, pady=5, sticky=tk.EW)
+
+tk.Button(trim, text="plot trim diagram").grid(row=3, column=0, padx=5, pady=5, sticky=tk.EW)
 
 
 # trim digram function
