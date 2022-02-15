@@ -706,55 +706,55 @@ tk.Label(trim_data_ploter, text="x_cg").grid(column=0, row=9, padx=5, pady=5, st
 x_cg_E = tk.Entry(trim_data_ploter)
 x_cg_E.grid(column=1, row=9, padx=5, pady=5, sticky=tk.E)
 
-c_l_alpha = 2.80
-c_l_zero = 0.1
-c_l_ih = 0.25
-c_l_delta_elevator = 0.25
-c_m_alpha = -0.78
-c_m_zero = -0.025
-c_m_ih = -0.38
-c_m_delta_elevator = -0.38
-ih = 0
-x_cg = 0.29
+# c_l_alpha = 2.80
+# c_l_zero = 0.1
+# c_l_ih = 0.25
+# c_l_delta_elevator = 0.25
+# c_m_alpha = -0.78
+# c_m_zero = -0.025
+# c_m_ih = -0.38
+# c_m_delta_elevator = -0.38
+# ih = 0
+# x_cg = 0.29
 
-delta_elevator = np.linspace(-30/180*np.pi, 15/180*np.pi, 10)
-c_l = np.linspace(0, 2, 30)
+# delta_elevator = np.linspace(-30/180*np.pi, 15/180*np.pi, 10)
+# c_l = np.linspace(-1, 2, 30)
 
-c_m_alpha_c_l_alpha = (c_m_alpha / c_l_alpha)
+# c_m_alpha_c_l_alpha = (c_m_alpha / c_l_alpha)
 
-c_m_zero_bar = c_m_zero - c_m_alpha_c_l_alpha * c_l_zero
+# c_m_zero_bar = c_m_zero - c_m_alpha_c_l_alpha * c_l_zero
 
-c_m_delta_elevator_bar = c_m_delta_elevator - c_m_alpha_c_l_alpha * c_l_delta_elevator
+# c_m_delta_elevator_bar = c_m_delta_elevator - c_m_alpha_c_l_alpha * c_l_delta_elevator
 
-c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
+# c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
 
 
-c_m = []
-for i in range(int(len(delta_elevator))):
-    c_m.append([])
-    for j in range(len(c_l)):
-        c_m[i].append(c_m_zero_bar + (c_m_alpha / c_l_alpha) * c_l[j] + c_m_delta_elevator_bar * delta_elevator[i]) 
+# c_m = []
+# for i in range(int(len(delta_elevator))):
+#     c_m.append([])
+#     for j in range(len(c_l)):
+#         c_m[i].append(c_m_zero_bar + (c_m_alpha / c_l_alpha) * c_l[j] + c_m_delta_elevator_bar * delta_elevator[i]) 
     
-# for i in range(len(c_m)):
-#     c_m[i].reverse()
+# # for i in range(len(c_m)):
+# #     c_m[i].reverse()
 
-fig, ax = plt.subplots()
-# ax.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
-ax.plot(c_m[ 0 ], c_l)
-ax.plot(c_m[ 2 ], c_l )
-for i in c_m:
-    ax.plot(i, c_l)
-fig.legend([str(round(i, 2)) for i in delta_elevator])
-# fig.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
-# fig.legend(['ele -30.0' ,'ele -25.0' ,'ele -20.0' ,'ele -15.0' ,'ele -10.0' ,'ele -5.0' ,'ele 0.0' ,'ele 5.0' ,'ele 10.0' ,'ele 15.0'])
+# fig, ax = plt.subplots()
+# # ax.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+# # ax.plot(c_m[ 0 ], c_l)
+# # ax.plot(c_m[ 2 ], c_l )
+# for i in c_m:
+#     ax.plot(i, c_l)
+# fig.legend([str(round(i, 2)) for i in delta_elevator])
+# # fig.plot(c_m[ 0 ], c_l ,c_m[ 1 ], c_l ,c_m[ 2 ], c_l ,c_m[ 3 ], c_l ,c_m[ 4 ], c_l ,c_m[ 5 ], c_l ,c_m[ 6 ], c_l ,c_m[ 7 ], c_l ,c_m[ 8 ], c_l ,c_m[ 9 ], c_l)
+# # fig.legend(['ele -30.0' ,'ele -25.0' ,'ele -20.0' ,'ele -15.0' ,'ele -10.0' ,'ele -5.0' ,'ele 0.0' ,'ele 5.0' ,'ele 10.0' ,'ele 15.0'])
 
-fig.set_dpi(100)
-ax.invert_xaxis()
-# fig.invert_xaxis()
-# fig.Figure()
-canvas = FigureCanvasTkAgg(fig, master=trim) 
-canvas.draw()
-canvas.get_tk_widget().grid(column=1, row=1, padx=10, pady=10, sticky=tk.NE)
+# fig.set_dpi(100)
+# ax.invert_xaxis()
+# # fig.invert_xaxis()
+# # fig.Figure()
+# canvas = FigureCanvasTkAgg(fig, master=trim) 
+# canvas.draw()
+# canvas.get_tk_widget().grid(column=1, row=1, padx=10, pady=10, sticky=tk.NE)
 
 
 
@@ -2188,7 +2188,49 @@ def load_trim_data():
     # End of File
     file.write('$\n')
 
-# def plot_trim_data():
+def plot_trim_data():
+    c_l_alpha = float(c_l_alpha_E.get())
+    c_l_zero = float(c_l_zero_E.get())
+    c_l_ih = float(c_l_ih_E.get())
+    c_l_delta_elevator = float(c_l_delta_elevator_E.get())
+    c_m_alpha = float(c_m_alpha_E.get())
+    c_m_zero = float(c_m_zero_E.get())
+    c_m_ih = float(c_m_ih_E.get())
+    c_m_delta_elevator = float(c_m_delta_elevator_E.get())
+    ih = float(ih_E.get())
+    x_cg = float(x_cg_E.get())
+
+    delta_elevator = np.linspace(float(min_ele_ang.get()), float(max_ele_ang.get()), int(num_ele_ang.get()))
+    c_l = np.linspace(0, 2, 30)
+
+    c_m_alpha_c_l_alpha = (c_m_alpha / c_l_alpha)
+
+    c_m_zero_bar = c_m_zero - c_m_alpha_c_l_alpha * c_l_zero
+
+    c_m_delta_elevator_bar = c_m_delta_elevator - c_m_alpha_c_l_alpha * c_l_delta_elevator
+
+    c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
+
+
+    c_m = []
+    for i in range(int(len(delta_elevator))):
+        c_m.append([])
+        for j in range(len(c_l)):
+            c_m[i].append(c_m_zero_bar + (c_m_alpha / c_l_alpha) * c_l[j] + c_m_delta_elevator_bar * delta_elevator[i]) 
+        
+
+
+    fig, ax = plt.subplots()
+
+    for i in c_m:
+        ax.plot(i, c_l)
+    fig.legend([str(round(i, 2)) for i in delta_elevator])
+
+    fig.set_dpi(100)
+    ax.invert_xaxis()
+    canvas = FigureCanvasTkAgg(fig, master=trim) 
+    canvas.draw()
+    canvas.get_tk_widget().grid(column=1, row=1, padx=10, pady=10, sticky=tk.NE)
     
     
 
@@ -2200,7 +2242,7 @@ tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=
 
 tk.Button(trim, text="load data", command=load_trim_data).grid(row=2, column=0, padx=5, pady=5, sticky=tk.EW)
 
-tk.Button(trim, text="plot trim diagram").grid(row=3, column=0, padx=5, pady=5, sticky=tk.EW)
+tk.Button(trim, text="plot trim diagram", command=plot_trim_data).grid(row=3, column=0, padx=5, pady=5, sticky=tk.EW)
 
 
 # trim digram function
