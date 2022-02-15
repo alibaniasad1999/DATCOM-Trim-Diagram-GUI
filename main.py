@@ -1881,15 +1881,15 @@ def load_trim_data():
     # Program Looping Control
     file.write('LOOP = %s,\n\t\t ' % str(LOOP))
     # Number of Mach numbers
-    file.write('NMACH = %s, ' % str(NMACH))
+    file.write('NMACH = %s, ' % str('1.0'))
     # Array of Mach numbers
     loop_writer('MACH', MACH, file)
     # Number of altitudes
-    file.write('NALT = %s, ' % str(NALT))
+    file.write('NALT = %s, ' % str('1.0'))
     # Array of altitudes
     loop_writer('ALT', ALT, file)
     # Number of angle of attacks
-    file.write('NALPHA = %s, ' % str(NALPHA))
+    file.write('NALPHA = %s, ' % str('1.0'))
     # Array of angle of attacks
     loop_writer('ALSCHD', ALSCHD, file)
     # End of File
