@@ -2199,7 +2199,7 @@ def plot_trim_data():
 
     c_m_delta_elevator_bar = c_m_delta_elevator - c_m_alpha_c_l_alpha * c_l_delta_elevator
 
-    c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
+    # c_m_ih_bar = c_m_ih - c_m_alpha_c_l_alpha * c_l_ih
 
 
     c_m = []
