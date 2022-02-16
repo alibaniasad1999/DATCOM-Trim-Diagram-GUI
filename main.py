@@ -674,9 +674,9 @@ tk.Label(trim_data_ploter, text="c_l_zero").grid(column=0, row=1, padx=5, pady=5
 c_l_zero_E = tk.Entry(trim_data_ploter)
 c_l_zero_E.grid(column=1, row=1, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_l_ih").grid(column=0, row=2, padx=5, pady=5, sticky=tk.W)
-c_l_ih_E = tk.Entry(trim_data_ploter)
-c_l_ih_E.grid(column=1, row=2, padx=5, pady=5, sticky=tk.E)
+# tk.Label(trim_data_ploter, text="c_l_ih").grid(column=0, row=2, padx=5, pady=5, sticky=tk.W)
+# c_l_ih_E = tk.Entry(trim_data_ploter)
+# c_l_ih_E.grid(column=1, row=2, padx=5, pady=5, sticky=tk.E)
 
 tk.Label(trim_data_ploter, text="c_l_delta_elevator").grid(column=0, row=3, padx=5, pady=5, sticky=tk.W)
 c_l_delta_elevator_E = tk.Entry(trim_data_ploter)
@@ -690,9 +690,9 @@ tk.Label(trim_data_ploter, text="c_m_zero").grid(column=0, row=5, padx=5, pady=5
 c_m_zero_E = tk.Entry(trim_data_ploter)
 c_m_zero_E.grid(column=1, row=5, padx=5, pady=5, sticky=tk.E)
 
-tk.Label(trim_data_ploter, text="c_m_ih").grid(column=0, row=6, padx=5, pady=5, sticky=tk.W)
-c_m_ih_E = tk.Entry(trim_data_ploter)
-c_m_ih_E.grid(column=1, row=6, padx=5, pady=5, sticky=tk.E)
+# tk.Label(trim_data_ploter, text="c_m_ih").grid(column=0, row=6, padx=5, pady=5, sticky=tk.W)
+# c_m_ih_E = tk.Entry(trim_data_ploter)
+# c_m_ih_E.grid(column=1, row=6, padx=5, pady=5, sticky=tk.E)
 
 tk.Label(trim_data_ploter, text="c_m_delta_elevator").grid(column=0, row=7, padx=5, pady=5, sticky=tk.W)
 c_m_delta_elevator_E = tk.Entry(trim_data_ploter)
@@ -2181,11 +2181,11 @@ def load_trim_data():
 def plot_trim_data():
     c_l_alpha = float(c_l_alpha_E.get())
     c_l_zero = float(c_l_zero_E.get())
-    c_l_ih = float(c_l_ih_E.get())
+    # c_l_ih = float(c_l_ih_E.get())
     c_l_delta_elevator = float(c_l_delta_elevator_E.get())
     c_m_alpha = float(c_m_alpha_E.get())
     c_m_zero = float(c_m_zero_E.get())
-    c_m_ih = float(c_m_ih_E.get())
+    # c_m_ih = float(c_m_ih_E.get())
     c_m_delta_elevator = float(c_m_delta_elevator_E.get())
     # ih = float(ih_E.get())
     # x_cg = float(x_cg_E.get())
@@ -2232,7 +2232,7 @@ def save_trim():
 
     data_saver.append(c_l_zero_E.get())
 
-    data_saver.append(c_l_ih_E.get())
+    # data_saver.append(c_l_ih_E.get())
 
     data_saver.append(c_l_delta_elevator_E.get())
 
@@ -2240,7 +2240,7 @@ def save_trim():
 
     data_saver.append(c_m_zero_E.get())
 
-    data_saver.append(c_m_ih_E.get())
+    # data_saver.append(c_m_ih_E.get())
 
     data_saver.append(c_m_delta_elevator_E.get())
 
@@ -2275,23 +2275,23 @@ def load_trim_file():
     c_l_zero_E.delete(0, tk.END)
     c_l_zero_E.insert(0, a[0][1])
 
-    c_l_ih_E.delete(0, tk.END)
-    c_l_ih_E.insert(0, a[0][2])
+    # c_l_ih_E.delete(0, tk.END)
+    # c_l_ih_E.insert(0, a[0][2])
 
     c_l_delta_elevator_E.delete(0, tk.END)
-    c_l_delta_elevator_E.insert(0, a[0][3])
+    c_l_delta_elevator_E.insert(0, a[0][2])
 
     c_m_alpha_E.delete(0, tk.END)
-    c_m_alpha_E.insert(0, a[0][4])
+    c_m_alpha_E.insert(0, a[0][3])
 
     c_m_zero_E.delete(0, tk.END)
-    c_m_zero_E.insert(0, a[0][5])
+    c_m_zero_E.insert(0, a[0][4])
 
-    c_m_ih_E.delete(0, tk.END)
-    c_m_ih_E.insert(0, a[0][6])
+    # c_m_ih_E.delete(0, tk.END)
+    # c_m_ih_E.insert(0, a[0][6])
 
     c_m_delta_elevator_E.delete(0, tk.END)
-    c_m_delta_elevator_E.insert(0, a[0][7])
+    c_m_delta_elevator_E.insert(0, a[0][5])
 
 tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
 
