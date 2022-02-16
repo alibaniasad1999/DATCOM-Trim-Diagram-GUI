@@ -1,4 +1,3 @@
-from audioop import reverse
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
@@ -14,6 +13,7 @@ import matplotlib.pyplot as plt
 import csv
 import numpy as np
 import os
+import time
 
 
 root = tk.Tk()
@@ -2181,7 +2181,8 @@ def load_trim_data():
 
     file.close()
 
-
+    
+    os.system('export\Trim_diag.dcm')
 
 
     # get data from DATCOM file
