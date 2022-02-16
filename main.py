@@ -1830,10 +1830,10 @@ def load_trim_data():
     file.write('DAMP\n')
 
     # Add Part
-    file.write('PART\n')
+    # file.write('PART\n')
 
-    # Add build
-    file.write('BUILD\n')
+    # # Add build
+    # file.write('BUILD\n')
 
     # flight condition
 
