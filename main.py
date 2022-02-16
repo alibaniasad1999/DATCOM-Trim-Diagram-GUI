@@ -13,6 +13,7 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import csv
 import numpy as np
+import os
 
 
 root = tk.Tk()
@@ -2180,6 +2181,9 @@ def load_trim_data():
 
     file.close()
 
+
+
+
     # get data from DATCOM file
     file = open('export/Trim_diag.out', 'r')
     data = []
@@ -2218,7 +2222,7 @@ def load_trim_data():
 
     for i in data:
         if ('DELTA' and 'D(CL)') in i:
-            elevator_datcom_data = data[int(data.index(i)) : int(data.index(i)) + 10]
+            elevator_datcom_data = data[int(data.index(i)) : int(data.index(i)) + int(num_ele_ang.get())]
 
     elevator_deflection_index = int(elevator_datcom_data[0].index('DELTA'))
     elevator_delta_cl_index = int(elevator_datcom_data[0].index('D(CL)'))
@@ -2231,6 +2235,16 @@ def load_trim_data():
         elevator_delta_cl_array.append(float(i[elevator_delta_cl_index]))
         elevator_delta_cm_array.append(float(i[elevator_delta_cm_index]))
 
+    x = np.array(elevator_deflection_array)
+    y = np.array(elevator_delta_cl_array)
+
+    p_cl = np.polyfit(x, y, 1)
+
+    x = np.array(elevator_deflection_array)
+    y = np.array(elevator_delta_cm_array)
+
+    p_cm = np.polyfit(x, y, 1)
+
     c_l_alpha_E.delete(0, tk.END)
     c_l_alpha_E.insert(0, str(c_l_alpha_data))
 
@@ -2238,7 +2252,7 @@ def load_trim_data():
     c_l_zero_E.insert(0, str(c_l_zero_data))
 
     c_l_delta_elevator_E.delete(0, tk.END)
-    c_l_delta_elevator_E.insert(0, str(1))
+    c_l_delta_elevator_E.insert(0, str(p_cl[0]))
 
     c_m_alpha_E.delete(0, tk.END)
     c_m_alpha_E.insert(0, str(c_m_alpha_data))
@@ -2247,7 +2261,7 @@ def load_trim_data():
     c_m_zero_E.insert(0, str(c_m_zero_data))
 
     c_m_delta_elevator_E.delete(0, tk.END)
-    c_m_delta_elevator_E.insert(0, str(1))
+    c_m_delta_elevator_E.insert(0, str(p_cm[0]))
 
 
 

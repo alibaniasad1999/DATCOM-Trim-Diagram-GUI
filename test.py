@@ -1,3 +1,4 @@
+import numpy as np
 file = open('export/Trim_diag.out', 'r')
 data = []
 for line in file:
@@ -46,5 +47,16 @@ for i in elevator_datcom_data[1:]:
     elevator_deflection_array.append(float(i[elevator_deflection_index]))
     elevator_delta_cl_array.append(float(i[elevator_delta_cl_index]))
     elevator_delta_cm_array.append(float(i[elevator_delta_cm_index]))
+
+x = np.array(elevator_deflection_array)
+y = np.array(elevator_delta_cl_array)
+
+p_cl = np.polyfit(x, y, 1)
+
+x = np.array(elevator_deflection_array)
+y = np.array(elevator_delta_cm_array)
+
+p_cm = np.polyfit(x, y, 1)
+
 
 print('done')
