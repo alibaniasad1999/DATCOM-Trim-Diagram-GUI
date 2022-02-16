@@ -1,21 +1,50 @@
-import csv
-a = []
-with open('export/Trim_diag.csv') as data:
-    reader = csv.reader(data)
-    for i in reader:
-        a.append(i)
+file = open('export/Trim_diag.out', 'r')
+data = []
+for line in file:
+    temp = list(line.split())
+    if '0' in temp:
+        temp.remove('0')
+    data.append(temp)
+file.close()
+data = [ele for ele in data if ele != []]
+for i in data:
+    if 'ALPHA' in i:
+        alpha_index = int(i.index('ALPHA'))
+        if 'CL' in i:
+            cl_index = int(i.index('CL'))
+            cm_index = int(i.index('CM'))
+            cla_index = int(i.index('CLA'))
+            cma_index = int(i.index('CMA'))
+            alpha_array = [float(data[int(data.index(i))+1][alpha_index]), float(data[int(data.index(i))+2][alpha_index])]
+            cl_array = [float(data[int(data.index(i))+1][cl_index]), float(data[int(data.index(i))+2][cl_index])]
+            cm_array = [float(data[int(data.index(i))+1][cm_index]), float(data[int(data.index(i))+2][cm_index])]
+            cla_array = [float(data[int(data.index(i))+1][cla_index]), float(data[int(data.index(i))+2][cla_index])]
+            cma_array = [float(data[int(data.index(i))+1][cma_index]), float(data[int(data.index(i))+2][cma_index])]
+            if alpha_array[1] > alpha_array[0]:
+                c_m_zero_data = cm_array[0]
+                c_l_zero_data = cl_array[0]
+                c_l_alpha_data = cla_array[1]
+                c_m_alpha_data = cma_array[1]
+            else:
+                c_m_zero_data = cm_array[1]
+                c_l_zero_data = cl_array[2]
+                c_l_alpha_data = cla_array[2]
+                c_m_alpha_data = cma_array[2]
+            break
 
-test = '''-------------------
-0 ALPHA     CD       CL       CM       CN       CA       XCP        CLA          CMA          CYB          CNB          CLB
-0
-     .0     .020     .164    -.0472    .164     .020    -.289    9.430E-02   -4.954E-02   -1.317E-02   -8.191E-04   -1.512E-03
-    1.3     .022     .286    -.1137    .287     .015    -.396    9.441E-02   -5.115E-02                             -1.781E-03
-0                                    ALPHA     Q/QINF    EPSLON  D(EPSLON)/D(ALPHA)
-0
-                                       .0      1.000       .672         .319
-                                      1.3      1.000      1.086         .319
-1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
-                                                         DYNAMIC DERIVATIVES
-                                        WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT'''
-a = []
+for i in data:
+    if ('DELTA' and 'D(CL)') in i:
+        elevator_datcom_data = data[int(data.index(i)) : int(data.index(i)) + 10]
+
+elevator_deflection_index = int(elevator_datcom_data[0].index('DELTA'))
+elevator_delta_cl_index = int(elevator_datcom_data[0].index('D(CL)'))
+elevator_delta_cm_index = int(elevator_datcom_data[0].index('D(CM)'))
+elevator_deflection_array = []
+elevator_delta_cl_array = []
+elevator_delta_cm_array = []
+for i in elevator_datcom_data[1:]:
+    elevator_deflection_array.append(float(i[elevator_deflection_index]))
+    elevator_delta_cl_array.append(float(i[elevator_delta_cl_index]))
+    elevator_delta_cm_array.append(float(i[elevator_delta_cm_index]))
+
+print('done')
