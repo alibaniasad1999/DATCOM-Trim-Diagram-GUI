@@ -14,6 +14,7 @@ import csv
 import numpy as np
 import os
 import time
+import subprocess
 
 
 root = tk.Tk()
@@ -2182,7 +2183,9 @@ def load_trim_data():
     file.close()
 
     
-    os.system('export\Trim_diag.dcm')
+    # os.system('export\Trim_diag.dcm')
+    subprocess.call(['export\Trim_diag.dcm'])
+    
 
 
     # get data from DATCOM file
