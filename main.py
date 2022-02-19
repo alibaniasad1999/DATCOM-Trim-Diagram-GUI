@@ -2184,8 +2184,7 @@ def load_trim_data():
 
     
     # os.system('export\Trim_diag.dcm')
-    subprocess.call('export\Trim_diag.dcm', stdin=subprocess.PIPE)
-    
+    # subprocess.call('export\Trim_diag.dcm', stdin=subprocess.PIPE)
 
 
     # get data from DATCOM file
