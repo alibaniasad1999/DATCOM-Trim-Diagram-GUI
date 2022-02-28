@@ -4,6 +4,7 @@ from tkinter import filedialog as fd
 from tkinter import filedialog
 from tkinter import messagebox
 from matplotlib import cm
+from PIL import Image, ImageTk
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
 # Implement the default Matplotlib key bindings.
@@ -173,6 +174,15 @@ tk.Label(options, text="Surface Roughness").grid(column=0, row=3, padx=10, pady=
 surface_roughness = tk.Entry(options)
 surface_roughness.grid(column=1, row=3, padx=0, pady=10, sticky=tk.W)
 
+roughness = Image.open("roughness.png")
+new_size = roughness.resize((int(396*1.5), int(166*1.5)))
+roughness_img = ImageTk.PhotoImage(new_size)
+
+roughness_label = tk.Label(options, image=roughness_img)
+roughness_label.image = roughness_img
+
+# Position image
+roughness_label.grid(column=0, columnspan=3, row=5, padx=1, pady=1)
 # Synthesis
 synthesis = ttk.Frame(tabControl)
 
