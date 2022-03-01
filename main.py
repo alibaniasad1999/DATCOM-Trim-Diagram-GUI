@@ -264,6 +264,8 @@ tk.Label(synthesis, text="Vertical Location of theoretical vertical tail Apex").
 tk.Label(synthesis, text="Scale Factor").grid(column=0, row=10, padx=10, pady=10)
 SCALE = tk.Entry(synthesis)
 SCALE.grid(column=1, row=10, padx=0, pady=10, sticky=tk.EW)
+tk.Label(synthesis, text="The program will use the scale factor to scale the input data to model dimensions").grid(
+    column=2, row=10, padx=10, pady=10, sticky=tk.W)
 
 # Body
 body = ttk.Frame(tabControl)
@@ -284,7 +286,7 @@ tk.Radiobutton(body_nose, text="Ogive Nose", padx=20,
 
 nose_len = tk.Entry(body)
 nose_len.grid(column=1, row=2, padx=0, pady=10, sticky=tk.W)
-tk.Label(body, text="Length of body nose").grid(
+tk.Label(body, text="Length of nose").grid(
     column=0, row=2, padx=10, pady=10, sticky=tk.W)
 
 body_tail = tk.Frame(body,
@@ -337,7 +339,7 @@ body_CSV = tk.Frame(body,
                            highlightbackground="black",
                            highlightthickness=1)
 body_CSV.grid(column=2, row=2, padx=10, pady=10, rowspan=10, columnspan=2, sticky=tk.EW)
-tk.Label(body_CSV, text="Insert your data to Body.csv\n first insert variable then your aircraft data\nVariables:\nX : Array of longitudinal Distance\nZU: Upper body\nZL:Lower body\nP: Section Equivalent Radius\nP: Section Area\nS:Section Periphery\n from R, S and P you shoul choice at least one and maximum two\nsample:\nX,1,2,3,4,5").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
+tk.Label(body_CSV, text="Insert your data to Body.csv\n first insert variable then your aircraft data\nVariables:\nX : Array of longitudinal Distance\nZU: Upper body\nZL:Lower body\nR: Section Equivalent Radius\nS: Section Area\nP:Section Periphery\n from R, S and P at least one is required and maximum two\nsample:\nX,1,2,3,4,5").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
 
 
 # Wing
@@ -1414,8 +1416,9 @@ def airfoil_writer(dat_file):
     YUPPER = []
     YLOWER = []
     for i in range(len(airfoil)):
-        if i % 2 == 1:
-            continue
+        if len(airfoil) > 50:
+            if i % 2 == 1:
+                continue
         if len(YLOWER) == 49:
             XCORD.append(airfoil_up[-1][0])
             YUPPER.append(airfoil_up[-1][1])
@@ -1426,7 +1429,7 @@ def airfoil_writer(dat_file):
         YLOWER.append(airfoil_down[i][1])
 
     TYPEIN = 1.0
-    NPTS = 50.0
+    NPTS =  float(len(YUPPER))
     DWASH = 1.0
 
     dat_file.write(' $WGSCHR ')
