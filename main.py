@@ -75,6 +75,27 @@ tk.Checkbutton(Other_options, text="Part Module",
 tk.Checkbutton(Other_options, text="Build Module",
                variable=build_var).grid(column=0, row=2, sticky=tk.W)
 
+# part of aircraft
+part_of_aircraft = tk.Frame(control_cards,
+                         highlightbackground="black",
+                         highlightthickness=1)
+part_of_aircraft.grid(column=0, row=3, columnspan=4, padx=10, pady=10, sticky=tk.W)
+horizontal_tail_tobe = tk.IntVar()
+horizontal_tail_tobe.set(1)
+vertical_tail_tobe = tk.IntVar()
+vertical_tail_tobe.set(1)
+elevator_tobe = tk.IntVar()
+elevator_tobe.set(0)
+
+tk.Checkbutton(part_of_aircraft, text="Horizontal Tail",
+               variable=horizontal_tail_tobe).grid(column=0, row=0, sticky=tk.W)
+
+tk.Checkbutton(part_of_aircraft, text="Vertical Tail",
+               variable=vertical_tail_tobe).grid(column=0, row=1, sticky=tk.W)
+
+tk.Checkbutton(part_of_aircraft, text="Elevator",
+               variable=elevator_tobe).grid(column=0, row=2, sticky=tk.W)
+
 # Flight Conditions frames
 flight_condition = ttk.Frame(tabControl)
 
@@ -1424,9 +1445,13 @@ def airfoil_writer(dat_file):
             YUPPER.append(airfoil_up[-1][1])
             YLOWER.append(airfoil_down[-1][1])
             break
+        if i > (len(airfoil)-1)/2:
+            break
         XCORD.append(airfoil_up[i][0])
         YUPPER.append(airfoil_up[i][1])
         YLOWER.append(airfoil_down[i][1])
+        # print(i)
+
 
     TYPEIN = 1.0
     NPTS =  float(len(YUPPER))
@@ -2400,11 +2425,11 @@ def load_trim_file():
     c_m_delta_elevator_E.delete(0, tk.END)
     c_m_delta_elevator_E.insert(0, a[0][5])
 
-tk.Button(control_cards, text="load", command=load).grid(row=3, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(control_cards, text="load", command=load).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(control_cards, text="save", command=save).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(control_cards, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(trim, text="Make DATCOM file", command=make_datcom_trim).grid(row=2, column=0, padx=5, pady=5)
 
