@@ -97,6 +97,15 @@ tk.Checkbutton(part_of_aircraft, text="Vertical Tail",
 tk.Checkbutton(part_of_aircraft, text="Elevator",
                variable=elevator_tobe).grid(column=0, row=2, sticky=tk.W)
 
+# sharif = Image.open("sharif.png")
+# new_size_sharif = sharif.resize((int(768*0.25), int(769*0.25)))
+# sharif_img = ImageTk.PhotoImage(new_size_sharif)
+
+# sharif_label = tk.Label(control_cards, image=sharif_img)
+# sharif_label.image = sharif_img
+# sharif_label.grid(column=20, columnspan=10, rowspan=30, row=5, padx=1, pady=1, sticky=tk.W)
+
+
 # Flight Conditions frames
 flight_condition = ttk.Frame(tabControl)
 
@@ -592,7 +601,7 @@ tk.Radiobutton(vertical_tail_type_frame, text="Cranked platform AR>3", padx=20,
 # with tail flap work as elevator
 elevator = ttk.Frame(tabControl)
 tabControl.add(elevator,
-               text='Elevator')
+               text='Flab/Elevator')
 
 tabControl.pack(expand=1, fill="both")
 
