@@ -53,16 +53,3 @@ BUILD
 		 -0.03556, -0.03097, -0.02638, -0.02179, -0.0172, -0.01261, -0.00801, -0.00342, 
 		 
 		 $
- $VTPLNF CHRDTP = 3.44, CHRDR = 12.29,
-		 SSPNE = 9.2, SSPN = 10.5,
-		 SAVSI = 38.0, CHSTAT = 0.5,
-		 TWISTA = 0.0, DHDADI = 0.0,
-		 TYPE = 1.0,$
-NACA-V-4-0012
- $SYMFLP FTYPE = 1.0,
-		 NDELTA = 9.0,
-		 DELTA(1) = -30.0, -24.375, -18.75, -13.125, -7.5, -1.875, 3.75, 9.375, 
-		 15.0, 
-		 CHRDFI = 0.6, CHRDFO = 1.8,
-		 SPANFI = 2.1, SPANFO = 9.45,
-		 CB = 0.2, TC = 0.099, NTYPE = 1.0, $

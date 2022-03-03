@@ -1,3 +1,4 @@
+from distutils.ccompiler import gen_lib_options
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
@@ -843,6 +844,26 @@ def load():
     else:
         build_var.set(1)
 
+    global horizontal_tail_tobe
+    if a[0][5] == "0":
+        horizontal_tail_tobe.set(0)
+    else:
+        horizontal_tail_tobe.set(1)
+    
+    global vertical_tail_tobe
+    if a[0][6] == "0":
+        vertical_tail_tobe.set(0)
+    else:
+        vertical_tail_tobe.set(1)
+
+    global elevator_tobe
+    if a[0][6] == "0":
+        elevator_tobe.set(0)
+    else:
+        elevator_tobe.set(1)
+
+
+
     # flight condition
 
     take_off_weight.delete(0, tk.END)
@@ -979,78 +1000,80 @@ def load():
         wing_type.set(3)
 
     # Horizontal Tail
+    if horizontal_tail_tobe.get() == 1:
 
-    HCHRDTP.delete(0, tk.END)
-    HCHRDTP.insert(0, a[9][0])
+        HCHRDTP.delete(0, tk.END)
+        HCHRDTP.insert(0, a[9][0])
 
-    HCHRDR.delete(0, tk.END)
-    HCHRDR.insert(0, a[9][1])
+        HCHRDR.delete(0, tk.END)
+        HCHRDR.insert(0, a[9][1])
 
-    HSSPNE.delete(0, tk.END)
-    HSSPNE.insert(0, a[9][2])
+        HSSPNE.delete(0, tk.END)
+        HSSPNE.insert(0, a[9][2])
 
-    HSSPN.delete(0, tk.END)
-    HSSPN.insert(0, a[9][3])
+        HSSPN.delete(0, tk.END)
+        HSSPN.insert(0, a[9][3])
 
-    HSAVSI.delete(0, tk.END)
-    HSAVSI.insert(0, a[9][4])
+        HSAVSI.delete(0, tk.END)
+        HSAVSI.insert(0, a[9][4])
 
-    HCHSTAT.delete(0, tk.END)
-    HCHSTAT.insert(0, a[9][5])
+        HCHSTAT.delete(0, tk.END)
+        HCHSTAT.insert(0, a[9][5])
 
-    HTWISTA.delete(0, tk.END)
-    HTWISTA.insert(0, a[9][6])
+        HTWISTA.delete(0, tk.END)
+        HTWISTA.insert(0, a[9][6])
 
-    HDHDADI.delete(0, tk.END)
-    HDHDADI.insert(0, a[9][7])
+        HDHDADI.delete(0, tk.END)
+        HDHDADI.insert(0, a[9][7])
 
-    global horizontal_tail_type
-    if a[9][8] == "1":
-        horizontal_tail_type.set(1)
-    elif a[9][8] == "2":
-        horizontal_tail_type.set(2)
-    else:
-        horizontal_tail_type.set(3)
+        global horizontal_tail_type
+        if a[9][8] == "1":
+            horizontal_tail_type.set(1)
+        elif a[9][8] == "2":
+            horizontal_tail_type.set(2)
+        else:
+            horizontal_tail_type.set(3)
 
-    Hairfoil.delete(0, tk.END)
-    Hairfoil.insert(0, a[9][9])
+        Hairfoil.delete(0, tk.END)
+        Hairfoil.insert(0, a[9][9])
 
     # Vertical Tail
+    if vertical_tail_tobe.get() == 1:
 
-    VCHRDTP.delete(0, tk.END)
-    VCHRDTP.insert(0, a[10][0])
+        VCHRDTP.delete(0, tk.END)
+        VCHRDTP.insert(0, a[10][0])
 
-    VCHRDR.delete(0, tk.END)
-    VCHRDR.insert(0, a[10][1])
+        VCHRDR.delete(0, tk.END)
+        VCHRDR.insert(0, a[10][1])
 
-    VSSPNE.delete(0, tk.END)
-    VSSPNE.insert(0, a[10][2])
+        VSSPNE.delete(0, tk.END)
+        VSSPNE.insert(0, a[10][2])
 
-    VSSPN.delete(0, tk.END)
-    VSSPN.insert(0, a[10][3])
+        VSSPN.delete(0, tk.END)
+        VSSPN.insert(0, a[10][3])
 
-    VSAVSI.delete(0, tk.END)
-    VSAVSI.insert(0, a[10][4])
+        VSAVSI.delete(0, tk.END)
+        VSAVSI.insert(0, a[10][4])
 
-    VCHSTAT.delete(0, tk.END)
-    VCHSTAT.insert(0, a[10][5])
+        VCHSTAT.delete(0, tk.END)
+        VCHSTAT.insert(0, a[10][5])
 
-    VTWISTA.delete(0, tk.END)
-    VTWISTA.insert(0, a[10][6])
+        VTWISTA.delete(0, tk.END)
+        VTWISTA.insert(0, a[10][6])
 
-    VDHDADI.delete(0, tk.END)
-    VDHDADI.insert(0, a[10][7])
+        VDHDADI.delete(0, tk.END)
+        VDHDADI.insert(0, a[10][7])
 
-    global vertical_tail_type
-    if a[10][8] == "1":
-        vertical_tail_type.set(1)
-    elif a[10][8] == "2":
-        vertical_tail_type.set(2)
-    else:
-        vertical_tail_type.set(3)
+        global vertical_tail_type
+        if a[10][8] == "1":
+            vertical_tail_type.set(1)
+        elif a[10][8] == "2":
+            vertical_tail_type.set(2)
+        else:
+            vertical_tail_type.set(3)
 
-    Vairfoil.delete(0, tk.END)
-    Vairfoil.insert(0, a[10][9])
+        Vairfoil.delete(0, tk.END)
+        Vairfoil.insert(0, a[10][9])
 
     # Body
     global body_nose_type
@@ -1086,73 +1109,74 @@ def load():
         body_method.set(2)
 
     # elevator
+    if elevator_tobe.get() == 1:
 
-    global ele_type_var
-    if a[12][0] == "1":
-        ele_type_var.set(1)
-    elif a[12][0] == "2":
-        ele_type_var.set(2)
-    elif a[12][0] == "3":
-        ele_type_var.set(3)
-    elif a[12][0] == "4":
-        ele_type_var.set(4)
-    elif a[12][0] == "5":
-        ele_type_var.set(5)
-    elif a[12][0] == "6":
-        ele_type_var.set(6)
-    elif a[12][0] == "7":
-        ele_type_var.set(7)
-    else:
-        ele_type_var.set(8)
+        global ele_type_var
+        if a[12][0] == "1":
+            ele_type_var.set(1)
+        elif a[12][0] == "2":
+            ele_type_var.set(2)
+        elif a[12][0] == "3":
+            ele_type_var.set(3)
+        elif a[12][0] == "4":
+            ele_type_var.set(4)
+        elif a[12][0] == "5":
+            ele_type_var.set(5)
+        elif a[12][0] == "6":
+            ele_type_var.set(6)
+        elif a[12][0] == "7":
+            ele_type_var.set(7)
+        else:
+            ele_type_var.set(8)
 
 
-    # elevator degree
-    min_ele_ang.delete(0, tk.END)
-    min_ele_ang.insert(0, a[12][1])
+        # elevator degree
+        min_ele_ang.delete(0, tk.END)
+        min_ele_ang.insert(0, a[12][1])
 
-    max_ele_ang.delete(0, tk.END)
-    max_ele_ang.insert(0, a[12][2])
+        max_ele_ang.delete(0, tk.END)
+        max_ele_ang.insert(0, a[12][2])
 
-    num_ele_ang.delete(0, tk.END)
-    num_ele_ang.insert(0, a[12][3])
+        num_ele_ang.delete(0, tk.END)
+        num_ele_ang.insert(0, a[12][3])
 
-    # elevator data
-    CHRDFI.delete(0, tk.END)
-    CHRDFI.insert(0, a[12][4]) 
+        # elevator data
+        CHRDFI.delete(0, tk.END)
+        CHRDFI.insert(0, a[12][4]) 
 
-    CHRDFO.delete(0, tk.END)
-    CHRDFO.insert(0, a[12][5]) 
+        CHRDFO.delete(0, tk.END)
+        CHRDFO.insert(0, a[12][5]) 
 
-    SPANFI.delete(0, tk.END)
-    SPANFI.insert(0, a[12][6]) 
+        SPANFI.delete(0, tk.END)
+        SPANFI.insert(0, a[12][6]) 
 
-    SPANFO.delete(0, tk.END)
-    SPANFO.insert(0, a[12][7]) 
+        SPANFO.delete(0, tk.END)
+        SPANFO.insert(0, a[12][7]) 
 
-    CB.delete(0, tk.END)
-    CB.insert(0, a[12][8]) 
+        CB.delete(0, tk.END)
+        CB.insert(0, a[12][8]) 
 
-    TC.delete(0, tk.END)
-    TC.insert(0, a[12][9]) 
+        TC.delete(0, tk.END)
+        TC.insert(0, a[12][9]) 
 
-    global ele_nose_type_var
-    if a[12][10] == "1":
-        ele_nose_type_var.set(1)
-    elif a[12][10] == "2":
-        ele_nose_type_var.set(2)
-    else:
-        ele_nose_type_var.set(3)
+        global ele_nose_type_var
+        if a[12][10] == "1":
+            ele_nose_type_var.set(1)
+        elif a[12][10] == "2":
+            ele_nose_type_var.set(2)
+        else:
+            ele_nose_type_var.set(3)
 
         # trim condition
 
-    trim_mach.delete(0, tk.END)
-    trim_mach.insert(0, a[13][0])
+        trim_mach.delete(0, tk.END)
+        trim_mach.insert(0, a[13][0])
 
-    trim_alt.delete(0, tk.END)
-    trim_alt.insert(0, a[13][1])
+        trim_alt.delete(0, tk.END)
+        trim_alt.insert(0, a[13][1])
 
-    trim_ang.delete(0, tk.END)
-    trim_ang.insert(0, a[13][2])
+        trim_ang.delete(0, tk.END)
+        trim_ang.insert(0, a[13][2])
 
 
     
@@ -1193,6 +1217,26 @@ def save():
         data_saver[0].append("0")
     else:
         data_saver[0].append("1")
+
+    global horizontal_tail_tobe
+    if horizontal_tail_tobe.get() == 0:
+        data_saver[0].append("0")
+    else:
+        data_saver[0].append("1")
+
+    
+    global vertical_tail_tobe
+    if vertical_tail_tobe.get() == 0:
+        data_saver[0].append("0")
+    else:
+        data_saver[0].append("1")
+
+    global elevator_tobe
+    if elevator_tobe.get() == 0:
+        data_saver[0].append("0")
+    else:
+        data_saver[0].append("1")
+
 
     # Flight condition
 
@@ -1283,63 +1327,68 @@ def save():
 
     # Horizontal Tail
 
+
     data_saver.append([])
 
-    data_saver[9].append(HCHRDTP.get())
+    if horizontal_tail_tobe.get() == 1:
 
-    data_saver[9].append(HCHRDR.get())
+        data_saver[9].append(HCHRDTP.get())
 
-    data_saver[9].append(HSSPNE.get())
+        data_saver[9].append(HCHRDR.get())
 
-    data_saver[9].append(HSSPN.get())
+        data_saver[9].append(HSSPNE.get())
 
-    data_saver[9].append(HSAVSI.get())
+        data_saver[9].append(HSSPN.get())
 
-    data_saver[9].append(HCHSTAT.get())
+        data_saver[9].append(HSAVSI.get())
 
-    data_saver[9].append(HTWISTA.get())
+        data_saver[9].append(HCHSTAT.get())
 
-    data_saver[9].append(HDHDADI.get())
+        data_saver[9].append(HTWISTA.get())
 
-    global horizontal_tail_type
-    if horizontal_tail_type.get() == 1:
-        data_saver[9].append("1")
-    elif horizontal_tail_type.get() == 2:
-        data_saver[9].append("2")
-    else:
-        data_saver[9].append("3")
+        data_saver[9].append(HDHDADI.get())
 
-    data_saver[9].append(Hairfoil.get())
+        global horizontal_tail_type
+        if horizontal_tail_type.get() == 1:
+            data_saver[9].append("1")
+        elif horizontal_tail_type.get() == 2:
+            data_saver[9].append("2")
+        else:
+            data_saver[9].append("3")
+
+        data_saver[9].append(Hairfoil.get())
 
     # Vertical Tail
 
     data_saver.append([])
 
-    data_saver[10].append(VCHRDTP.get())
+    if vertical_tail_tobe.get() == 1:
+        
+        data_saver[10].append(VCHRDTP.get())
 
-    data_saver[10].append(VCHRDR.get())
+        data_saver[10].append(VCHRDR.get())
 
-    data_saver[10].append(VSSPNE.get())
+        data_saver[10].append(VSSPNE.get())
 
-    data_saver[10].append(VSSPN.get())
+        data_saver[10].append(VSSPN.get())
 
-    data_saver[10].append(VSAVSI.get())
+        data_saver[10].append(VSAVSI.get())
 
-    data_saver[10].append(VCHSTAT.get())
+        data_saver[10].append(VCHSTAT.get())
 
-    data_saver[10].append(VTWISTA.get())
+        data_saver[10].append(VTWISTA.get())
 
-    data_saver[10].append(VDHDADI.get())
+        data_saver[10].append(VDHDADI.get())
 
-    global vertical_tail_type
-    if vertical_tail_type.get() == 1:
-        data_saver[10].append("1")
-    elif vertical_tail_type.get() == 2:
-        data_saver[10].append("2")
-    else:
-        data_saver[10].append("3")
+        global vertical_tail_type
+        if vertical_tail_type.get() == 1:
+            data_saver[10].append("1")
+        elif vertical_tail_type.get() == 2:
+            data_saver[10].append("2")
+        else:
+            data_saver[10].append("3")
 
-    data_saver[10].append(Vairfoil.get())
+        data_saver[10].append(Vairfoil.get())
 
     # Body
 
@@ -1365,38 +1414,40 @@ def save():
 
     data_saver.append([])
 
-    data_saver[12].append(str(ele_type_var.get()))
+    if elevator_tobe.get() == 1:
 
-    data_saver[12].append(min_ele_ang.get())
+        data_saver[12].append(str(ele_type_var.get()))
 
-    data_saver[12].append(max_ele_ang.get())
+        data_saver[12].append(min_ele_ang.get())
 
-    data_saver[12].append(num_ele_ang.get())
-    
-    data_saver[12].append(CHRDFI.get())
+        data_saver[12].append(max_ele_ang.get())
 
-    data_saver[12].append(CHRDFO.get())
+        data_saver[12].append(num_ele_ang.get())
+        
+        data_saver[12].append(CHRDFI.get())
 
-    data_saver[12].append(SPANFI.get())
+        data_saver[12].append(CHRDFO.get())
 
-    data_saver[12].append(SPANFO.get())
+        data_saver[12].append(SPANFI.get())
 
-    data_saver[12].append(CB.get())
+        data_saver[12].append(SPANFO.get())
 
-    data_saver[12].append(TC.get())
+        data_saver[12].append(CB.get())
 
-    data_saver[12].append(str(ele_nose_type_var.get()))
+        data_saver[12].append(TC.get())
+
+        data_saver[12].append(str(ele_nose_type_var.get()))
 
     # trim data
     # trim condition
 
-    data_saver.append([])
+        data_saver.append([])
 
-    data_saver[13].append(trim_mach.get())
+        data_saver[13].append(trim_mach.get())
 
-    data_saver[13].append(trim_alt.get())
+        data_saver[13].append(trim_alt.get())
 
-    data_saver[13].append(trim_ang.get())
+        data_saver[13].append(trim_ang.get())
 
 
     # Write data
@@ -1727,124 +1778,127 @@ def make_datcom():
 
     airfoil_writer(file)
 
-    # Horizontal tail
+    if horizontal_tail_tobe.get() == 1:
+        # Horizontal tail
 
-    # Chord Tip
-    CHRDTP = round(float(HCHRDTP.get()), 4)
-    # Chord Root
-    CHRDR = round(float(HCHRDR.get()), 4)
-    # Semi Span (Exposed)
-    SSPNE = round(float(HSSPNE.get()), 4)
-    # Semi Span (Theoretical)
-    SSPN = round(float(HSSPN.get()), 4)
-    # Sweep Angle
-    SAVSI = round(float(HSAVSI.get()), 4)
-    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
-    CHSTAT = round(float(HCHSTAT.get()), 4)
-    # Twist angle (negative L.E rotated down)
-    TWISTA = round(float(HTWISTA.get()), 4)
-    # Dihedral Angle
-    DHDADI = round(float(HDHDADI.get()), 4)
-    # TYPE = 1.0 straight tapered platform
-    # TYPE = 2.0 double delta platform AR<3
-    # TYPE = 3.0 Cranked platform AR>3
-    TYPE = round(float(horizontal_tail_type.get()), 2)
-    HorizontalTailAirfoil = Hairfoil.get()
+        # Chord Tip
+        CHRDTP = round(float(HCHRDTP.get()), 4)
+        # Chord Root
+        CHRDR = round(float(HCHRDR.get()), 4)
+        # Semi Span (Exposed)
+        SSPNE = round(float(HSSPNE.get()), 4)
+        # Semi Span (Theoretical)
+        SSPN = round(float(HSSPN.get()), 4)
+        # Sweep Angle
+        SAVSI = round(float(HSAVSI.get()), 4)
+        # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+        CHSTAT = round(float(HCHSTAT.get()), 4)
+        # Twist angle (negative L.E rotated down)
+        TWISTA = round(float(HTWISTA.get()), 4)
+        # Dihedral Angle
+        DHDADI = round(float(HDHDADI.get()), 4)
+        # TYPE = 1.0 straight tapered platform
+        # TYPE = 2.0 double delta platform AR<3
+        # TYPE = 3.0 Cranked platform AR>3
+        TYPE = round(float(horizontal_tail_type.get()), 2)
+        HorizontalTailAirfoil = Hairfoil.get()
 
-    # Name list
-    file.write(' $HTPLNF ')
-    file.write('CHRDTP = %s, ' % str(CHRDTP))
-    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
-    file.write('SSPNE = %s, ' % str(SSPNE))
-    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
-    file.write('SAVSI = %s, ' % str(SAVSI))
-    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
-    file.write('TWISTA = %s, ' % str(TWISTA))
-    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
-    file.write('TYPE = %s,' % str(TYPE))
-    # End of File
-    file.write('$\n')
-    file.write(HorizontalTailAirfoil)
-    file.write('\n')
+        # Name list
+        file.write(' $HTPLNF ')
+        file.write('CHRDTP = %s, ' % str(CHRDTP))
+        file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+        file.write('SSPNE = %s, ' % str(SSPNE))
+        file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+        file.write('SAVSI = %s, ' % str(SAVSI))
+        file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+        file.write('TWISTA = %s, ' % str(TWISTA))
+        file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+        file.write('TYPE = %s,' % str(TYPE))
+        # End of File
+        file.write('$\n')
+        file.write(HorizontalTailAirfoil)
+        file.write('\n')
 
+    if vertical_tail_tobe.get() == 1:
     # Vertical tail
 
-    # Chord Tip
-    CHRDTP = round(float(VCHRDTP.get()), 4)
-    # Chord Root
-    CHRDR = round(float(VCHRDR.get()), 4)
-    # Semi Span (Exposed)
-    SSPNE = round(float(VSSPNE.get()), 4)
-    # Semi Span (Theoretical)
-    SSPN = round(float(VSSPN.get()), 4)
-    # Sweep Angle
-    SAVSI = round(float(VSAVSI.get()), 4)
-    # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
-    CHSTAT = round(float(VCHSTAT.get()), 4)
-    # Twist angle (negative L.E rotated down)
-    TWISTA = round(float(VTWISTA.get()), 4)
-    # Dihedral Angle
-    DHDADI = round(float(VDHDADI.get()), 4)
-    # TYPE = 1.0 straight tapered platform
-    # TYPE = 2.0 double delta platform AR<3
-    # TYPE = 3.0 Cranked platform AR>3
-    TYPE = round(float(vertical_tail_type.get()), 2)
-    VerticalTailAirfoil = Vairfoil.get()
+        # Chord Tip
+        CHRDTP = round(float(VCHRDTP.get()), 4)
+        # Chord Root
+        CHRDR = round(float(VCHRDR.get()), 4)
+        # Semi Span (Exposed)
+        SSPNE = round(float(VSSPNE.get()), 4)
+        # Semi Span (Theoretical)
+        SSPN = round(float(VSSPN.get()), 4)
+        # Sweep Angle
+        SAVSI = round(float(VSAVSI.get()), 4)
+        # Reference chord station for inboard and outboard panel sweep angles, fraction of chord
+        CHSTAT = round(float(VCHSTAT.get()), 4)
+        # Twist angle (negative L.E rotated down)
+        TWISTA = round(float(VTWISTA.get()), 4)
+        # Dihedral Angle
+        DHDADI = round(float(VDHDADI.get()), 4)
+        # TYPE = 1.0 straight tapered platform
+        # TYPE = 2.0 double delta platform AR<3
+        # TYPE = 3.0 Cranked platform AR>3
+        TYPE = round(float(vertical_tail_type.get()), 2)
+        VerticalTailAirfoil = Vairfoil.get()
 
-    # Name list
-    file.write(' $VTPLNF ')
-    file.write('CHRDTP = %s, ' % str(CHRDTP))
-    file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
-    file.write('SSPNE = %s, ' % str(SSPNE))
-    file.write('SSPN = %s,\n\t\t ' % str(SSPN))
-    file.write('SAVSI = %s, ' % str(SAVSI))
-    file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
-    file.write('TWISTA = %s, ' % str(TWISTA))
-    file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
-    file.write('TYPE = %s,' % str(TYPE))
-    # End of File
-    file.write('$\n')
-    file.write(VerticalTailAirfoil)
-    file.write('\n')
+        # Name list
+        file.write(' $VTPLNF ')
+        file.write('CHRDTP = %s, ' % str(CHRDTP))
+        file.write('CHRDR = %s,\n\t\t ' % str(CHRDR))
+        file.write('SSPNE = %s, ' % str(SSPNE))
+        file.write('SSPN = %s,\n\t\t ' % str(SSPN))
+        file.write('SAVSI = %s, ' % str(SAVSI))
+        file.write('CHSTAT = %s,\n\t\t ' % str(CHSTAT))
+        file.write('TWISTA = %s, ' % str(TWISTA))
+        file.write('DHDADI = %s,\n\t\t ' % str(DHDADI))
+        file.write('TYPE = %s,' % str(TYPE))
+        # End of File
+        file.write('$\n')
+        file.write(VerticalTailAirfoil)
+        file.write('\n')
 
+    if elevator_tobe.get() == 1:
     # elevator 
     # 
-    FTYPE = round(float(ele_type_var.get()), 4)
-    # Number of deflection MAX 9
-    NDELTA = round(float(num_ele_ang.get()), 4)
-    # Flap Deflection
-    DELTA = np.linspace(float(min_ele_ang.get()), float(max_ele_ang.get()), int(num_ele_ang.get()))
-    # Flap chord at inboard end of flap, measured parallel to longitudinal axis
-    ECHRDFI =round(float(CHRDFI.get()), 4) 
-    # Flap chord at outboard end of flap, measured parallel to longitudinal axis
-    ECHRDFO = round(float(CHRDFO.get()), 4)
-    # Span location of inboard end of flap, measured perpendicular to vertical plane of symmetry
-    ESPANFI = round(float(SPANFI.get()), 4)
-    # Span location of outboard end of flap, measured perpendicular to vertical plane of symmetry
-    ESPANFO = round(float(SPANFO.get()), 4)
-    # Average chord of the balance
-    ECB = round(float(CB.get()), 4)
-    # Average thickness of the control at hinge line
-    ETC = round(float(TC.get()), 4)
-    # NTYPE = 1.0 round nose flap
-    # NTYPE = 2.0 elliptic nose flap
-    # NTYPE = 3.0 sharp nose flap
-    ENTYPE = round(float(ele_nose_type_var.get()), 4)
+        FTYPE = round(float(ele_type_var.get()), 4)
+        # Number of deflection MAX 9
+        NDELTA = round(float(num_ele_ang.get()), 4)
+        # Flap Deflection
+        DELTA = np.linspace(float(min_ele_ang.get()), float(max_ele_ang.get()), int(num_ele_ang.get()))
+        # Flap chord at inboard end of flap, measured parallel to longitudinal axis
+        ECHRDFI =round(float(CHRDFI.get()), 4) 
+        # Flap chord at outboard end of flap, measured parallel to longitudinal axis
+        ECHRDFO = round(float(CHRDFO.get()), 4)
+        # Span location of inboard end of flap, measured perpendicular to vertical plane of symmetry
+        ESPANFI = round(float(SPANFI.get()), 4)
+        # Span location of outboard end of flap, measured perpendicular to vertical plane of symmetry
+        ESPANFO = round(float(SPANFO.get()), 4)
+        # Average chord of the balance
+        ECB = round(float(CB.get()), 4)
+        # Average thickness of the control at hinge line
+        ETC = round(float(TC.get()), 4)
+        # NTYPE = 1.0 round nose flap
+        # NTYPE = 2.0 elliptic nose flap
+        # NTYPE = 3.0 sharp nose flap
+        ENTYPE = round(float(ele_nose_type_var.get()), 4)
 
 
-    file.write(' $SYMFLP ')
-    file.write('FTYPE = %s,\n\t\t ' % str(FTYPE))
-    file.write('NDELTA = %s,\n\t\t ' % str(NDELTA))
-    loop_writer('DELTA', DELTA, file)
-    file.write('CHRDFI = %s, ' % str(ECHRDFI))
-    file.write('CHRDFO = %s,\n\t\t ' % str(ECHRDFO))
-    file.write('SPANFI = %s, ' % str(ESPANFI))
-    file.write('SPANFO = %s,\n\t\t ' % str(ESPANFO))
-    file.write('CB = %s, ' % str(ECB))
-    file.write('TC = %s, ' % str(ETC))
-    file.write('NTYPE = %s, ' % str(ENTYPE))
-    # End of File
-    file.write('$\n')
+        file.write(' $SYMFLP ')
+        file.write('FTYPE = %s,\n\t\t ' % str(FTYPE))
+        file.write('NDELTA = %s,\n\t\t ' % str(NDELTA))
+        loop_writer('DELTA', DELTA, file)
+        file.write('CHRDFI = %s, ' % str(ECHRDFI))
+        file.write('CHRDFO = %s,\n\t\t ' % str(ECHRDFO))
+        file.write('SPANFI = %s, ' % str(ESPANFI))
+        file.write('SPANFO = %s,\n\t\t ' % str(ESPANFO))
+        file.write('CB = %s, ' % str(ECB))
+        file.write('TC = %s, ' % str(ETC))
+        file.write('NTYPE = %s, ' % str(ENTYPE))
+        # End of File
+        file.write('$\n')
 
     messagebox.showinfo(title="Saved", message="Done")
 
