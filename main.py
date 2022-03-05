@@ -23,7 +23,7 @@ import subprocess
 root = tk.Tk()
 root.title("DATCOM-GUI")
 root.iconbitmap("logo.ico")
-root.geometry("1050x650")
+root.geometry("1100x700")
 tabControl = ttk.Notebook(root)
 
 control_cards = ttk.Frame(tabControl)
@@ -196,9 +196,7 @@ max_mach.grid(column=1, row=1, padx=10, pady=10, sticky=tk.E)
 tk.Label(mach_number, text="Number of Mach number (max = 20)").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
 num_mach = tk.Entry(mach_number)
 num_mach.grid(column=1, row=2, padx=10, pady=10, sticky=tk.E)
-tk.Label(mach_number, text="Trim Mach").grid(column=0, row=3, padx=10, pady=10, sticky=tk.W)
-trim_mach = tk.Entry(mach_number)
-trim_mach.grid(column=1, row=3, padx=10, pady=10, sticky=tk.E)
+
 # Altitude
 altitude = tk.Frame(flight_condition,
                     highlightbackground="black",
@@ -214,9 +212,7 @@ tk.Label(altitude, text="Number of Altitude (max = 20)").grid(column=0, row=2, p
 num_alt = tk.Entry(altitude)
 num_alt.grid(column=1, row=2, padx=10, pady=10, sticky=tk.E)
 
-tk.Label(altitude, text="Trim Altitude").grid(column=0, row=3, padx=10, pady=10, sticky=tk.W)
-trim_alt = tk.Entry(altitude)
-trim_alt.grid(column=1, row=3, padx=10, pady=10, sticky=tk.E)
+
 # Angle of attacl
 angle = tk.Frame(flight_condition,
                  highlightbackground="black",
@@ -231,10 +227,6 @@ max_ang.grid(column=1, row=1, padx=0, pady=10, sticky=tk.E)
 tk.Label(angle, text="Number of AOA (max = 20)").grid(column=0, row=2, padx=38, pady=10, sticky=tk.W)
 num_ang = tk.Entry(angle)
 num_ang.grid(column=1, row=2, padx=0, pady=10, sticky=tk.E)
-
-tk.Label(angle, text="Trim AOA").grid(column=0, row=3, padx=38, pady=10, sticky=tk.W)
-trim_ang = tk.Entry(angle)
-trim_ang.grid(column=1, row=3, padx=0, pady=10, sticky=tk.E)
 
 # program looping control
 looping = tk.Frame(flight_condition,
@@ -770,12 +762,24 @@ trim = ttk.Frame(tabControl)
 tabControl.add(trim,
                text='Trim Diagram')
 
-tk.Label(trim, text="This app use current data so first make sure data is loaded correctly").grid(column=0, row=0, padx=10, pady=10)
-
+tk.Label(trim, text="This app use current data so first make sure data is loaded correctly").grid(column=0, columnspan=10, row=0, padx=10, pady=10)
+trim_condition = tk.Frame(trim,
+                      highlightbackground="black",
+                      highlightthickness=1)
+trim_condition.grid(column=0, columnspan=2, row=2, padx=5, pady=5, sticky=tk.W)
+tk.Label(trim_condition, text="Trim AOA").grid(column=0,  row=1, padx=10, pady=10, sticky=tk.W)
+trim_ang = tk.Entry(trim_condition)
+trim_ang.grid(column=1, row=1, padx=0, pady=10, sticky=tk.W)
+tk.Label(trim_condition, text="Trim Altitude").grid(column=0, row=2, padx=10, pady=10, sticky=tk.W)
+trim_alt = tk.Entry(trim_condition)
+trim_alt.grid(column=1, row=2, padx=10, pady=10, sticky=tk.W)
+tk.Label(trim_condition, text="Trim Mach").grid(column=0, row=3, padx=10, pady=10, sticky=tk.W)
+trim_mach = tk.Entry(trim_condition)
+trim_mach.grid(column=1, row=3, padx=10, pady=10, sticky=tk.W)
 trim_data_ploter = tk.Frame(trim,
                       highlightbackground="black",
                       highlightthickness=1)
-trim_data_ploter.grid(column=0, row=1, padx=10, pady=20, sticky=tk.W)
+trim_data_ploter.grid(column=0, columnspan=2, row=4, padx=5, pady=5, sticky=tk.W)
 
 tk.Label(trim_data_ploter, text="c_l_alpha").grid(column=0, row=0, padx=5, pady=5, sticky=tk.W)
 c_l_alpha_E = tk.Entry(trim_data_ploter)
@@ -2544,7 +2548,7 @@ def plot_trim_data():
     ax.invert_xaxis()
     canvas = FigureCanvasTkAgg(fig, master=trim) 
     canvas.draw()
-    canvas.get_tk_widget().grid(column=1, row=1, rowspan=5, padx=10, pady=10, sticky=tk.NE)
+    canvas.get_tk_widget().grid(column=5, row=1, rowspan=5, padx=10, pady=10, sticky=tk.NE)
     
     
 # save trim data
@@ -2705,15 +2709,15 @@ tk.Button(control_cards, text="save", command=save).grid(row=5, column=0, padx=1
 
 tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(trim, text="Make DATCOM file", command=make_datcom_trim).grid(row=2, column=0, padx=5, pady=5)
+tk.Button(trim, text="Make DATCOM file", command=make_datcom_trim).grid(row=5, column=0, padx=5, pady=5)
 
-tk.Button(trim, text="load data from .out file", command=load_trim_data).grid(row=3, column=0, padx=5, pady=5)
+tk.Button(trim, text="load data from .out file", command=load_trim_data).grid(row=6, column=0, padx=5, pady=5)
 
-tk.Button(trim, text="plot trim diagram", command=plot_trim_data).grid(row=4, column=0, padx=5, pady=5)
+tk.Button(trim, text="plot trim diagram", command=plot_trim_data).grid(row=7, column=0, padx=5, pady=5)
 
-tk.Button(trim, text="save trim diagram data", command=save_trim).grid(row=5, column=0, padx=5, pady=5)
+tk.Button(trim, text="save trim diagram data", command=save_trim).grid(row=8, column=0, padx=5, pady=5)
 
-tk.Button(trim, text="load trim diagram data", command=load_trim_file).grid(row=6, column=0, padx=5, pady=5)
+tk.Button(trim, text="load trim diagram data", command=load_trim_file).grid(row=9, column=0, padx=5, pady=5)
 
 
 root.mainloop()
