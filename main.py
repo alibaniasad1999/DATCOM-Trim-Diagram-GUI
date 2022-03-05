@@ -1,4 +1,5 @@
 from distutils.ccompiler import gen_lib_options
+from ssl import Options
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
@@ -22,7 +23,7 @@ import subprocess
 root = tk.Tk()
 root.title("DATCOM-GUI")
 root.iconbitmap("logo.ico")
-root.geometry("1000x650")
+root.geometry("1050x650")
 tabControl = ttk.Notebook(root)
 
 control_cards = ttk.Frame(tabControl)
@@ -35,6 +36,71 @@ tk.Label(control_cards,
          font=('Arial', 25)).grid(column=1, row=0, columnspan=8, sticky=tk.EW)
 # Control Cards frames
 # Dimensions unit
+def setunit():
+    global dim_unit_var
+    if dim_unit_var.get() == 1:
+        tk.Label(flight_condition, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(flight_condition, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    global der_unit_var
+    if der_unit_var.get() == 1:
+        tk.Label(flight_condition, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(flight_condition, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+
+    if dim_unit_var.get() == 1:
+        tk.Label(options, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(options, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(options, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(options, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    
+    if dim_unit_var.get() == 1:
+        tk.Label(synthesis, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(synthesis, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(synthesis, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(synthesis, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    
+    if dim_unit_var.get() == 1:
+        tk.Label(body, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(body, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(body, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(body, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
+    if dim_unit_var.get() == 1:
+        tk.Label(wing, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(wing, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(wing, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(wing, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
+    if dim_unit_var.get() == 1:
+        tk.Label(horizontal_tail, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(horizontal_tail, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(horizontal_tail, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(horizontal_tail, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    
+    if dim_unit_var.get() == 1:
+        tk.Label(vertical_tail, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(vertical_tail, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(vertical_tail, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(vertical_tail, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
 
 Dimensions = tk.Frame(control_cards,
                       highlightbackground="black",
@@ -43,8 +109,8 @@ Dimensions.grid(column=0, row=1, padx=10, pady=10, sticky=tk.W)
 ttk.Label(Dimensions, text="Dimensions Unit:").grid(column=0, row=0, columnspan=2, sticky=tk.N)
 dim_unit_var = tk.IntVar()
 dim_unit_var.set(1)
-tk.Radiobutton(Dimensions, text="Imperial", padx=20, variable=dim_unit_var, value=1).grid(column=0, row=1, sticky=tk.W)
-tk.Radiobutton(Dimensions, text="Metric", padx=20, variable=dim_unit_var, value=2).grid(column=0, row=2, sticky=tk.W)
+tk.Radiobutton(Dimensions, text="Imperial", padx=20, variable=dim_unit_var, value=1, command=setunit).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(Dimensions, text="Metric ", padx=20, variable=dim_unit_var, value=2, command=setunit).grid(column=0, row=2, sticky=tk.W)
 
 # Derivations unit
 Derivations = tk.Frame(control_cards,
@@ -54,8 +120,8 @@ Derivations.grid(column=1, row=1, padx=10, pady=10, sticky=tk.W)
 ttk.Label(Derivations, text="Derivations Unit:").grid(column=0, row=0, columnspan=2, sticky=tk.N)
 der_unit_var = tk.IntVar()
 der_unit_var.set(1)
-tk.Radiobutton(Derivations, text="Degree", padx=20, variable=der_unit_var, value=1).grid(column=0, row=1, sticky=tk.W)
-tk.Radiobutton(Derivations, text="Radian", padx=20, variable=der_unit_var, value=2).grid(column=0, row=2, sticky=tk.W)
+tk.Radiobutton(Derivations, text="Degree", padx=20, variable=der_unit_var, value=1, command=setunit).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(Derivations, text="Radian", padx=20, variable=der_unit_var, value=2, command=setunit).grid(column=0, row=2, sticky=tk.W)
 
 # Other Options
 Other_options = tk.Frame(control_cards,
@@ -1186,6 +1252,69 @@ def load():
 
         trim_ang.delete(0, tk.END)
         trim_ang.insert(0, a[13][2])
+
+    if dim_unit_var.get() == 1:
+        tk.Label(flight_condition, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(flight_condition, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(flight_condition, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(flight_condition, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+
+    if dim_unit_var.get() == 1:
+        tk.Label(options, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(options, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(options, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(options, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    
+    if dim_unit_var.get() == 1:
+        tk.Label(synthesis, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(synthesis, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(synthesis, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(synthesis, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    
+    if dim_unit_var.get() == 1:
+        tk.Label(body, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(body, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(body, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(body, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
+    if dim_unit_var.get() == 1:
+        tk.Label(wing, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(wing, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(wing, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(wing, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
+    if dim_unit_var.get() == 1:
+        tk.Label(horizontal_tail, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(horizontal_tail, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(horizontal_tail, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(horizontal_tail, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    
+    if dim_unit_var.get() == 1:
+        tk.Label(vertical_tail, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(vertical_tail, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+    if der_unit_var.get() == 1:
+        tk.Label(vertical_tail, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+    else:
+        tk.Label(vertical_tail, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
 
 
     
@@ -2487,6 +2616,71 @@ def load_trim_file():
 
     c_m_delta_elevator_E.delete(0, tk.END)
     c_m_delta_elevator_E.insert(0, a[0][5])
+
+
+if dim_unit_var.get() == 1:
+    tk.Label(flight_condition, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(flight_condition, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+if der_unit_var.get() == 1:
+    tk.Label(flight_condition, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(flight_condition, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+
+if dim_unit_var.get() == 1:
+    tk.Label(options, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(options, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+if der_unit_var.get() == 1:
+    tk.Label(options, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(options, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+
+if dim_unit_var.get() == 1:
+    tk.Label(synthesis, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(synthesis, text='Metric   ').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
+if der_unit_var.get() == 1:
+    tk.Label(synthesis, text='Degree').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(synthesis, text='Radian').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+
+if dim_unit_var.get() == 1:
+    tk.Label(body, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(body, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+if der_unit_var.get() == 1:
+    tk.Label(body, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(body, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
+if dim_unit_var.get() == 1:
+    tk.Label(wing, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(wing, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+if der_unit_var.get() == 1:
+    tk.Label(wing, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(wing, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
+if dim_unit_var.get() == 1:
+    tk.Label(horizontal_tail, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(horizontal_tail, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+if der_unit_var.get() == 1:
+    tk.Label(horizontal_tail, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(horizontal_tail, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
+if dim_unit_var.get() == 1:
+    tk.Label(vertical_tail, text='Imperial').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(vertical_tail, text='Metric   ').grid(column=4, row=0, padx=10, pady=10, sticky=tk.W)
+if der_unit_var.get() == 1:
+    tk.Label(vertical_tail, text='Degree').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+else:
+    tk.Label(vertical_tail, text='Radian').grid(column=5, row=0, padx=10, pady=10, sticky=tk.W)
+
 
 tk.Button(control_cards, text="load", command=load).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
 
