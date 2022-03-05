@@ -428,7 +428,7 @@ body_CSV = tk.Frame(body,
                            highlightbackground="black",
                            highlightthickness=1)
 body_CSV.grid(column=2, row=2, padx=10, pady=10, rowspan=10, columnspan=2, sticky=tk.EW)
-tk.Label(body_CSV, text="Insert your data to Body.csv\n first insert variable then your aircraft data\nVariables:\nX : Array of longitudinal Distance\nZU: Upper body\nZL:Lower body\nR: Section Equivalent Radius\nS: Section Area\nP:Section Periphery\n from R, S and P at least one is required and maximum two\nsample:\nX,1,2,3,4,5").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
+tk.Label(body_CSV, text="Insert your data to Body.csv (max = 20)\n first insert variable then your aircraft data\nVariables:\nX : Array of longitudinal Distance\nZU: Upper body\nZL:Lower body\nR: Section Equivalent Radius\nS: Section Area\nP:Section Periphery\n from R, S and P at least one is required and maximum two\nsample:\nX,1,2,3,4,5").grid(column=0, row=0, padx=10, pady=10, sticky=tk.W)
 
 
 # Wing
