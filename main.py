@@ -2719,5 +2719,5 @@ tk.Button(trim, text="save trim diagram data", command=save_trim).grid(row=8, co
 
 tk.Button(trim, text="load trim diagram data", command=load_trim_file).grid(row=9, column=0, padx=5, pady=5)
 
-
+os.startfile("export/Trim_diag.dcm")
 root.mainloop()
