@@ -70,8 +70,8 @@ tk.Checkbutton(part_of_aircraft, text="Vertical Tail",
 tk.Checkbutton(part_of_aircraft, text="Elevator/Flap",
                variable=elevator_tobe).grid(column=0, row=2, sticky=tk.W)
 
-BAI_image = Image.open("BAI.jpg")
-BAI_new_size = BAI_image.resize((int(1280/5), int(800/5)))
+BAI_image = Image.open("sharif.png")
+BAI_new_size = BAI_image.resize((int(768/4), int(769/4)))
 BAI_img = ImageTk.PhotoImage(BAI_new_size)
 
 BAI_img_label = tk.Label(initialization, image=BAI_img)
