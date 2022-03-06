@@ -2624,7 +2624,8 @@ def load_trim_file():
     c_m_delta_elevator_E.insert(0, a[0][5])
 
 def make_run_datcom():
-    make_datcom
+    make_datcom()
+    global datcom_file_name
     os.system("start " + datcom_file_name)
     
 
