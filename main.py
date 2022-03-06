@@ -1117,7 +1117,7 @@ def load():
         wing_type.set(3)
 
     # Horizontal Tail
-    if horizontal_tail_tobe.get() == 1:
+    if 1:
 
         HCHRDTP.delete(0, tk.END)
         HCHRDTP.insert(0, a[9][0])
@@ -1155,7 +1155,7 @@ def load():
         Hairfoil.insert(0, a[9][9])
 
     # Vertical Tail
-    if vertical_tail_tobe.get() == 1:
+    if 1:
 
         VCHRDTP.delete(0, tk.END)
         VCHRDTP.insert(0, a[10][0])
@@ -1226,7 +1226,7 @@ def load():
         body_method.set(2)
 
     # elevator
-    if elevator_tobe.get() == 1:
+    if  1:
 
         global ele_type_var
         if a[12][0] == "1":
@@ -1510,7 +1510,7 @@ def save():
 
     data_saver.append([])
 
-    if horizontal_tail_tobe.get() == 1:
+    if 1:
 
         data_saver[9].append(HCHRDTP.get())
 
@@ -1542,7 +1542,7 @@ def save():
 
     data_saver.append([])
 
-    if vertical_tail_tobe.get() == 1:
+    if 1:
         
         data_saver[10].append(VCHRDTP.get())
 
@@ -1594,7 +1594,7 @@ def save():
 
     data_saver.append([])
 
-    if elevator_tobe.get() == 1:
+    if 1:
 
         data_saver[12].append(str(ele_type_var.get()))
 
