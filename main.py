@@ -23,7 +23,7 @@ import subprocess
 root = tk.Tk()
 root.title("DATCOM-GUI")
 root.iconbitmap("logo.ico")
-root.geometry("1100x700")
+root.geometry("900x650")
 tabControl = ttk.Notebook(root)
 
 control_cards = ttk.Frame(tabControl)
