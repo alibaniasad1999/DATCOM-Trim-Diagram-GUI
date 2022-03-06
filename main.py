@@ -2695,11 +2695,11 @@ def wing_htail_vtail_guide():
 
 tk.Button(synthesis, text="Guide image", command=synthesis_guide).grid(row=11, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(wing, text="Giude image", command=wing_htail_vtail_guide).grid(row=13, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(wing, text="Guide image", command=wing_htail_vtail_guide).grid(row=13, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(horizontal_tail, text="Giude image", command=wing_htail_vtail_guide).grid(row=9, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(horizontal_tail, text="Guide image", command=wing_htail_vtail_guide).grid(row=9, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(vertical_tail, text="Giude image", command=wing_htail_vtail_guide).grid(row=9, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(vertical_tail, text="Guide image", command=wing_htail_vtail_guide).grid(row=9, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(control_cards, text="load", command=load).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
 
