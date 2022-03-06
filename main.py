@@ -88,9 +88,6 @@ control_cards = ttk.Frame(tabControl)
 tabControl.add(control_cards,
                text='Control Cards')
 tabControl.pack(expand=1, fill="both")
-tk.Label(control_cards,
-         text="Digital DATCOM Graphical User Interface",
-         font=('Arial', 25)).grid(column=1, row=0, columnspan=8, sticky=tk.EW)
 # Control Cards frames
 # Dimensions unit
 def setunit():
@@ -179,6 +176,15 @@ der_unit_var = tk.IntVar()
 der_unit_var.set(1)
 tk.Radiobutton(Derivations, text="Degree", padx=20, variable=der_unit_var, value=1, command=setunit).grid(column=0, row=1, sticky=tk.W)
 tk.Radiobutton(Derivations, text="Radian", padx=20, variable=der_unit_var, value=2, command=setunit).grid(column=0, row=2, sticky=tk.W)
+unit_image = Image.open("units.png")
+unit_new_size = unit_image.resize((int(2330/5), int(977/5)))
+unit_img = ImageTk.PhotoImage(unit_new_size)
+
+unit_img_label = tk.Label(control_cards, image=unit_img)
+unit_img_label.image = unit_image
+
+# Position image
+unit_img_label.grid(column=0, columnspan=3, row=3, padx=1, pady=1, sticky=tk.E)
 
 # Other Options
 Other_options = tk.Frame(control_cards,
