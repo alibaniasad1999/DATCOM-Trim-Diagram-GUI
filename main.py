@@ -26,6 +26,63 @@ root.iconbitmap("logo.ico")
 root.geometry("900x650")
 tabControl = ttk.Notebook(root)
 
+# initialization
+initialization = ttk.Frame(tabControl)
+tabControl.add(initialization,
+               text='initialization')
+tabControl.pack(expand=1, fill="both")
+tk.Label(initialization,
+         text="Digital DATCOM Graphical User Interface",
+         font=('Arial', 25)).grid(column=1, row=0, columnspan=3, sticky=tk.EW)
+main_image = Image.open("B787.jpg")
+mian_new_size = main_image.resize((int(1920/5), int(1080/5)))
+main_img = ImageTk.PhotoImage(mian_new_size)
+
+main_img_label = tk.Label(initialization, image=main_img)
+main_img_label.image = main_image
+
+# Position image
+main_img_label.grid(column=3, rowspan=5, row=2, padx=1, pady=1, sticky=tk.E)
+
+tk.Label(initialization, text='This software is designed for aircraft design II in March 2022').grid(column=1, row=1, padx=10, pady=10, sticky=tk.W)
+tk.Label(initialization, text='Teacher: Dr.Banazadeh').grid(column=1, row=3, padx=1, pady=1, sticky=tk.W)
+tk.Label(initialization, text='Developer: Ali BaniAsad').grid(column=1, row=4, padx=1, pady=1, sticky=tk.W)
+tk.Label(initialization, text='Email: alibaniasad1999@yahoo.com').grid(column=1, row=5, padx=1, pady=10, sticky=tk.W)
+
+# part of aircraft
+part_of_aircraft = tk.Frame(initialization,
+                         highlightbackground="black",
+                         highlightthickness=1)
+part_of_aircraft.grid(column=0, row=6, columnspan=4, padx=10, pady=10, sticky=tk.W)
+horizontal_tail_tobe = tk.IntVar()
+horizontal_tail_tobe.set(1)
+vertical_tail_tobe = tk.IntVar()
+vertical_tail_tobe.set(1)
+elevator_tobe = tk.IntVar()
+elevator_tobe.set(0)
+
+tk.Checkbutton(part_of_aircraft, text="Horizontal Tail",
+               variable=horizontal_tail_tobe).grid(column=0, row=0, sticky=tk.W)
+
+tk.Checkbutton(part_of_aircraft, text="Vertical Tail",
+               variable=vertical_tail_tobe).grid(column=0, row=1, sticky=tk.W)
+
+tk.Checkbutton(part_of_aircraft, text="Elevator/Flap",
+               variable=elevator_tobe).grid(column=0, row=2, sticky=tk.W)
+
+BAI_image = Image.open("BAI.jpg")
+BAI_new_size = BAI_image.resize((int(1280/5), int(800/5)))
+BAI_img = ImageTk.PhotoImage(BAI_new_size)
+
+BAI_img_label = tk.Label(initialization, image=BAI_img)
+BAI_img_label.image = BAI_image
+
+# Position image
+BAI_img_label.grid(column=3, rowspan=5, row=10, padx=1, pady=1, sticky=tk.E)
+
+
+
+# control cards
 control_cards = ttk.Frame(tabControl)
 
 tabControl.add(control_cards,
@@ -142,26 +199,7 @@ tk.Checkbutton(Other_options, text="Part Module",
 tk.Checkbutton(Other_options, text="Build Module",
                variable=build_var).grid(column=0, row=2, sticky=tk.W)
 
-# part of aircraft
-part_of_aircraft = tk.Frame(control_cards,
-                         highlightbackground="black",
-                         highlightthickness=1)
-part_of_aircraft.grid(column=0, row=3, columnspan=4, padx=10, pady=10, sticky=tk.W)
-horizontal_tail_tobe = tk.IntVar()
-horizontal_tail_tobe.set(1)
-vertical_tail_tobe = tk.IntVar()
-vertical_tail_tobe.set(1)
-elevator_tobe = tk.IntVar()
-elevator_tobe.set(0)
 
-tk.Checkbutton(part_of_aircraft, text="Horizontal Tail",
-               variable=horizontal_tail_tobe).grid(column=0, row=0, sticky=tk.W)
-
-tk.Checkbutton(part_of_aircraft, text="Vertical Tail",
-               variable=vertical_tail_tobe).grid(column=0, row=1, sticky=tk.W)
-
-tk.Checkbutton(part_of_aircraft, text="Elevator/Flap",
-               variable=elevator_tobe).grid(column=0, row=2, sticky=tk.W)
 
 # sharif = Image.open("sharif.png")
 # new_size_sharif = sharif.resize((int(768*0.25), int(769*0.25)))
@@ -2714,17 +2752,17 @@ tk.Button(vertical_tail, text="Guide image", command=wing_htail_vtail_guide).gri
 
 tk.Button(elevator, text="Guide image", command=flap_guide).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(control_cards, text="load", command=load).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(initialization, text="load", command=load).grid(row=7, column=1, padx=10, pady=10, sticky=tk.W)
 
-tk.Button(control_cards, text="load", command=load).grid(row=4, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(initialization, text="save", command=save).grid(row=8, column=1, padx=10, pady=10, sticky=tk.W)
 
 tk.Button(control_cards, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(flight_condition, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(initialization, text="make DATCOM file", command=make_datcom).grid(row=9, column=1, padx=10, pady=10, sticky=tk.W)
 
-tk.Button(control_cards, text="make and run DATCOM file", command=make_run_datcom).grid(row=7, column=0, padx=10, pady=10, sticky=tk.EW)
+tk.Button(initialization, text="make and run DATCOM file", command=make_run_datcom).grid(row=10, column=1, padx=10, pady=10, sticky=tk.W)
 
 tk.Button(options, text="save", command=save).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
 
