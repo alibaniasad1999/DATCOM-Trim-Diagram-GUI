@@ -2707,7 +2707,23 @@ tk.Button(control_cards, text="load", command=load).grid(row=4, column=0, padx=1
 
 tk.Button(control_cards, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
+tk.Button(flight_condition, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
+
 tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(options, text="save", command=save).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(synthesis, text="save", command=save).grid(row=11, column=1, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(body, text="save", command=save).grid(row=13, column=0, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(wing, text="save", command=save).grid(row=13, column=1, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(horizontal_tail, text="save", command=save).grid(row=9, column=1, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(vertical_tail, text="save", command=save).grid(row=9, column=1, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(elevator, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(trim, text="Make DATCOM file", command=make_datcom_trim).grid(row=5, column=0, padx=5, pady=5)
 
