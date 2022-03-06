@@ -1662,6 +1662,8 @@ def airfoil_writer(dat_file):
 
 def make_datcom():
     file = filedialog.asksaveasfile(mode='w', defaultextension=".dcm")
+    global datcom_file_name
+    datcom_file_name = file.name
     global dim_unit_var
     if dim_unit_var.get() == 1:
         DIM = "FT"
@@ -2621,6 +2623,10 @@ def load_trim_file():
     c_m_delta_elevator_E.delete(0, tk.END)
     c_m_delta_elevator_E.insert(0, a[0][5])
 
+def make_run_datcom():
+    make_datcom
+    os.system("start " + datcom_file_name)
+    
 
 if dim_unit_var.get() == 1:
     tk.Label(flight_condition, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
@@ -2716,6 +2722,8 @@ tk.Button(control_cards, text="save", command=save).grid(row=5, column=0, padx=1
 tk.Button(flight_condition, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(control_cards, text="make DATCOM file", command=make_datcom).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
+
+tk.Button(control_cards, text="make and run DATCOM file", command=make_run_datcom).grid(row=7, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(options, text="save", command=save).grid(row=6, column=0, padx=10, pady=10, sticky=tk.EW)
 
