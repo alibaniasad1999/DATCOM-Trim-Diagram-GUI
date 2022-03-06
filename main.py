@@ -78,7 +78,7 @@ BAI_img_label = tk.Label(initialization, image=BAI_img)
 BAI_img_label.image = BAI_image
 
 # Position image
-BAI_img_label.grid(column=3, rowspan=5, row=10, padx=1, pady=1, sticky=tk.E)
+BAI_img_label.grid(column=3, rowspan=5, row=7, padx=1, pady=1, sticky=tk.E)
 
 
 
