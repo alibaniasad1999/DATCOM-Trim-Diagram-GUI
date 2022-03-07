@@ -719,14 +719,14 @@ tk.Label(elevator_type, text="Elevator Type:").grid(column=0, row=0, padx=10, pa
 ele_type_var = tk.IntVar()
 ele_type_var.set(1)
 
-tk.Radiobutton(elevator_type, text="plian flaps", padx=20, variable=dim_unit_var, value=1).grid(column=0, row=1, sticky=tk.W)
-tk.Radiobutton(elevator_type, text="single sloted flaps", padx=20, variable=dim_unit_var, value=2).grid(column=0, row=2, sticky=tk.W)
-tk.Radiobutton(elevator_type, text="fowler flaps", padx=20, variable=dim_unit_var, value=3).grid(column=0, row=3, sticky=tk.W)
-tk.Radiobutton(elevator_type, text="double sloted flaps", padx=20, variable=dim_unit_var, value=4).grid(column=0, row=4, sticky=tk.W)
-tk.Radiobutton(elevator_type, text="split flaps", padx=20, variable=dim_unit_var, value=5).grid(column=0, row=5, sticky=tk.W)
-tk.Radiobutton(elevator_type, text="leading edge flaps", padx=20, variable=dim_unit_var, value=6).grid(column=0, row=6, sticky=tk.W)
-tk.Radiobutton(elevator_type, text="lesding edge slats", padx=20, variable=dim_unit_var, value=7).grid(column=0, row=7, sticky=tk.W)
-tk.Radiobutton(elevator_type, text="kruger", padx=20, variable=dim_unit_var, value=8).grid(column=0, row=8, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="plian flaps", padx=20, variable=ele_type_var, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="single sloted flaps", padx=20, variable=ele_type_var, value=2).grid(column=0, row=2, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="fowler flaps", padx=20, variable=ele_type_var, value=3).grid(column=0, row=3, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="double sloted flaps", padx=20, variable=ele_type_var, value=4).grid(column=0, row=4, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="split flaps", padx=20, variable=ele_type_var, value=5).grid(column=0, row=5, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="leading edge flaps", padx=20, variable=ele_type_var, value=6).grid(column=0, row=6, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="lesding edge slats", padx=20, variable=ele_type_var, value=7).grid(column=0, row=7, sticky=tk.W)
+tk.Radiobutton(elevator_type, text="kruger", padx=20, variable=ele_type_var, value=8).grid(column=0, row=8, sticky=tk.W)
 
 # elevator angle
 
@@ -796,9 +796,9 @@ tk.Label(elevator_nose_type, text="Elevator nose Type:").grid(column=0, row=0, p
 ele_nose_type_var = tk.IntVar()
 ele_nose_type_var.set(1)
 
-tk.Radiobutton(elevator_nose_type, text="round nose flap", padx=20, variable=dim_unit_var, value=1).grid(column=0, row=1, sticky=tk.W)
-tk.Radiobutton(elevator_nose_type, text="elliptic nose flap", padx=20, variable=dim_unit_var, value=2).grid(column=0, row=2, sticky=tk.W)
-tk.Radiobutton(elevator_nose_type, text="sharp nose flap", padx=20, variable=dim_unit_var, value=3).grid(column=0, row=3, sticky=tk.W)
+tk.Radiobutton(elevator_nose_type, text="round nose flap", padx=20, variable=ele_nose_type_var, value=1).grid(column=0, row=1, sticky=tk.W)
+tk.Radiobutton(elevator_nose_type, text="elliptic nose flap", padx=20, variable=ele_nose_type_var, value=2).grid(column=0, row=2, sticky=tk.W)
+tk.Radiobutton(elevator_nose_type, text="sharp nose flap", padx=20, variable=ele_nose_type_var, value=3).grid(column=0, row=3, sticky=tk.W)
 
 
 ###### Trim diagram ######
