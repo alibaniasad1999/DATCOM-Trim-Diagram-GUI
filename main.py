@@ -1319,6 +1319,22 @@ def load():
 
         trim_ang.delete(0, tk.END)
         trim_ang.insert(0, a[13][2])
+    
+    global ground_effect_tobe
+    if a[14][0] == "1":
+        ground_effect_tobe.set(1)
+    else:
+        ground_effect_tobe.set(0)
+
+
+    min_ge_height.delete(0, tk.END)
+    min_ge_height.insert(0, a[14][1])
+
+    max_ge_height.delete(0, tk.END)
+    max_ge_height.insert(0, a[14][2])
+
+    num_ge_height.delete(0, tk.END)
+    num_ge_height.insert(0, a[14][3])
 
     if dim_unit_var.get() == 1:
         tk.Label(flight_condition, text='Imperial').grid(column=3, row=0, padx=10, pady=10, sticky=tk.W)
