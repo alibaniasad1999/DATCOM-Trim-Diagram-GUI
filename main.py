@@ -22,7 +22,7 @@ import subprocess
 
 root = tk.Tk()
 root.title("DATCOM-GUI")
-root.iconbitmap("logo.ico")
+# root.iconbitmap("logo.ico")
 root.geometry("900x650")
 tabControl = ttk.Notebook(root)
 
@@ -286,6 +286,25 @@ tk.Radiobutton(looping, text="Vary Mach at fixed Altitude", padx=40,
                variable=looping_var, value=2).grid(column=0, row=2, sticky=tk.W)
 tk.Radiobutton(looping, text="Vary Altitude at fixed Mach", padx=40,
                variable=looping_var, value=3).grid(column=0, row=3, sticky=tk.W)
+
+# ground Effect
+ground_effect = tk.Frame(flight_condition,
+                 highlightbackground="black",
+                 highlightthickness=1)
+ground_effect.grid(column=0, row=3, columnspan=2, padx=10, pady=10, sticky=tk.EW)
+tk.Label(ground_effect, text="Minimum height").grid(column=0, row=1, padx=38, pady=10, sticky=tk.W)
+min_ge_height = tk.Entry(ground_effect)
+min_ge_height.grid(column=1, row=1, padx=0, pady=10, sticky=tk.E)
+tk.Label(ground_effect, text="Maximum height").grid(column=0, row=2, padx=38, pady=10, sticky=tk.W)
+max_ge_height = tk.Entry(ground_effect)
+max_ge_height.grid(column=1, row=2, padx=0, pady=10, sticky=tk.E)
+tk.Label(ground_effect, text="Number of height (max = 20)").grid(column=0, row=3, padx=38, pady=10, sticky=tk.W)
+num_ge_height = tk.Entry(ground_effect)
+num_ge_height.grid(column=1, row=3, padx=0, pady=10, sticky=tk.E)
+ground_effect_tobe = tk.IntVar()
+ground_effect_tobe.set(0)
+tk.Checkbutton(ground_effect, text="Ground Effect",
+               variable=ground_effect_tobe).grid(column=0, row=0, sticky=tk.W)
 # options
 options = ttk.Frame(tabControl)
 
@@ -2764,7 +2783,7 @@ tk.Button(initialization, text="save", command=save).grid(row=8, column=1, padx=
 
 tk.Button(control_cards, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
-tk.Button(flight_condition, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
+# tk.Button(flight_condition, text="save", command=save).grid(row=5, column=0, padx=10, pady=10, sticky=tk.EW)
 
 tk.Button(initialization, text="make DATCOM file", command=make_datcom).grid(row=9, column=1, padx=10, pady=10, sticky=tk.W)
 
