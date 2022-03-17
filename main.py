@@ -1670,6 +1670,12 @@ def save():
 
         data_saver[13].append(trim_ang.get())
 
+    data_saver.append([])
+    global ground_effect_tobe
+    data_saver[14].append(str(ground_effect_tobe.get()))
+    data_saver[14].append(min_ge_height.get())
+    data_saver[14].append(max_ge_height.get())
+    data_saver[14].append(num_ge_height.get())
 
     # Write data
     f = filedialog.asksaveasfile(mode='w', defaultextension=".csv")
