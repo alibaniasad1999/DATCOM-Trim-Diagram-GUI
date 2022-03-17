@@ -1806,7 +1806,7 @@ def make_datcom():
 
     # Angle of Attack
 
-    NALPHA = NALT = round(float(num_ang.get()), 2)
+    NALPHA = round(float(num_ang.get()), 2)
 
     # Array of angle of attacks
     ang_temp = np.linspace(float(min_ang.get()), float(max_ang.get()), int(num_ang.get()))
@@ -2128,6 +2128,20 @@ def make_datcom():
         file.write('NTYPE = %s, ' % str(ENTYPE))
         # End of File
         file.write('$\n')
+    
+    if ground_effect_tobe.get() == 1:
+        NGH = round(float(num_ge_height.get()), 2)
+        ge_temp = np.linspace(float(min_ge_height.get()), float(max_ge_height.get()), int(num_ge_height.get()))
+        ge_temp = ge_temp.tolist()
+        GRDHT = [round(float(i), 2) for i in ang_temp]
+        # Name list
+        file.write(' $GRNDEF ')
+        # Number of height
+        file.write('NGH = %s, \n\t\t ' % str(NGH))
+        # Array of height
+        loop_writer('GRDHT', GRDHT, file)
+        file.write('$\n')
+
 
     messagebox.showinfo(title="Saved", message="Done")
 
