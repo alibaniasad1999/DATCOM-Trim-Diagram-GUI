@@ -2133,7 +2133,7 @@ def make_datcom():
         NGH = round(float(num_ge_height.get()), 2)
         ge_temp = np.linspace(float(min_ge_height.get()), float(max_ge_height.get()), int(num_ge_height.get()))
         ge_temp = ge_temp.tolist()
-        GRDHT = [round(float(i), 2) for i in ang_temp]
+        GRDHT = [round(float(i), 2) for i in ge_temp]
         # Name list
         file.write(' $GRNDEF ')
         # Number of height
